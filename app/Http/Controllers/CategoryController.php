@@ -27,8 +27,7 @@ class CategoryController extends Controller
         Category::create([
             'category_name' => $request->input('category_name'),
         ]);
-        
-        return redirect()->route('category');
+        return redirect()->route('category')->with('success', 'Category inserted successfully.');
     }
     
     
@@ -51,15 +50,15 @@ class CategoryController extends Controller
         $category->update([
             'category_name' => $request->input('category_name')
         ]);
-    
-        return redirect()->route('category');
+
+        return redirect()->route('category')->with('success', 'Category updated successfully.');
     }
     
     public function categoryDestroy($id)
     {
             $category = Category::find($id);
             $category->delete();
-            return redirect()->back();
-    }
+            return redirect()->route('category')->with('danger', 'Category delete successfully.');
+        }
     
 }
