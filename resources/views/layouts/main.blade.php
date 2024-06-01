@@ -89,7 +89,7 @@
                         </li>
                         <li>
                             <a href="{{ route('category') }}">
-                                <i class="fas fa-chart-bar"></i>Category</a>
+                                <i class="bi bi-tags"></i>Category</a>
                         </li>
                     </ul>
                 </nav>
