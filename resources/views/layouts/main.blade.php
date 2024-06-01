@@ -20,10 +20,13 @@
 
     <!-- Bootstrap CSS-->
     <link href="{{ asset('vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Vendor CSS-->
     <link href="{{ asset('vendor/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet"
+        media="all">
     <link href="{{ asset('vendor/wow/animate.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/slick/slick.css') }} " rel="stylesheet" media="all">
@@ -58,12 +61,12 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
                             <a class="{{ route('dashboard') }}" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>                           
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        {{-- <li>
-                            <a href="{{ route('role') }}">
-                                <i class="fas fa-chart-bar"></i>Role</a>
-                        </li> --}}
+                        <li>
+                            <a href="{{ route('category') }}">
+                                <i class="fas fa-chart-bar"></i>Category</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -82,12 +85,12 @@
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="{{ route('dashboard') }}" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>                           
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
-                        {{-- <li>
-                            <a href="{{ route('role') }}">
-                                <i class="fas fa-chart-bar"></i>Role</a>
-                        </li> --}}
+                        <li>
+                            <a href="{{ route('category') }}">
+                                <i class="fas fa-chart-bar"></i>Category</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -102,7 +105,8 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <input class="au-input au-input--xl" type="text" name="search"
+                                    placeholder="Search for datas &amp; reports..." />
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
@@ -284,11 +288,16 @@
                 </div>
                 <!-- END MAIN CONTENT-->
                 <!-- END PAGE CONTAINER-->
-            </div>          
+            </div>
 
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script><!-- Bootstrap JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
     <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
 
     <!-- Jquery JS-->
@@ -297,19 +306,16 @@
     <script src="{{ asset('vendor/bootstrap-4.1/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
     <!-- Vendor JS       -->
-    <script src="{{ asset('vendor/slick/slick.min.js') }}">
-    </script>
+    <script src="{{ asset('vendor/slick/slick.min.js') }}"></script>
     <script src="{{ asset('vendor/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('vendor/animsition/animsition.min.js')}}"></script>
-    <script src="{{ asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}">
-    </script>
-    <script src="{{ asset('vendor/counter-up/jquery.waypoints.min.js')}}"></script>
-    <script src="{{ asset('vendor/counter-up/jquery.counterup.min.js')}}"></script>
-    <script src="{{ asset('vendor/circle-progress/circle-progress.min.js')}}"></script>
+    <script src="{{ asset('vendor/animsition/animsition.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
+    <script src="{{ asset('vendor/counter-up/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('vendor/counter-up/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('vendor/circle-progress/circle-progress.min.js') }}"></script>
     <script src="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('vendor/chartjs/Chart.bundle.min.js') }}"></script>
-    <script src="{{ asset('vendor/select2/select2.min.js') }}">
-    </script>
+    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
 
     <!-- Main JS-->
     <script src="{{ asset('js/main.js') }}"></script>
