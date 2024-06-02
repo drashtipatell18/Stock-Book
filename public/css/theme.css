@@ -316,8 +316,8 @@ section {
 }
 
 .main-content {
-    padding-top: 116px;
-    min-height: 100vh;
+    padding-top: 61px !important;
+    min-height: 100vh !important;
 }
 
 @media (max-width: 991px) {
