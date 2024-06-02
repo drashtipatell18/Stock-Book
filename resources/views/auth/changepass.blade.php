@@ -16,7 +16,8 @@
                                 <img src="images/icon/logo.png" alt="CoolAdmin">
                             </a>
                         </div>
-                        <div class="login-form">
+                        <h3 class="text-center">Change Password</h3>
+                        <div class="login-form mt-4">
                             <form method="POST" action="{{ route('changePassword') }}" class="login">
                                 @csrf
                                 <div class="form-group">
@@ -52,7 +53,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="mt-3">
+                                <div class="mt-5">
                                     <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Change Password</button>
                                 </div>
                             </form>    
