@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\StallController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,17 +40,28 @@ Auth::routes([
 
 Route::middleware(['auth'])->group(function () {
 
-// Category
-
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass');
 Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword');
+
+// Category
+
 Route::get('/category', [CategoryController::class, 'category'])->name('category');
 Route::get('/category/create', [CategoryController::class, 'createCategory'])->name('category.create');
 Route::post('/category/store', [CategoryController::class, 'storeCategory'])->name('category.store');
 Route::get('/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('edit.category');
 Route::post('/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('update.category');
 Route::get('/category/destroy/{id}',[CategoryController::class,'categoryDestroy'])->name('destroy.category');
+
+
+// Stall
+
+Route::get('/stall', [StallController::class, 'stall'])->name('stall');
+Route::get('/stall/create', [StallController::class, 'createStall'])->name('stall.create');
+Route::post('/stall/store', [StallController::class, 'storeStall'])->name('stall.store');
+Route::get('/stall/edit/{id}', [StallController::class, 'StallEdit'])->name('edit.stall');
+Route::post('/stall/update/{id}', [StallController::class, 'StallUpdate'])->name('update.stall');
+Route::get('/stall/destroy/{id}',[StallController::class,'StallDestroy'])->name('destroy.stall');
 
 // User 
 

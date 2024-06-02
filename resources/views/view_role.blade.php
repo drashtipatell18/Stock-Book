@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-12 col-sm-12 ">
         <div class="card">
-            <div class="card-header">Category List</div>
+            <div class="card-header">Role List</div>
             {{-- @if (auth()->check())
             @php
                 $userRole = strtolower(auth()->user()->role);

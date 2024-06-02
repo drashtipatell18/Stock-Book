@@ -48,7 +48,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <a class="logo" href="index.html">
-                            <img src="images/icon/logo.png" alt="CoolAdmin" />
+                            <img src="{{ asset('images/icon/logo.png') }}" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -86,6 +86,10 @@
                                 <i class="fas fa-chart-bar"></i>User</a>
                         </li>
                         <li>
+                            <a href="{{ route('stall') }}">
+                                <i class="bi bi-bookmark"></i>Stall</a>
+                        </li>
+                        <li>
                             <a href="{{ route('holiday') }}">
                                 <i class="bi bi-bookmark"></i>Holiday</a>
                         </li>
@@ -120,6 +124,10 @@
                         <li>
                             <a href="{{ route('user') }}">
                                 <i class="bi bi-person-circle"></i>User</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('stall') }}">
+                                <i class="bi bi-bookmark"></i>Stall</a>
                         </li>
                         <li>
                             <a href="{{ route('holiday') }}">
