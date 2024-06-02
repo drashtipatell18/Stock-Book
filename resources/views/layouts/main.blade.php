@@ -13,29 +13,30 @@
     <title>Dashboard</title>
 
     <!-- Fontfaces CSS-->
-    <link href="{{ asset('css/font-face.css') }}" rel="stylesheet" media="all">
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="{{ asset('vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
     <link href="{{ asset('vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <!-- Vendor CSS-->
     <link href="{{ asset('vendor/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet"
         media="all">
     <link href="{{ asset('vendor/wow/animate.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('vendor/slick/slick.css') }} " rel="stylesheet" media="all">
+    <link href="{{ asset('vendor/slick/slick.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('vendor/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Main CSS-->
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -68,6 +69,18 @@
                             <a href="{{ route('category') }}">
                                 <i class="fas fa-chart-bar"></i>Category</a>
                         </li>
+                        <li>
+                            <a href="{{ route('role') }}">
+                                <i class="fas fa-chart-bar"></i>Role</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user') }}">
+                                <i class="fas fa-chart-bar"></i>User</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('holiday') }}">
+                                <i class="bi bi-bookmark"></i>Holiday</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -95,6 +108,14 @@
                         <li>
                             <a href="{{ route('role') }}">
                                 <i class="fas fa-chart-bar"></i>Role</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('user') }}">
+                                <i class="bi bi-person-circle"></i>User</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('holiday') }}">
+                                <i class="bi bi-bookmark"></i>Holiday</a>
                         </li>
                     </ul>
                 </nav>
@@ -298,19 +319,18 @@
         </div>
 
     </div>
+    <!-- Jquery JS-->
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script><!-- Bootstrap JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-    <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
-
-    <!-- Jquery JS-->
-    <script src="{{ asset('vendor/jquery-3.2.1.min.js') }}"></script>
-    <!-- Bootstrap JS-->
     <script src="{{ asset('vendor/bootstrap-4.1/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
-    <!-- Vendor JS       -->
+
+    <!-- Vendor JS-->
+
     <script src="{{ asset('vendor/slick/slick.min.js') }}"></script>
     <script src="{{ asset('vendor/wow/wow.min.js') }}"></script>
     <script src="{{ asset('vendor/animsition/animsition.min.js') }}"></script>
@@ -324,6 +344,7 @@
 
     <!-- Main JS-->
     <script src="{{ asset('js/main.js') }}"></script>
+    @stack('scripts')
 
 </body>
 

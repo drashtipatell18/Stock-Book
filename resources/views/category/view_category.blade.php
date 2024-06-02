@@ -31,7 +31,7 @@
 
                     {{-- <h3 class="text-right mt-4"></h3> --}}
                 </div>
-                <div class="table-responsive mt-2">
+                <div class="table-responsive mt-3">
                     <table class="table table-striped jambo_table bulk_action" id="table">
                         <thead>
                             <tr class="">
@@ -68,6 +68,9 @@
 
             setTimeout(function() {
                 $(".alert-success").fadeOut(1000);
+            }, 1000);
+            setTimeout(function() {
+                $(".alert-danger").fadeOut(1000);
             }, 1000);
         });
     </script>
