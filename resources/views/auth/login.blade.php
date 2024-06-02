@@ -32,7 +32,7 @@
 
                                 </label>
                                 <label>
-                                    <a href="#">Forgotten Password?</a>
+                                    <a href="{{ route('forget.password') }}">Forgotten Password?</a>
                                 </label>
                             </div>
                             <div class="mt-3">

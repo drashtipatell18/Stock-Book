@@ -67,14 +67,17 @@
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {
-             $('#table').DataTable();
+            $('#table').DataTable();
 
             setTimeout(function() {
                 $(".alert-success").fadeOut(1000);
             }, 1000);
+            setTimeout(function() {
+                $(".alert-danger").fadeOut(1000);
+            }, 1000);
+
         });
     </script>
 @endpush
