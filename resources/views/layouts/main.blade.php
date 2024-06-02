@@ -103,8 +103,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
-                </a>
+                    <img src="{{ asset('images/icon/logo.png') }}" alt="CoolAdmin" /> </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -182,9 +181,9 @@
                                                 {{-- @endif --}}
                                                 {{-- @if ($userRole == 'admin') --}}
                                                 <div class="account-dropdown__item">
-                                                        <a href="{{ route('changepass') }}">
-                                                            <i class="zmdi zmdi-settings"></i>Change Password</a>
-                                                    </div>
+                                                    <a href="{{ route('changepass') }}">
+                                                        <i class="zmdi zmdi-settings"></i>Change Password</a>
+                                                </div>
                                                 {{-- @endif --}}
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('logout') }}">
