@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RoleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +32,17 @@ Route::get('/category/destroy/{id}',[CategoryController::class,'categoryDestroy'
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//Role
+Route::get('/role', [RoleController::class, 'role'])->name('role');
+Route::get('/role/create', [RoleController::class, 'roleCreate'])->name('role.create');
+Route::post('/role/store', [RoleController::class, 'roleStore'])->name('role.store');
+Route::get('/role/edit/{id}', [RoleController::class, 'roleEdit'])->name('role.edit');
+Route::post('/role/update/{id}', [RoleController::class, 'roleUpdate'])->name('role.update');
+Route::delete('/role/delete/{id}', [RoleController::class, 'roleDestroy'])->name('role.destroy');
+
+
+
+
+

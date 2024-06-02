@@ -35,6 +35,7 @@
 
     <!-- Main CSS-->
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -90,6 +91,10 @@
                         <li>
                             <a href="{{ route('category') }}">
                                 <i class="bi bi-tags"></i>Category</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('role') }}">
+                                <i class="fas fa-chart-bar"></i>Role</a>
                         </li>
                     </ul>
                 </nav>
