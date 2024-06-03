@@ -10,6 +10,7 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\StallController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,14 @@ Route::get('/book/edit/{id}', [BookController::class, 'bookEdit'])->name('edit.b
 Route::post('/book/update/{id}', [BookController::class, 'bookUpdate'])->name('update.book');
 Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('destroy.book');
 
+ //Payment
+
+ Route::get('/payment', [PaymentController::class, 'payment'])->name('payment');
+ Route::get('/payment/create',[PaymentController::class,'paymentCreate'])->name('create.payment');
+ Route::post('/payment/insert',[PaymentController::class,'paymentInsert'])->name('insert.payment');
+ Route::get('/payment/edit/{id}', [PaymentController::class, 'paymentEdit'])->name('edit.payment');
+ Route::post('/payment/update/{id}', [PaymentController::class, 'paymentUpdate'])->name('update.payment');
+ Route::get('/payment/destroy/{id}',[PaymentController::class,'paymentDestroy'])->name('destroy.payment');
 });
 
 

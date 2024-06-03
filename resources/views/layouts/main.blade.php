@@ -98,6 +98,10 @@
                                 <i class="bi bi-bookmark"></i>Stall</a>
                         </li>
                         <li>
+                            <a href="{{ route('payment') }}">
+                                <i class="bi bi-bookmark"></i>Payment</a>
+                        </li>
+                        <li>
                             <a href="{{ route('holiday') }}">
                                 <i class="bi bi-bookmark"></i>Holiday</a>
                         </li>
@@ -143,6 +147,10 @@
                         <li>
                             <a href="{{ route('stall') }}">
                                 <i class="bi bi-bookmark"></i>Stall</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('payment') }}">
+                                <i class="bi bi-credit-card"></i>Payment</a>
                         </li>
                         <li>
                             <a href="{{ route('holiday') }}">
