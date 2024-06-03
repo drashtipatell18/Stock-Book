@@ -54,7 +54,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="price" class="control-label mb-1">Price</label>
+                        <label for="price" class="control-label mb-1">Per Book Price</label>
                         <input id="price" name="price" type="number" value="{{ old('price', $books->price ?? '') }}"
                             class="form-control @error('price') is-invalid @enderror">
                         @error('price')
