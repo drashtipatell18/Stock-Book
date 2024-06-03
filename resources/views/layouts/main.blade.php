@@ -86,6 +86,10 @@
                                 <i class="fas fa-chart-bar"></i>User</a>
                         </li>
                         <li>
+                            <a href="{{ route('employee') }}">
+                                <i class="bi bi-people-fill"></i>Employee</a>
+                        </li>
+                        <li>
                             <a href="{{ route('stall') }}">
                                 <i class="bi bi-bookmark"></i>Stall</a>
                         </li>
@@ -123,6 +127,10 @@
                         <li>
                             <a href="{{ route('user') }}">
                                 <i class="bi bi-person-circle"></i>User</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('employee') }}">
+                                <i class="bi bi-people-fill"></i></i>Employee</a>
                         </li>
                         <li>
                             <a href="{{ route('stall') }}">

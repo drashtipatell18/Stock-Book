@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\StallController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +90,17 @@ Route::get('/role/edit/{id}', [RoleController::class, 'roleEdit'])->name('role.e
 Route::post('/role/update/{id}', [RoleController::class, 'roleUpdate'])->name('role.update');
 Route::delete('/role/delete/{id}', [RoleController::class, 'roleDestroy'])->name('role.destroy');
 
+// Employee
+
+Route::get('/employee', [EmployeeController::class, 'employees'])->name('employee');
+Route::get('/employee/create',[EmployeeController::class,'employeeCreate'])->name('create.employee');
+Route::post('/employee/insert',[EmployeeController::class,'employeeInsert'])->name('insert.employee');
+Route::get('/employee/edit/{id}', [EmployeeController::class, 'employeeEdit'])->name('edit.employee');
+Route::post('/employee/update/{id}', [EmployeeController::class, 'employeeUpdate'])->name('update.employee');
+Route::get('/employee/destroy/{id}',[EmployeeController::class,'employeeDestroy'])->name('destroy.employee');
+// Route::get('/my-profile', [EmployeeController::class, 'myProfile'])->name('my.profile');
+// Route::get('/edit-profile/{id}', [EmployeeController::class, 'editProfile'])->name('edit-profile');
+// Route::post('/update-profile/{id}', [EmployeeController::class, 'Profileupdate'])->name('update-profile');
 });
 
 
