@@ -11,4 +11,9 @@ class Book extends Model
     use HasFactory,SoftDeletes;
     protected $table = 'books';
     protected $fillable = ['name','category_name','price','image'];
+
+    public function salesOrders()
+    {
+        return $this->hasMany(SalesOrder::class);
+    }
 }

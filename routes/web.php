@@ -11,6 +11,7 @@ use App\Http\Controllers\StallController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SalesOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,6 +122,16 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
  Route::get('/payment/edit/{id}', [PaymentController::class, 'paymentEdit'])->name('edit.payment');
  Route::post('/payment/update/{id}', [PaymentController::class, 'paymentUpdate'])->name('update.payment');
  Route::get('/payment/destroy/{id}',[PaymentController::class,'paymentDestroy'])->name('destroy.payment');
+
+  //Sales Order
+
+  Route::get('/salesorder', [SalesOrderController::class, 'salesorder'])->name('salesorder');
+  Route::get('/salesorder/create',[SalesOrderController::class,'salesorderCreate'])->name('create.salesorder');
+  Route::post('/salesorder/insert',[SalesOrderController::class,'salesorderInsert'])->name('insert.salesorder');
+  Route::get('/salesorder/edit/{id}', [SalesOrderController::class, 'salesorderEdit'])->name('edit.salesorder');
+  Route::post('/salesorder/update/{id}', [SalesOrderController::class, 'salesorderUpdate'])->name('update.salesorder');
+  Route::get('/salesorder/destroy/{id}',[SalesOrderController::class,'salesorderDestroy'])->name('destroy.salesorder');
+
 });
 
 
