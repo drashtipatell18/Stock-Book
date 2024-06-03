@@ -90,6 +90,10 @@
                                 <i class="bi bi-people-fill"></i>Employee</a>
                         </li>
                         <li>
+                            <a href="{{ route('book') }}">
+                                <i class="bi bi-book-half"></i>Book</a>
+                        </li>
+                        <li>
                             <a href="{{ route('stall') }}">
                                 <i class="bi bi-bookmark"></i>Stall</a>
                         </li>
@@ -131,6 +135,10 @@
                         <li>
                             <a href="{{ route('employee') }}">
                                 <i class="bi bi-people-fill"></i></i>Employee</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('book') }}">
+                                <i class="bi bi-book-half"></i>Book</a>
                         </li>
                         <li>
                             <a href="{{ route('stall') }}">

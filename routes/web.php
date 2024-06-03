@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\StallController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +102,16 @@ Route::get('/employee/destroy/{id}',[EmployeeController::class,'employeeDestroy'
 // Route::get('/my-profile', [EmployeeController::class, 'myProfile'])->name('my.profile');
 // Route::get('/edit-profile/{id}', [EmployeeController::class, 'editProfile'])->name('edit-profile');
 // Route::post('/update-profile/{id}', [EmployeeController::class, 'Profileupdate'])->name('update-profile');
+
+// Book
+
+Route::get('/book', [BookController::class, 'book'])->name('book');
+Route::get('/book/create',[BookController::class,'bookCreate'])->name('create.book');
+Route::post('/book/insert',[BookController::class,'bookInsert'])->name('insert.book');
+Route::get('/book/edit/{id}', [BookController::class, 'bookEdit'])->name('edit.book');
+Route::post('/book/update/{id}', [BookController::class, 'bookUpdate'])->name('update.book');
+Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('destroy.book');
+
 });
 
 
