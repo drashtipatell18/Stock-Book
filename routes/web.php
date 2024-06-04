@@ -12,6 +12,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SalesOrderController;
+use App\Http\Controllers\ScrapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,6 +132,16 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
   Route::get('/salesorder/edit/{id}', [SalesOrderController::class, 'salesorderEdit'])->name('edit.salesorder');
   Route::post('/salesorder/update/{id}', [SalesOrderController::class, 'salesorderUpdate'])->name('update.salesorder');
   Route::get('/salesorder/destroy/{id}',[SalesOrderController::class,'salesorderDestroy'])->name('destroy.salesorder');
+
+
+  //Scrap
+
+  Route::get('/scrap', [ScrapController::class, 'scrap'])->name('scrap');
+  Route::get('/scrap/create',[ScrapController::class,'scrapCreate'])->name('create.scrap');
+  Route::post('/scrap/insert',[ScrapController::class,'scrapInsert'])->name('insert.scrap');
+  Route::get('/scrap/edit/{id}', [ScrapController::class, 'scrapEdit'])->name('edit.scrap');
+  Route::post('/scrap/update/{id}', [ScrapController::class, 'sscrapUpdate'])->name('update.scrap');
+  Route::get('/scrap/destroy/{id}',[ScrapController::class,'scrapDestroy'])->name('destroy.scrap');
 
 });
 

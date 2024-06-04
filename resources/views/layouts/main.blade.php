@@ -102,6 +102,10 @@
                                 <i class="bi bi-receipt-cutoff"></i>Sales Order</a>
                         </li>
                         <li>
+                            <a href="{{ route('scrap') }}">
+                                <i class="bi bi-receipt-cutoff"></i>Scrap</a>
+                        </li>                        
+                        <li>
                             <a href="{{ route('payment') }}">
                                 <i class="bi bi-bookmark"></i>Payment</a>
                         </li>
@@ -156,6 +160,10 @@
                             <a href="{{ route('salesorder') }}">
                                 <i class="bi bi-receipt-cutoff"></i>Sales Order</a>
                         </li>
+                        <li>
+                            <a href="{{ route('scrap') }}">
+                                <i class="bi bi-receipt-cutoff"></i>Scrap</a>
+                        </li>     
                         <li>
                             <a href="{{ route('payment') }}">
                                 <i class="bi bi-credit-card"></i>Payment</a>
