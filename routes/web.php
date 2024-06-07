@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\StockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +78,16 @@ Route::get('/role/edit/{id}', [RoleController::class, 'roleEdit'])->name('role.e
 Route::post('/role/update/{id}', [RoleController::class, 'roleUpdate'])->name('role.update');
 Route::delete('/role/delete/{id}', [RoleController::class, 'roleDestroy'])->name('role.destroy');
 
+//Stock
+Route::get('/stock', [StockController::class, 'stock'])->name('stock');
+Route::get('/stock/create', [StockController::class, 'stockCreate'])->name('stock.create');
+Route::post('/stock/store', [StockController::class, 'stockStore'])->name('stock.store');
+Route::get('/stock/edit/{id}', [StockController::class, 'stockEdit'])->name('stock.edit');
+Route::post('/stock/update/{id}', [StockController::class, 'stockUpdate'])->name('stock.update');
+Route::delete('/stock/delete/{id}', [StockController::class, 'stockDestroy'])->name('stock.destroy');
 });
+
+
 
 
 

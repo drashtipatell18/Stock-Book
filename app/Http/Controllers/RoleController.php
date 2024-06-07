@@ -21,10 +21,12 @@ class RoleController extends Controller
     public function roleStore(Request $request)
     {
         $request->validate([
-            'role_name' => 'required|string|max:255',
+            'role_name' => 'required',
+        ]);
+        Role::create([
+            'role_name' => $request->input('role_name'),
         ]);
 
-        Role::create($request->all());
         return redirect()->route('role')->with('success', 'Role created successfully.');
     }
 
@@ -41,7 +43,9 @@ class RoleController extends Controller
         ]);
 
         $role = Role::find($id);
-        $role->update($request->all());
+        $role->update([
+            'role_name' => $request->input('role_name')
+        ]);
         return redirect()->route('role')->with('success', 'Role updated successfully.');
     }
 
