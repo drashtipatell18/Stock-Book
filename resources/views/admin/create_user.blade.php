@@ -62,15 +62,16 @@
                         </div>
                     @endif
                     <div class="form-group">
-                        <label for="role" class="control-label mb-1">Role</label>
-                        <select id="role" name="role" class="form-control @error('role') is-invalid @enderror">
+                        <label for="role_id" class="control-label mb-1">Role</label>
+                        <select id="role_id" name="role_id" class="form-control @error('role_id') is-invalid @enderror">
                             <option value="">Select</option>
-                            @foreach ($roles as $role)
-                                <option value="{{ $role }}" @if (old('role', isset($users->role) ? $users->role : '') == $role) selected @endif>
-                                    {{ $role }}</option>
+                            @foreach ($roles as $id => $name)
+                                <option value="{{ $id }}" @if (old('role_id', isset($user->role_id) ? $user->role_id : '') == $id) selected @endif>
+                                    {{ $name }}
+                                </option>
                             @endforeach
                         </select>
-                        @error('role')
+                        @error('role_id')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>

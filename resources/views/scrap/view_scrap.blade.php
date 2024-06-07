@@ -16,7 +16,8 @@
                         </div>
                     @endif
                     <div class="button-container text-right mb-2">
-                        <a href="{{ route('create.scrap') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                        <a href="{{ route('create.scrap') }}"><button type="button" class="btn btn-primary btn-sm mt-1"><i
+                            class="bi bi-plus-lg"></i>Add
                             Scrap</button></a>
                     </div>
                 </div>
@@ -41,9 +42,11 @@
                                     <td>{{ $scrap->price }}</td>
                                     <td>{{ date('d-m-Y', strtotime($scrap->to_date)) }}</td>
                                     <td>
-                                        <a href="{{ route('edit.scrap', $scrap->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                        <a href="{{ route('edit.scrap', $scrap->id) }}" class="btn btn-info btn-sm"><i
+                                            class="bi bi-pencil-square"></i></a>
                                         <a href="{{ route('destroy.scrap', $scrap->id) }}" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Are you sure you want to delete this?');">Delete</a>
+                                            onclick="return confirm('Are you sure you want to delete this?');"><i
+                                            class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

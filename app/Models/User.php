@@ -23,7 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role',
+        'role_id',
         'image',
     ];
 
@@ -54,6 +54,11 @@ class User extends Authenticatable
     public function employee()
     {
         return $this->hasOne('App\Models\Employee\Employee', 'user_id', 'id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 
 }

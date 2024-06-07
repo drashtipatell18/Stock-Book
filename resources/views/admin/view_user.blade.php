@@ -48,7 +48,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td><img src="{{ asset('images/' .$user->image)}}" class="img-fixed-height" width="100px"></td>
 
-                                    <td>{{ $user->role }}</td>
+                                    <td>{{ $user->role ? $user->role->role_name : 'No role' }}</td>
                                     <td>
                                         <a href="{{ route('edit.user', $user->id) }}"
                                             class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>

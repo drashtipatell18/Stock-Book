@@ -43,7 +43,7 @@ Auth::routes([
     'verify' => false
 ]);
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass');
@@ -143,7 +143,7 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
   Route::post('/scrap/update/{id}', [ScrapController::class, 'sscrapUpdate'])->name('update.scrap');
   Route::get('/scrap/destroy/{id}',[ScrapController::class,'scrapDestroy'])->name('destroy.scrap');
 
-});
+// });
 
 
 
