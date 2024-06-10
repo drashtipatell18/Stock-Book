@@ -16,21 +16,9 @@
                                 <img src="images/icon/logo.png" alt="CoolAdmin">
                             </a>
                         </div>
-                        <h3 class="text-center">Change Password</h3>
-                        <div class="login-form mt-4">
-                            <form method="POST" action="{{ route('changePassword') }}" class="login">
+                        <div class="login-form">
+                            <form method="POST" action="{{ route('post_reset', ['token' => $token]) }}" class="login">
                                 @csrf
-                                <div class="form-group">
-                                    <label>Current Password</label>
-                                    <input
-                                        class="au-input au-input--full form-control @error('current_password') is-invalid @enderror"
-                                        type="password" name="current_password" placeholder="Email">
-                                    @error('current_password')
-                                        <span class="invalid-feedback" style="color: red">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
                                 <div class="form-group">
                                     <label>New Password</label>
                                     <input
@@ -53,14 +41,13 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="mt-5">
-                                    <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Change Password</button>
-                                </div>
-                            </form>    
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 @endsection

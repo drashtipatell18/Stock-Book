@@ -48,7 +48,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td><img src="{{ asset('images/' .$user->image)}}" class="img-fixed-height" width="100px"></td>
 
-                                    <td>{{ $user->role }}</td>
+                                    <td>{{ $user->role ? $user->role->role_name : 'No role' }}</td>
                                     <td>
                                         <a href="{{ route('edit.user', $user->id) }}"
                                             class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
@@ -67,14 +67,17 @@
     </div>
 @endsection
 @push('scripts')
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready(function() {
-             $('#table').DataTable();
+            $('#table').DataTable();
 
             setTimeout(function() {
                 $(".alert-success").fadeOut(1000);
             }, 1000);
+            setTimeout(function() {
+                $(".alert-danger").fadeOut(1000);
+            }, 1000);
+
         });
     </script>
 @endpush

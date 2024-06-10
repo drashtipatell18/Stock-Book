@@ -22,15 +22,15 @@
             <div class="card-header"></div>
             <div class="card-body">
                 <div class="card-title">
-                    <h3 class="text-center title-2">{{ isset($users) ? 'Edit User' : 'Add User' }}</h3>
+                    <h3 class="text-center title-2">{{ isset($books) ? 'Edit Book' : 'Add Book' }}</h3>
                 </div>
                 <hr>
-                <form action="{{ isset($users) ? '/user/update/' . $users->id : '/user/insert' }}" method="POST"
+                <form action="{{ isset($books) ? '/book/update/' . $books->id : '/book/insert' }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="name" class="control-label mb-1">Name*</label>
-                        <input id="name" name="name" type="text" value="{{ old('name', $users->name ?? '') }}"
+                        <input id="name" name="name" type="text" value="{{ old('name', $books->name ?? '') }}"
                             class="form-control @error('name') is-invalid @enderror">
                         @error('name')
                             <span class="invalid-feedback" style="color: red">
@@ -39,39 +39,25 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="email" class="control-label mb-1">Email</label>
-                        <input id="email" name="email" type="email" value="{{ old('email', $users->email ?? '') }}"
-                            class="form-control @error('email') is-invalid @enderror">
-                        @error('email')
+                        <label for="category_name" class="control-label mb-1">Category Name</label>
+                        <select id="category_name" name="category_name" class="form-control @error('category_name') is-invalid @enderror">
+                            <option value="">Select</option>
+                            @foreach ($categorys as $category)
+                                <option value="{{ $category }}" @if (old('category', isset($books->category_name) ? $books->category_name : '') == $category) selected @endif>
+                                    {{ $category }}</option>
+                            @endforeach
+                        </select>
+                        @error('role')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                    @if(!isset($users))
-                        <div class="form-group">
-                            <label for="password" class="control-label mb-1">password</label>
-                            <input id="password" name="password" type="password"
-                                value="{{ old('password', $users->password ?? '') }}"
-                                class="form-control @error('password') is-invalid @enderror">
-                            @error('password')
-                                <span class="invalid-feedback" style="color: red">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    @endif
                     <div class="form-group">
-                        <label for="role_id" class="control-label mb-1">Role</label>
-                        <select id="role_id" name="role_id" class="form-control @error('role_id') is-invalid @enderror">
-                            <option value="">Select</option>
-                            @foreach ($roles as $id => $name)
-                                <option value="{{ $id }}" @if (old('role_id', isset($user->role_id) ? $user->role_id : '') == $id) selected @endif>
-                                    {{ $name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('role_id')
+                        <label for="price" class="control-label mb-1">Per Book Price</label>
+                        <input id="price" name="price" type="number" value="{{ old('price', $books->price ?? '') }}"
+                            class="form-control @error('price') is-invalid @enderror">
+                        @error('price')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -79,11 +65,11 @@
                     </div>
                     <div class="form-group">
                         <label for="image" id="imageLabel" class="control-label mb-1 oldimage">Old Image</label>
-                        @if (isset($users) && $users->image)
-                            <img id="oldImage" src="{{ asset('images/' . $users->image) }}"
+                        @if (isset($books) && $books->image)
+                            <img id="oldImage" src="{{ asset('images/' . $books->image) }}"
                                 alt="Uploaded Document" width="100">
                             <input type="hidden" class="form-control" name="oldimage"
-                                value="{{ $users->image }}">
+                                value="{{ $books->image }}">
                         @endif
                     </div>
                     <div class="form-group">
@@ -97,7 +83,7 @@
                     </div>
                     <div class="item form-group">
                         <button type="submit" class="btn btn-lg btn-info btn-block">
-                            @if (isset($users))
+                            @if (isset($books))
                                 Update
                             @else
                                 Save

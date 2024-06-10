@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-12 col-sm-12 ">
         <div class="card">
-            <div class="card-header">Role List</div>
+            <div class="card-header">Book List</div>
             {{-- @if (auth()->check())
             @php
                 $userRole = strtolower(auth()->user()->role);
@@ -23,10 +23,10 @@
                     @endif
 
                     <div class="button-container text-right mb-2">
-                        <a href="{{ route('role.create') }}">
+                        <a href="{{ route('create.book') }}">
                             <button type="button" class="btn btn-primary btn-sm mt-1" id="addCategoryBtn"><i
                                     class="bi bi-plus-lg"></i> Add
-                                Role</button>
+                                Book</button>
                         </a>
                     </div>
 
@@ -37,19 +37,25 @@
                         <thead>
                             <tr class="">
                                 <th class="text-center">No</th>
-                                <th class="text-center">Role Name</th>
+                                <th class="text-center">Book Name</th>
+                                <th class="text-center">Category Name</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Image</th>
                                 <th class="text-center"><span class="nobr">Action</span></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $index => $role)
+                            @foreach ($books as $index => $book)
                                 <tr class="">
                                     <td class="text-center">{{ $index + 1 }}</td>
-                                    <td class="text-center">{{ $role->role_name }}</td>
+                                    <td class="text-center">{{ $book->name }}</td>
+                                    <td class="text-center">{{ $book->category_name }}</td>
+                                    <td class="text-center">{{ $book->price }}</td>
+                                    <td class="text-center"><img src="{{ asset('images/' .$book->image)}}" class="img-fixed-height" width="100px"></td>
                                     <td class="text-center">
-                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-info btn-sm"><i
+                                        <a href="{{ route('edit.book', $book->id) }}" class="btn btn-info btn-sm"><i
                                                 class="bi bi-pencil-square"></i></a>
-                                        <a href="{{ route('role.destroy', $role->id) }}" class="btn btn-danger btn-sm"
+                                        <a href="{{ route('destroy.book', $book->id) }}" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Are you sure you want to delete this ?');"><i
                                                 class="bi bi-trash3-fill"></i></a>
                                     </td>

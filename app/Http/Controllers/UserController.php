@@ -13,25 +13,24 @@ class UserController extends Controller
         // $user = Auth::user();
         // $userRole = strtolower($user->role);
         // if ($userRole == 'admin') {
-            $users = User::all();
+            $users = User::with('role')->get();
             return view('admin.view_user',compact('users'));
         // }
         // if ($userRole == 'employee') {
         //     return view('employee.404_page');
         // }
     }
-
-    public function userCreate(){
-        $roles = Role::pluck('role_name');
-        return view('admin.create_user',compact('roles'));
+    public function userCreate() {
+        $roles = Role::pluck('role_name', 'id');
+        return view('admin.create_user', compact('roles'));
     }
-
+    
     public function userInsert(Request $request ){
         $request->validate([
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'role' => 'required',
+            'role_id' => 'required',
         ]);
 
         $filename = '';
@@ -45,7 +44,7 @@ class UserController extends Controller
             'name'      => $request->input('name'),
             'email'     => $request->input('email'),
             'password'  => bcrypt($request->input('password')),
-            'role'     => $request->input('role'),
+            'role_id'     => $request->input('role_id'),
             'image'     => $filename,
         ]);
 
@@ -55,7 +54,7 @@ class UserController extends Controller
 
     public function userEdit($id){
         $users = User::find($id);
-        $roles = Role::pluck('role_name');
+        $roles = Role::pluck('role_name', 'id');
         return view('admin.create_user', compact('users','roles'));
     }
 
@@ -63,7 +62,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'role' => 'required',
+            'role_id' => 'required',
         ]);
 
         $users = User::find($id);
@@ -78,7 +77,7 @@ class UserController extends Controller
         $users->update([
             'name'      => $request->input('name'),
             'email'     => $request->input('email'),
-            'role'     => $request->input('role'),
+            'role_id'     => $request->input('role_id'),
          ]);
 
         session()->flash('success', 'User Update successfully!');
