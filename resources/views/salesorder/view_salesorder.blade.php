@@ -38,9 +38,9 @@
                             @foreach ($salesorders as $index => $salesorder)
                                 <tr class="">
                                     <td class="text-center">{{ $index + 1 }}</td>
-                                    <td class="text-center">{{ $salesorder->stall_name }}</td>
+                                    <td class="text-center">{{ $salesorder->stall->name }}</td>
                                     <td class="text-center">{{ $salesorder->location }}</td>
-                                    <td class="text-center">{{ $salesorder->book_name }}</td>
+                                    <td class="text-center">{{ $salesorder->book->name }}</td>
                                     <td class="text-center">{{ $salesorder->sales_price }}</td>
                                     <td class="text-center">{{ $salesorder->quantity }}</td>
                                     <td class="text-center">{{ $salesorder->total_price }}</td>

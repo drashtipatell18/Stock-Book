@@ -76,8 +76,10 @@ Route::post('/user/insert',[UserController::class,'userInsert'])->name('insert.u
 Route::get('/user/edit/{id}', [UserController::class, 'userEdit'])->name('edit.user');
 Route::post('/user/update/{id}', [UserController::class, 'userUpdate'])->name('update.user');
 Route::get('/user/destroy/{id}',[UserController::class,'userDestroy'])->name('destroy.user');
-
-// Holiday
+Route::get('/user/my/profile', [UserController::class, 'myProfile'])->name('myprofile');
+Route::get('/edit-profile/{id}', [UserController::class, 'editProfile'])->name('edit-profile');
+Route::post('/update-profile/{id}', [UserController::class, 'Profileupdate'])->name('update-profile');
+// 
 
 Route::get('/holiday', [HolidayController::class, 'Holiday'])->name('holiday');
 Route::get('/holiday/create',[HolidayController::class,'holidayCreate'])->name('create.holiday');

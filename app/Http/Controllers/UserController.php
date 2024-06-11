@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
-// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -44,7 +44,7 @@ class UserController extends Controller
             'name'      => $request->input('name'),
             'email'     => $request->input('email'),
             'password'  => bcrypt($request->input('password')),
-            'role_id'     => $request->input('role_id'),
+            'role_id'   => $request->input('role_id'),
             'image'     => $filename,
         ]);
 
@@ -66,18 +66,18 @@ class UserController extends Controller
         ]);
 
         $users = User::find($id);
-
+        
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->move('images', $filename);
-            $users->image = isset($filename) ? $filename : null;
+            $users->image = $filename;
         }
-
+        
         $users->update([
             'name'      => $request->input('name'),
             'email'     => $request->input('email'),
-            'role_id'     => $request->input('role_id'),
+            'role_id'   => $request->input('role_id'),
          ]);
 
         session()->flash('success', 'User Update successfully!');
@@ -91,5 +91,64 @@ class UserController extends Controller
         return redirect()->back();
         session()->flash('danger', 'User Delete successfully!');
         return redirect()->back();
+    }
+
+    public function myProfile(){
+        if (Auth::check()) {
+            $userid = Auth::user()->id;
+            $users = User::with('role')->find($userid);
+
+        }
+        $roles = Role::pluck('role_name', 'id');
+        return view('admin.user_profile', compact('users','roles'));
+    }
+
+    public function editProfile($id) {
+        if (Auth::check()) {
+            $users = User::find($id);
+
+        }
+        return view('admin.user_profile', compact('users'));
+    }
+
+    public function Profileupdate(Request $request, $id)
+    {
+       
+        $request->validate([
+            'name' => 'required',
+            'email'  => 'required',
+        ]);
+
+        $users = User::find($id);
+
+        $flag = false;
+        $filename = "";
+
+        if ($request->hasFile('newimage')) {
+            $image = $request->file('newimage');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('images', $filename);
+            $users->image = $filename;
+
+            $flag = true;
+        }
+        if(!$flag)
+        {
+            $users->update([
+                'name'      => $request->input('name'),
+                'email'     => $request->input('email'),
+                'role_id'   => $request->input('role_id'),
+             ]);
+        }
+        else
+        {
+            $users->update([
+                'name'      => $request->input('name'),
+                'email'     => $request->input('email'),
+                'role_id'   => $request->input('role_id'),
+                'image' => $filename
+             ]);
+        }
+        return redirect()->route('myprofile')->with('success', 'Profile updated successfully');
     }
 }

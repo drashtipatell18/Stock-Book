@@ -30,21 +30,20 @@
                     method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="stall_name" class="control-label mb-1">Stall Name*</label>
-                        <select id="stall_name" name="stall_name"
-                            class="form-control @error('stall_name') is-invalid @enderror">
+                        <label for="stall_id">Stall Name</label>
+                        <select id="stall_id" name="stall_id" class="form-control @error('stall_id') is-invalid @enderror">
                             <option value="">Select</option>
-                            @foreach ($stalls as $stall)
-                                <option value="{{ $stall }}" @if (old('stall_name', isset($salesorders->stall_name) ? $salesorders->stall_name : '') == $stall) selected @endif>
-                                    {{ $stall }}</option>
+                            @foreach ($stalls as $id => $name)
+                                <option value="{{ $id }}" @if (old('stall_id') == $id) selected @endif>{{ $name }}</option>
                             @endforeach
                         </select>
-                        @error('stall_name')
-                            <span class="invalid-feedback" style="color: red">
+                        @error('stall_id')
+                            <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+                
                     <div class="form-group">
                         <label for="location" class="control-label mb-1">Location</label>
                         <input id="location" name="location" type="text"
@@ -57,18 +56,15 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="book_name" class="control-label mb-1">Book Name</label>
-
-                        <select id="book_name" name="book_name"
-                            class="form-control @error('book_name') is-invalid @enderror">
+                        <label for="book_id">Book Name</label>
+                        <select id="book_id" name="book_id" class="form-control @error('book_id') is-invalid @enderror">
                             <option value="">Select</option>
-                            @foreach ($books as $book)
-                                <option value="{{ $book }}" @if (old('book_name', isset($salesorders->book_name) ? $salesorders->book_name : '') == $book) selected @endif>
-                                    {{ $book }}</option>
+                            @foreach ($books as $id => $name)
+                                <option value="{{ $id }}" @if (old('book_id') == $id) selected @endif>{{ $name }}</option>
                             @endforeach
                         </select>
-                        @error('book_name')
-                            <span class="invalid-feedback" style="color: red">
+                        @error('book_id')
+                            <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror

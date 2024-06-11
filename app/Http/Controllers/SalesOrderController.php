@@ -10,21 +10,17 @@ class SalesOrderController extends Controller
 {
     public function salesorder()
     {
-        // $user = Auth::user();
-        // $userRole = strtolower($user->role);
-        // if ($userRole == 'admin') {
-            $salesorders = SalesOrder::all();
-            return view('salesorder.view_salesorder',compact('salesorders'));
-        // } 
-        // if ($userRole == 'employee') {
-        //     return view('employee.404_page');
-        // }   
+        $salesorders = SalesOrder::with(['stall', 'book'])->get();
+        // echo '<pre>';
+        // print_r($salesorders);
+        // echo '</pre>';exit;
+        return view('salesorder.view_salesorder', compact('salesorders'));
     }
     public function salesorderCreate()
     {
-        $stalls    = Stall::pluck('name');
-        $books    = Book::pluck('name');
-        return view('salesorder.create_salesorder',compact('stalls','books'));
+        $stalls = Stall::pluck('name', 'id');
+        $books = Book::pluck('name', 'id');
+        return view('salesorder.create_salesorder', compact('stalls', 'books'));
     }
     public function salesorderInsert(Request $request)
     {
@@ -38,10 +34,9 @@ class SalesOrderController extends Controller
         // ]);
 
         $salesorders = SalesOrder::create([
-            // 'book_id'          => $request->input('book_id'),
-            'stall_name'       => $request->input('stall_name'),
+            'stall_id'         => $request->input('stall_id'),
             'location'         => $request->input('location'),
-            'book_name'        => $request->input('book_name'),
+            'book_id'          => $request->input('book_id'),
             'sales_price'      => $request->input('sales_price'),
             'quantity'         => $request->input('quantity'),
             'total_price'      => $request->input('total_price'),
@@ -56,7 +51,7 @@ class SalesOrderController extends Controller
         $salesorders = SalesOrder::find($id);
         $stalls    = Stall::pluck('name');
         $books    = Book::pluck('name');
-        return view('payment.create_salesorder',compact('stalls','salesorders','books'));
+        return view('salesorder.create_salesorder',compact('stalls','salesorders','books'));
     }
 
     public function salesorderUpdate(Request $request, $id)
@@ -74,9 +69,9 @@ class SalesOrderController extends Controller
 
         $salesorders->update([
             // 'book_id'          => $request->input('book_id'),
-            'stall_name'       => $request->input('stall_name'),
+            'stall_id'         => $request->input('stall_id'),
             'location'         => $request->input('location'),
-            'book_name'        => $request->input('book_name'),
+            'book_id'          => $request->input('book_id'),
             'sales_price'      => $request->input('sales_price'),
             'quantity'         => $request->input('quantity'),
             'total_price'      => $request->input('total_price'),

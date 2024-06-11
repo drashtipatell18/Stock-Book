@@ -212,11 +212,11 @@
                                             <div class="account-dropdown__body">
                                                 {{-- @if (Auth::check()) --}}
                                                 {{-- @if (Auth::user()->role == 'admin' || Auth::user()->role == 'employee' || Auth::user()->role == 'supervisor') --}}
-                                                {{-- <div class="account-dropdown__item">
+                                                <div class="account-dropdown__item">
                                                             <a href="{{ route('myprofile') }}">
                                                                 <i class="bi bi-person-square"></i> My Profile
                                                             </a>
-                                                        </div> --}}
+                                                        </div>
                                                 {{-- @endif --}}
                                                 {{-- @endif --}}
                                                 {{-- @if ($userRole == 'admin') --}}
