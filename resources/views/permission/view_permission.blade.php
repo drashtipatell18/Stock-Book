@@ -39,7 +39,7 @@
                         <table class="table table-striped jambo_table bulk_action" id="table">
                             <thead>
                                 <tr class="">
-                                    <th>No</th>
+                                    {{-- <th>No</th> --}}
                                     <th>Status</th>
                                     <th class="">Name</th>
                                     <th class="">Slug</th>
@@ -49,10 +49,10 @@
                             <tbody>
                                 @foreach ($permissions as $index => $permission)
                                     <tr class="">
-                                        <td>{{ $index + 1 }}</td>
+                                        {{-- <td>{{ $index + 1 }}</td> --}}
                                         <td>
                                             <label class="au-checkbox">
-                                                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" {{ in_array($permission->id, $currentPermissions) ? 'checked' : '' }}>
+                                                <input type="checkbox" name="status" value="{{ $permission->id }}">
                                                 <span class="au-checkmark"></span>
                                             </label>
                                         </td>

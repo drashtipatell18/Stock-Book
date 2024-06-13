@@ -13,18 +13,7 @@ class PermissionController extends Controller
 
         $roles = Role::pluck('role_name', 'id')->toArray();
         $permissions = Permission::all();
-        $currentPermissions = [];
-    
-        // Check if a role is selected
-        $selectedRoleId = $request->input('role_id');
-        if ($selectedRoleId) {
-            // Fetch the role and its permissions
-            $role = Role::with('permissions')->find($selectedRoleId);
-            if ($role) {
-                $currentPermissions = $role->permissions->pluck('id')->toArray();
-            }
-        }
-        return view('permission.view_permission',compact('permissions','roles','currentPermissions'));
+        return view('permission.view_permission',compact('permissions','roles'));
     }
 
     public function permissionCreate(){
@@ -72,18 +61,23 @@ class PermissionController extends Controller
 
     public function updatePermissions(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'role_id' => 'required|exists:roles,id',
             'status' => 'required|integer',
+            'name' => 'required',
+            'slug' => 'required',
         ]);
 
         // Create a new permission record
         Access_Permission::create([
-            'role_id' => $validatedData['role_id'],
-            'status' => $validatedData['status'],
+            'role_id' => $request->input('role_id'),
+            'status' => $request->input('status'),
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
         ]);
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Permission Updated successfully.');
     }
+    
 }
