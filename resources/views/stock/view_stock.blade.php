@@ -3,7 +3,7 @@
 @section('content')
     <div class="col-md-12 col-sm-12 ">
         <div class="card">
-            <div class="card-header">Category List</div>
+            <div class="card-header">Stock List</div>
             {{-- @if (auth()->check())
             @php
                 $userRole = strtolower(auth()->user()->role);
@@ -37,25 +37,29 @@
                         <thead>
                             <tr class="">
                                 <th class="text-center">No</th>
-                                <th class="text-center">Role Name</th>
+                                <th class="text-center">Stock Name</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">Price</th>
                                 <th class="text-center"><span class="nobr">Action</span></th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
-                            @foreach ($roles as $index => $role)
+                        <tbody>
+                            @foreach ($stocks as $index => $stock)
                                 <tr class="">
                                     <td class="text-center">{{ $index + 1 }}</td>
-                                    <td class="text-center">{{ $role->role_name }}</td>
+                                    <td class="text-center">{{ $stock->name }}</td>
+                                    <td class="text-center">{{ $stock->quantity }}</td>
+                                    <td class="text-center">{{ $stock->price }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-info btn-sm"><i
+                                        <a href="{{ route('stock.edit', $stock->id) }}" class="btn btn-info btn-sm"><i
                                                 class="bi bi-pencil-square"></i></a>
-                                        <a href="{{ route('role.destroy', $role->id) }}" class="btn btn-danger btn-sm"
+                                        <a href="{{ route('stock.destroy', $stock->id) }}" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Are you sure you want to delete this ?');"><i
                                                 class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
                 </div>
             </div>

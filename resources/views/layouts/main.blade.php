@@ -98,6 +98,10 @@
                                 <i class="bi bi-bookmark"></i>Stall</a>
                         </li>
                         <li>
+                            <a href="{{ route('stock') }}">
+                                <i class="bi bi-bookmark"></i>Stock</a>
+                        </li>
+                        <li>
                             <a href="{{ route('salesorder') }}">
                                 <i class="bi bi-receipt-cutoff"></i>Sales Order</a>
                         </li>
@@ -155,6 +159,10 @@
                         <li>
                             <a href="{{ route('stall') }}">
                                 <i class="bi bi-bookmark"></i>Stall</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('stock') }}">
+                                <i class="bi bi-bookmark"></i>Stock</a>
                         </li>
                         <li>
                             <a href="{{ route('salesorder') }}">
