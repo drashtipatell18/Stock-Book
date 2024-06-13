@@ -172,6 +172,10 @@
                             <a href="{{ route('holiday') }}">
                                 <i class="bi bi-bookmark"></i>Holiday</a>
                         </li>
+                        <li>
+                            <a href="{{ route('permission') }}">
+                                <i class="bi bi-bookmark"></i>Access Permission</a>
+                        </li>
                     </ul>
                 </nav>
             </div>

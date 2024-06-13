@@ -14,6 +14,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\ScrapController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -153,6 +154,16 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
   Route::get('/scrap/edit/{id}', [ScrapController::class, 'scrapEdit'])->name('edit.scrap');
   Route::post('/scrap/update/{id}', [ScrapController::class, 'sscrapUpdate'])->name('update.scrap');
   Route::get('/scrap/destroy/{id}',[ScrapController::class,'scrapDestroy'])->name('destroy.scrap');
+
+  //permission
+
+  Route::get('/permission', [PermissionController::class, 'permission'])->name('permission');
+  Route::get('/permission/create',[PermissionController::class,'permissionCreate'])->name('create.permission');
+  Route::post('/permission/insert',[PermissionController::class,'permissionInsert'])->name('insert.permission');
+  Route::get('/permission/edit/{id}', [PermissionController::class, 'permissionEdit'])->name('edit.permission');
+  Route::post('/permission/update/{id}', [PermissionController::class, 'permissionUpdate'])->name('update.permission');
+  Route::get('/permission/destroy/{id}',[PermissionController::class,'permissionDestroy'])->name('destroy.permission');
+  Route::post('/update-permissions', [PermissionController::class, 'updatePermissions'])->name('update.permissions');
 
 });
 
