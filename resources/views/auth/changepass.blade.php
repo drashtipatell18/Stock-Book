@@ -3,7 +3,11 @@
 @section('content')
     <style>
         .login-content {
-            margin-top: 43%;
+            margin-top: 25%;
+        }
+
+        body {
+            overflow: hidden;
         }
     </style>
     <div class="page-wrapper">
@@ -24,7 +28,7 @@
                                     <label>Current Password</label>
                                     <input
                                         class="au-input au-input--full form-control @error('current_password') is-invalid @enderror"
-                                        type="password" name="current_password" placeholder="Email">
+                                        type="password" name="current_password" placeholder="Current Password">
                                     @error('current_password')
                                         <span class="invalid-feedback" style="color: red">
                                             <strong>{{ $message }}</strong>
