@@ -21,11 +21,11 @@
                                 <div class="overview__inner">
                                     <div class="overview-box clearfix">
                                         <div class="icon">
-                                            <i class="zmdi zmdi-account-o"></i>
+                                            <i class="bi bi-tags"></i>
                                         </div>
                                         <div class="text">
-                                            <h2>10368</h2>
-                                            <span>members online</span>
+                                            <h2>{{ $category}}</h2>
+                                            <span>Total Category</span>
                                         </div>
                                     </div>
                                     <div class="overview-chart">
@@ -39,11 +39,11 @@
                                 <div class="overview__inner">
                                     <div class="overview-box clearfix">
                                         <div class="icon">
-                                            <i class="zmdi zmdi-shopping-cart"></i>
+                                            <i class="bi bi-bookmark"></i>
                                         </div>
                                         <div class="text">
-                                            <h2>388,688</h2>
-                                            <span>items solid</span>
+                                            <h2>{{ $stall }}</h2>
+                                            <span>Total Stall</span>
                                         </div>
                                     </div>
                                     <div class="overview-chart">
@@ -57,11 +57,11 @@
                                 <div class="overview__inner">
                                     <div class="overview-box clearfix">
                                         <div class="icon">
-                                            <i class="zmdi zmdi-calendar-note"></i>
+                                            <i class="bi bi-bookmark"></i>
                                         </div>
                                         <div class="text">
-                                            <h2>1,086</h2>
-                                            <span>this week</span>
+                                            <h2> {{ $stock }}</h2>
+                                            <span>Total Stock</span>
                                         </div>
                                     </div>
                                     <div class="overview-chart">
@@ -75,11 +75,11 @@
                                 <div class="overview__inner">
                                     <div class="overview-box clearfix">
                                         <div class="icon">
-                                            <i class="zmdi zmdi-money"></i>
+                                            <i class="bi bi-book-half"></i>
                                         </div>
                                         <div class="text">
-                                            <h2>$1,060,386</h2>
-                                            <span>total earnings</span>
+                                            <h2>{{ $book }}</h2>
+                                            <span>Total Book</span>
                                         </div>
                                     </div>
                                     <div class="overview-chart">

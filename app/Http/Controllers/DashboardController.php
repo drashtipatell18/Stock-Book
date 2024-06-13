@@ -7,12 +7,20 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Stall;
+use App\Models\Stock;
+use App\Models\Book;
 
 class DashboardController extends Controller
 {
     public function dashboard()
     {
-        return view('dashboard');
+        $category = Category::count();
+        $stall = Stall::count();
+        $stock = Stock::count();
+        $book = Book::count();
+        return view('dashboard',compact('category','stall','stock','book'));
     }
     public function showForgetPasswordForm()
     {
