@@ -174,7 +174,7 @@
                         </li>
                         <li>
                             <a href="{{ route('permission') }}">
-                                <i class="bi bi-bookmark"></i>Access Permission</a>
+                                <i class="bi bi-file-break-fill"></i>Access Permission</a>
                         </li>
                     </ul>
                 </nav>
