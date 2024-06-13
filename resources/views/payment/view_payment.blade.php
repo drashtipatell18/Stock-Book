@@ -57,9 +57,9 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('edit.payment', $payment->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                        <a href="{{ route('edit.payment', $payment->id) }}" class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
                                         <a href="{{ route('destroy.payment', $payment->id) }}" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Are you sure you want to delete this?');">Delete</a>
+                                            onclick="return confirm('Are you sure you want to delete this?');"><i class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

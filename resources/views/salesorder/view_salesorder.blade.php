@@ -45,9 +45,9 @@
                                     <td class="text-center">{{ $salesorder->quantity }}</td>
                                     <td class="text-center">{{ $salesorder->total_price }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('edit.salesorder', $salesorder->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                        <a href="{{ route('edit.salesorder', $salesorder->id) }}" class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
                                         <a href="{{ route('destroy.salesorder', $salesorder->id) }}" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Are you sure you want to delete this?');">Delete</a>
+                                            onclick="return confirm('Are you sure you want to delete this?');"><i class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
