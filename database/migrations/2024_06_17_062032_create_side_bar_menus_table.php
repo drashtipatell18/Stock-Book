@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('permissions', function (Blueprint $table) {
+        Schema::create('side_bar_menus', function (Blueprint $table) {
             $table->id();
-            $table->integer('status')->nullable();
             $table->string('name')->nullable();
-            $table->string('slug')->nullable();
+            $table->string('route')->nullable();
+            $table->string('display_name')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('side_bar_menus');
     }
 };

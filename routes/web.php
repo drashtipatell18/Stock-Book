@@ -14,8 +14,8 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\ScrapController;
-use App\Http\Controllers\PermissionController;
-
+use App\Http\Controllers\SidebarController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -155,15 +155,21 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
   Route::post('/scrap/update/{id}', [ScrapController::class, 'sscrapUpdate'])->name('update.scrap');
   Route::get('/scrap/destroy/{id}',[ScrapController::class,'scrapDestroy'])->name('destroy.scrap');
 
-  //permission
+  
+  // Sidebar
 
-  Route::get('/permission', [PermissionController::class, 'permission'])->name('permission');
-  Route::get('/permission/create',[PermissionController::class,'permissionCreate'])->name('create.permission');
-  Route::post('/permission/insert',[PermissionController::class,'permissionInsert'])->name('insert.permission');
-  Route::get('/permission/edit/{id}', [PermissionController::class, 'permissionEdit'])->name('edit.permission');
-  Route::post('/permission/update/{id}', [PermissionController::class, 'permissionUpdate'])->name('update.permission');
-  Route::get('/permission/destroy/{id}',[PermissionController::class,'permissionDestroy'])->name('destroy.permission');
-  Route::post('/update-permissions', [PermissionController::class, 'updatePermissions'])->name('update.permissions');
+  Route::get('/sidebar', [SidebarController::class, 'index'])->name('sidebar');
+  Route::get('/sidebar/create', [SidebarController::class, 'create'])->name('sidebar.create');
+  Route::post('/sidebar/store', [SidebarController::class, 'store'])->name('sidebar.store');
+  Route::get('/sidebar/delete/{id}', [SidebarController::class, 'store']);
+  Route::get('/sidebar/edit/{id}', [SidebarController::class, 'edit']);
+  Route::post('/sidebar/update/{id}', [SidebarController::class, 'update']);
+
+  // Sidebar role management
+
+  Route::get('/sidebarRole', [SidebarController::class, 'role_for_sidebar'])->name('sidebar.role');
+  Route::get('/sidebar/role/{id}/getPermission', [SidebarController::class, 'getPermission']);
+  Route::post('/sidebar/roleUpdate', [SidebarController::class, 'roleUpdate']);
 
 });
 

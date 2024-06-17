@@ -39,6 +39,11 @@
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet" media="all">
 
 </head>
+<style>
+    .liststyle {
+        list-style: none;
+    }
+</style>
 
 <body class="animsition">
     <div class="page-wrapper">
@@ -69,54 +74,29 @@
                         @endphp
                     @endif
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li class="has-sub">
-                            <a class="{{ route('dashboard') }}" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('category') }}">
-                                <i class="fas fa-chart-bar"></i>Category</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('role') }}">
-                                <i class="fas fa-chart-bar"></i>Role</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user') }}">
-                                <i class="fas fa-chart-bar"></i>User</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('employee') }}">
-                                <i class="bi bi-people-fill"></i>Employee</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('book') }}">
-                                <i class="bi bi-book-half"></i>Book</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('stall') }}">
-                                <i class="bi bi-bookmark"></i>Stall</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('stock') }}">
-                                <i class="bi bi-bookmark"></i>Stock</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('salesorder') }}">
-                                <i class="bi bi-receipt-cutoff"></i>Sales Order</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('scrap') }}">
-                                <i class="bi bi-receipt-cutoff"></i>Scrap</a>
-                        </li>                        
-                        <li>
-                            <a href="{{ route('payment') }}">
-                                <i class="bi bi-bookmark"></i>Payment</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('holiday') }}">
-                                <i class="bi bi-bookmark"></i>Holiday</a>
-                        </li>
+                        @php
+                            $roleId = Auth::user()->role_id;
+                            $sideBarMenus = DB::table('side_bar_menus')
+                                ->leftJoin(
+                                    'role_sider_bar_joins',
+                                    'role_sider_bar_joins.siderbar_id',
+                                    '=',
+                                    'side_bar_menus.id',
+                                )
+                                ->whereNull('role_sider_bar_joins.deleted_at')
+                                ->where('role_sider_bar_joins.role_id', $roleId)
+                                ->where('role_sider_bar_joins.permission', 1)
+                                ->select('side_bar_menus.*')
+                                ->get();
+                        @endphp
+                        <ul>
+                            @foreach ($sideBarMenus as $menu)
+                                <li class="liststyle">
+                                    <a href="{{ route($menu->route) }}">
+                                        <i class="{{ $menu->name }}"></i>{{ $menu->display_name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </ul>
                 </div>
             </nav>
@@ -132,58 +112,29 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="has-sub">
-                            <a class="{{ route('dashboard') }}" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('category') }}">
-                                <i class="bi bi-tags"></i>Category</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('role') }}">
-                                <i class="fas fa-chart-bar"></i>Role</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('user') }}">
-                                <i class="bi bi-person-circle"></i>User</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('employee') }}">
-                                <i class="bi bi-people-fill"></i></i>Employee</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('book') }}">
-                                <i class="bi bi-book-half"></i>Book</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('stall') }}">
-                                <i class="bi bi-bookmark"></i>Stall</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('stock') }}">
-                                <i class="bi bi-bookmark"></i>Stock</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('salesorder') }}">
-                                <i class="bi bi-receipt-cutoff"></i>Sales Order</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('scrap') }}">
-                                <i class="bi bi-receipt-cutoff"></i>Scrap</a>
-                        </li>     
-                        <li>
-                            <a href="{{ route('payment') }}">
-                                <i class="bi bi-credit-card"></i>Payment</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('holiday') }}">
-                                <i class="bi bi-bookmark"></i>Holiday</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('permission') }}">
-                                <i class="bi bi-file-break-fill"></i>Access Permission</a>
-                        </li>
+                        @php
+                            $roleId = Auth::user()->role_id;
+                            $sideBarMenus = DB::table('side_bar_menus')
+                                ->leftJoin(
+                                    'role_sider_bar_joins',
+                                    'role_sider_bar_joins.siderbar_id',
+                                    '=',
+                                    'side_bar_menus.id',
+                                )
+                                ->whereNull('role_sider_bar_joins.deleted_at')
+                                ->where('role_sider_bar_joins.role_id', $roleId)
+                                ->where('role_sider_bar_joins.permission', 1)
+                                ->select('side_bar_menus.*')
+                                ->get();
+                        @endphp
+                        <ul>
+                            @foreach ($sideBarMenus as $menu)
+                                <li class="liststyle">
+                                    <a href="{{ route($menu->route) }}">
+                                        <i class="{{ $menu->name }}"></i>{{ $menu->display_name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </ul>
                 </nav>
             </div>
@@ -225,10 +176,10 @@
                                                 {{-- @if (Auth::check()) --}}
                                                 {{-- @if (Auth::user()->role == 'admin' || Auth::user()->role == 'employee' || Auth::user()->role == 'supervisor') --}}
                                                 <div class="account-dropdown__item">
-                                                            <a href="{{ route('myprofile') }}">
-                                                                <i class="bi bi-person-square"></i> My Profile
-                                                            </a>
-                                                        </div>
+                                                    <a href="{{ route('myprofile') }}">
+                                                        <i class="bi bi-person-square"></i> My Profile
+                                                    </a>
+                                                </div>
                                                 {{-- @endif --}}
                                                 {{-- @endif --}}
                                                 {{-- @if ($userRole == 'admin') --}}
