@@ -12,15 +12,8 @@ class PaymentController extends Controller
 {
     public function payment()
     {
-        // $user = Auth::user();
-        // $userRole = strtolower($user->role);
-        // if ($userRole == 'admin') {
-            $payments = Payment::all();
-            return view('payment.view_payment',compact('payments'));
-        // }
-        // if ($userRole == 'employee') {
-        //     return view('employee.404_page');
-        // }
+        $payments = Payment::all();
+        return view('payment.view_payment',compact('payments'));
     }
     public function paymentCreate()
     {

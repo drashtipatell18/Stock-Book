@@ -49,6 +49,11 @@ class SideBarMenuSeeder extends Seeder
             'display_name' => 'Stall'
         ]);
         SideBarMenu::create([
+            'name' => 'bi bi-bookmark',
+            'route' => 'stock',
+            'display_name' => 'Stock'
+        ]);
+        SideBarMenu::create([
             'name' => 'bi bi-receipt-cutoff',
             'route' => 'salesorder',
             'display_name' => 'Sales Order'
@@ -78,5 +83,6 @@ class SideBarMenuSeeder extends Seeder
             'route' => 'sidebar.role',
             'display_name' => 'Sidebar Role Management'
         ]);
+       
     }
 }

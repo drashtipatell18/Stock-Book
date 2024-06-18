@@ -8,7 +8,8 @@
                 <div class="card-title">
                     <div class="button-container text-right mb-2">
                         <a href="{{ route('sidebar.create') }}">
-                            <button type="button" class="btn btn-primary btn-sm mt-1" id="addCategoryBtn"><i class="bi bi-plus-lg"></i> Add New Menu</button>
+                            <button type="button" class="btn btn-primary btn-sm mt-1" id="addCategoryBtn"><i
+                                    class="bi bi-plus-lg"></i> Add New Menu</button>
                         </a>
                     </div>
                 </div>
@@ -33,17 +34,17 @@
                                     <td class="text-center"><i class="{{ $sidebar->name }}"></i></td>
                                     <td class="text-center">{{ $sidebar->display_name }}</td>
                                     <td class="text-center">{{ $sidebar->route }}</td>
-                                    <td class="text-center">
+                                    <td class="text-center"><a href="/sidebar/edit/{{ $sidebar->id }}">
+                                            <button class="btn btn-sm btn-info">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                        </a>
                                         <a href="/sidebar/delete/{{ $sidebar->id }}">
                                             <button class="btn btn-sm btn-danger">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </a>
-                                        <a href="/sidebar/edit/{{ $sidebar->id }}">
-                                            <button class="btn btn-sm btn-warning">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </button>
-                                        </a>
+
                                     </td>
                                 </tr>
                             @endforeach

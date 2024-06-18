@@ -12,15 +12,8 @@ class ScrapController extends Controller
 {
     public function scrap()
     {
-        $user = Auth::user();
-        $userRole = strtolower($user->role);
-        // if ($userRole == 'admin') {
-            $scraps = Scrap::all();
-            return view('scrap.view_scrap',compact('scraps'));
-        // }
-        // if ($userRole == 'employee') {
-        //     return view('employee.404_page');
-        // }
+        $scraps = Scrap::all();
+        return view('scrap.view_scrap',compact('scraps'));
     }
     public function scrapCreate()
     {

@@ -11,9 +11,6 @@ class SalesOrderController extends Controller
     public function salesorder()
     {
         $salesorders = SalesOrder::with(['stall', 'book'])->get();
-        // echo '<pre>';
-        // print_r($salesorders);
-        // echo '</pre>';exit;
         return view('salesorder.view_salesorder', compact('salesorders'));
     }
     public function salesorderCreate()
