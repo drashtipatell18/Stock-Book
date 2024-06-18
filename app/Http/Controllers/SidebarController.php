@@ -46,6 +46,7 @@ class SidebarController extends Controller
         ]);
 
         $siderbars = $this->getSideMenu();
+        session()->flash('success', 'Sidebar inserted successfully');
         return view('sidebar.index', compact('siderbars'));
     }
     public function delete($id)
@@ -58,6 +59,7 @@ class SidebarController extends Controller
         $sidebar->delete();
 
         $siderbars = $this->getSideMenu();
+        session()->flash('success', 'Sidebar Deleted successfully');
         return view('sidebar.index', compact('siderbars'));
     }
     public function edit($id)
@@ -81,6 +83,7 @@ class SidebarController extends Controller
         $sidebar->save();
 
         $siderbars = $this->getSideMenu();
+        session()->flash('success', 'Sidebar Updated successfully');
         return view('sidebar.index', compact('siderbars'));
     }
 
