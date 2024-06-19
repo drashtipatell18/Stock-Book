@@ -94,7 +94,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
-            $('#table').DataTable();
+            $('#table').DataTable({
+                "pageLength": 25
+            });
         });
 
         $("#role").change(function(){
