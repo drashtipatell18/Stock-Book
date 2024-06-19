@@ -49,6 +49,7 @@ Auth::routes([
 Route::middleware(['auth'])->group(function () {
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
 Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass');
 Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword');
 

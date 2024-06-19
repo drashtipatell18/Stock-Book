@@ -18,6 +18,12 @@ class SideBarMenuSeeder extends Seeder
             'route' => 'dashboard',
             'display_name' => 'Dashboard'
         ]);
+
+        SideBarMenu::create([
+            'name' => 'bi bi-calendar-event',
+            'route' => 'calendar',
+            'display_name' => 'Calendar'
+        ]);
         SideBarMenu::create([
             'name' => 'bi bi-tags',
             'route' => 'category',

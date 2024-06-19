@@ -64,7 +64,7 @@
                                     <td>{{ date('d/m/Y', strtotime($leave->startdate)) }}
                                     <td>{{ date('d/m/Y', strtotime($leave->enddate)) }}
                                     <td>
-                                        @if ($leave->status == 'pending')
+                                        @if ($leave->status == '')
                                             <button type="button" class="btn btn-warning btn-sm">Pending</button>
                                         @elseif($leave->status == 'approved')
                                             <button type="button" class="btn btn-success btn-sm">Approved</button>

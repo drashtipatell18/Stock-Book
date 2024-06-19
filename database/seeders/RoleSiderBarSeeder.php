@@ -88,5 +88,10 @@ class RoleSiderBarSeeder extends Seeder
             'siderbar_id' => 15, 
             'permission' => true
         ]);
+        RoleSiderBarJoin::create([
+            'role_id' => 1, 
+            'siderbar_id' => 16, 
+            'permission' => true
+        ]);
     }
 }
