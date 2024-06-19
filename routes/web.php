@@ -15,6 +15,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\ScrapController;
 use App\Http\Controllers\SidebarController;
+use App\Http\Controllers\LeaveController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +118,16 @@ Route::get('/employee/destroy/{id}',[EmployeeController::class,'employeeDestroy'
 // Route::get('/my-profile', [EmployeeController::class, 'myProfile'])->name('my.profile');
 // Route::get('/edit-profile/{id}', [EmployeeController::class, 'editProfile'])->name('edit-profile');
 // Route::post('/update-profile/{id}', [EmployeeController::class, 'Profileupdate'])->name('update-profile');
+
+// leave
+
+Route::get('/leave', [LeaveController::class, 'leave'])->name('leave');
+Route::get('/leave/create',[LeaveController::class,'leaveCreate'])->name('create.leave');
+Route::post('/leave/insert',[LeaveController::class,'leaveInsert'])->name('insert.leave');
+Route::get('/leave/edit/{id}', [LeaveController::class, 'leaveEdit'])->name('edit.leave');
+Route::post('/leave/update/{id}', [LeaveController::class, 'leaveUpdate'])->name('update.leave');
+Route::get('/leave/destroy/{id}',[LeaveController::class,'leaveDestroy'])->name('destroy.leave');
+Route::post('/update-status', [LeaveController::class,'updateStatus'])->name('update-status');
 
 // Book
 

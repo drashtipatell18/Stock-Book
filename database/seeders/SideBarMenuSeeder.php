@@ -39,6 +39,11 @@ class SideBarMenuSeeder extends Seeder
             'display_name' => 'Employee'
         ]);
         SideBarMenu::create([
+            'name' => 'bi bi-people-fill',
+            'route' => 'leave',
+            'display_name' => 'Leave'
+        ]);
+        SideBarMenu::create([
             'name' => 'bi bi-book-half',
             'route' => 'book',
             'display_name' => 'Book'
