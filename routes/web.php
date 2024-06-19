@@ -116,6 +116,7 @@ Route::post('/employee/insert',[EmployeeController::class,'employeeInsert'])->na
 Route::get('/employee/edit/{id}', [EmployeeController::class, 'employeeEdit'])->name('edit.employee');
 Route::post('/employee/update/{id}', [EmployeeController::class, 'employeeUpdate'])->name('update.employee');
 Route::get('/employee/destroy/{id}',[EmployeeController::class,'employeeDestroy'])->name('destroy.employee');
+Route::get('/employee/getemail/{id}', [EmployeeController::class, 'getEmail']);
 // Route::get('/my-profile', [EmployeeController::class, 'myProfile'])->name('my.profile');
 // Route::get('/edit-profile/{id}', [EmployeeController::class, 'editProfile'])->name('edit-profile');
 // Route::post('/update-profile/{id}', [EmployeeController::class, 'Profileupdate'])->name('update-profile');

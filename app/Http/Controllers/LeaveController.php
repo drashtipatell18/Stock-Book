@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Leave;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -21,7 +22,9 @@ class LeaveController extends Controller
         // $userRole = strtolower($user->role);
 
         // if ($userRole == 'admin' || $userRole == 'supervisor') {
-            $leaves = Leave::with('employee')->get();
+
+            $employee = Employee::where('email', User::find(Auth()->user()->id)->email)->get()->first();
+            $leaves = ((Auth()->user()->role_id != 1)?Leave::with('employee')->where('employee_id', $employee->id)->get():Leave::with('employee')->get());
             return view('admin.view_leave', compact('leaves'));
         // }
 
@@ -89,6 +92,11 @@ class LeaveController extends Controller
         // If the calculated leave days exceed the balance leave, return an error
         if ($leaveDays > $balanceLeave) {
             return back()->withErrors(['leave' => 'Insufficient balance leave'])->withInput($request->all());
+        }
+
+        if(!$request->has('status'))
+        {
+            $request->input('status', 'pending');
         }
 
         // Add leave record

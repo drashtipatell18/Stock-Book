@@ -26,6 +26,10 @@ class EmployeeController extends Controller
         return view('employee.create_employee',compact('users'));
     }
 
+    public function getEmail($id)
+    {
+        return response()->json(["email" => User::find($id)->email]);
+    }
     public function employeeInsert(Request $request ){
         $request->validate([
             'firstname' => 'required',

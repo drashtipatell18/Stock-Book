@@ -97,7 +97,7 @@
 
                     <div class="form-group">
                         <label for="email" class="control-label mb-1">Email</label>
-                        <input id="email" name="email" type="email"
+                        <input readonly id="email" name="email" type="email"
                             value="{{ old('email', $employees->email ?? '') }}"
                             class="form-control @error('email') is-invalid @enderror">
                         @error('email')
@@ -201,6 +201,19 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            $("#user_id").change(function(){
+                if($(this).val())
+                {
+                    $.ajax({
+                        type: "GET",
+                        method: "GET",
+                        url: "/employee/getemail/" + $(this).val(),
+                        success: function(response){
+                            $("#email").val(response.email)
+                        }
+                    })
+                }
+            })
             $('#profilepicInput').change(function(e) {
                 var fileName = e.target.files[0];
                 if (fileName) {
