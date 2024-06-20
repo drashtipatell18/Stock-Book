@@ -10,7 +10,7 @@
             <div class="card-header">Leave List</div>
             @if (auth()->check())
                 @php
-                    $userRole = strtolower(auth()->user()->role);
+                    $userRole = strtolower(auth()->user()->role->role_name);
                 @endphp
             @endif
             <div class="card-body">
