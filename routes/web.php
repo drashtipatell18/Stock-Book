@@ -39,6 +39,8 @@ Route::get('/forget-password', [DashboardController::class, 'showForgetPasswordF
 Route::post('/forget-password', [DashboardController::class, 'sendResetLinkEmail'])->name('forget.password.email');
 Route::get('/reset/{token}', [DashboardController::class, 'reset'])->name('reset');
 Route::post('/reset/{token}', [DashboardController::class, 'postReset'])->name('post_reset');
+Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass');
+Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword');
 
 Auth::routes([
     'register' => false,
@@ -50,8 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
-Route::get('/cpassword',[HomeController::class,'cPassword'])->name('changepass');
-Route::post('/changepassword',[HomeController::class,'changePassword'])->name('changePassword');
+
 
 // Category
 
@@ -98,7 +99,7 @@ Route::get('/role/create', [RoleController::class, 'roleCreate'])->name('role.cr
 Route::post('/role/store', [RoleController::class, 'roleStore'])->name('role.store');
 Route::get('/role/edit/{id}', [RoleController::class, 'roleEdit'])->name('role.edit');
 Route::post('/role/update/{id}', [RoleController::class, 'roleUpdate'])->name('role.update');
-Route::delete('/role/delete/{id}', [RoleController::class, 'roleDestroy'])->name('role.destroy');
+Route::get('/role/delete/{id}', [RoleController::class, 'roleDestroy'])->name('role.destroy');
 
 //Stock
 Route::get('/stock', [StockController::class, 'stock'])->name('stock');
@@ -106,7 +107,7 @@ Route::get('/stock/create', [StockController::class, 'stockCreate'])->name('stoc
 Route::post('/stock/store', [StockController::class, 'stockStore'])->name('stock.store');
 Route::get('/stock/edit/{id}', [StockController::class, 'stockEdit'])->name('stock.edit');
 Route::post('/stock/update/{id}', [StockController::class, 'stockUpdate'])->name('stock.update');
-Route::delete('/stock/delete/{id}', [StockController::class, 'stockDestroy'])->name('stock.destroy');
+Route::get('/stock/delete/{id}', [StockController::class, 'stockDestroy'])->name('stock.destroy');
 
 // Employee
 
