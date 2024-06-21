@@ -136,11 +136,11 @@
                                             <div class="chart-note-wrap">
                                                 <div class="chart-note mr-0 d-block">
                                                     <span class="dot dot--blue"></span>
-                                                    <span>products</span>
+                                                    <span>Stall</span>
                                                 </div>
                                                 <div class="chart-note mr-0 d-block">
                                                     <span class="dot dot--red"></span>
-                                                    <span>services</span>
+                                                    <span>Stock</span>
                                                 </div>
                                             </div>
                                         </div>
