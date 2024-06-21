@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Book;
 use App\Models\Stall;
+use Illuminate\Support\Facades\DB;
 
 class SalesOrder extends Model
 {
@@ -23,5 +24,15 @@ class SalesOrder extends Model
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+    public function scopeMonthlySales($query)
+    {
+        return $query->select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('SUM(total_price) as total_sales')
+        )
+        ->whereNull('deleted_at')
+        ->groupBy(DB::raw('MONTH(created_at)'))
+        ->orderBy(DB::raw('MONTH(created_at)'));
     }
 }

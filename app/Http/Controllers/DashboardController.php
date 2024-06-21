@@ -16,6 +16,8 @@ use Carbon\Carbon;
 use App\Models\Leave;
 use App\Models\Employee;
 use App\Models\Holiday;
+use App\Models\SalesOrder;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -171,4 +173,15 @@ class DashboardController extends Controller
         }
     }
 
+    public function getDashboardChart()
+    {
+        $monthlySales = SalesOrder::monthlySales()->get();
+        $salesData = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $monthSales = $monthlySales->firstWhere('month', $i);
+            $salesData[] = $monthSales ? $monthSales->total_sales : 0;
+        }
+        return response()->json($salesData);
+    }
 }

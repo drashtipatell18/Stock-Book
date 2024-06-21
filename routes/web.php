@@ -51,6 +51,7 @@ Auth::routes([
 Route::middleware(['auth'])->group(function () {
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboardChart', [DashboardController::class, 'getDashboardChart'])->name('getDashboardChart');
 Route::get('/calendar', [DashboardController::class, 'calendar'])->name('calendar');
 
 
