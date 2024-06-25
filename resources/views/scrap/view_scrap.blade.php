@@ -37,7 +37,7 @@
                             @foreach ($scraps as $index => $scrap)
                                 <tr class="">
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $scrap->scrap_weight }}</td>
+                                    <td>{{ $scrap->name }}</td>
                                     <td>{{ date('d-m-Y', strtotime($scrap->by_date)) }}</td>
                                     <td>{{ $scrap->price }}</td>
                                     <td>{{ date('d-m-Y', strtotime($scrap->to_date)) }}</td>
