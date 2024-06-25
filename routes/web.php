@@ -171,7 +171,7 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
   Route::get('/scrap/create',[ScrapController::class,'scrapCreate'])->name('create.scrap');
   Route::post('/scrap/insert',[ScrapController::class,'scrapInsert'])->name('insert.scrap');
   Route::get('/scrap/edit/{id}', [ScrapController::class, 'scrapEdit'])->name('edit.scrap');
-  Route::post('/scrap/update/{id}', [ScrapController::class, 'sscrapUpdate'])->name('update.scrap');
+  Route::post('/scrap/update/{id}', [ScrapController::class, 'scrapUpdate'])->name('update.scrap');
   Route::get('/scrap/destroy/{id}',[ScrapController::class,'scrapDestroy'])->name('destroy.scrap');
 
   
