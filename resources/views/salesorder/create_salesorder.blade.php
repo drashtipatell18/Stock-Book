@@ -106,6 +106,10 @@
                         @enderror
                     </div>
 
+                    @if (isset($customError))
+                        <span class="text-danger" style="font-size: small">{{ $customError }}</span>
+                    @endif
+
                     <div class="item form-group">
                         <button type="submit" class="btn btn-lg btn-info btn-block">
                             @if (isset($salesorders))

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class StockController extends Controller
 
     public function stockCreate()
     {
-        return view('stock.create_stock');
+        $books = Book::all();
+        return view('stock.create_stock', compact('books'));
     }
 
     public function stockStore(Request $request)
@@ -24,13 +26,30 @@ class StockController extends Controller
             'name' => 'required',
             'quantity' => 'required',
             'price' => 'required',
+            'book_name' => 'required'
         ]);
 
-        $stocks = Stock::create([
-            'name'      => $request->input('name'),
-            'quantity'     => $request->input('quantity'),
-            'price'     => $request->input('price'),
-        ]);
+        $check = Stock::where('book_id', $request->input('name'))->first();
+        if($check)
+        {
+            $check->quantity = $request->input('quantity');
+            $check->price = $request->input('price');
+
+            $check->update([
+                'quantity' => $request->input('quantity') + $check->quantity,
+                'price' => $request->input('price')
+            ]);
+        }
+        else
+        {
+            $stocks = Stock::create([
+                'name'      => $request->input('book_name'),
+                'quantity'     => $request->input('quantity'),
+                'price'     => $request->input('price'),
+                'book_id'   => $request->input('name')
+            ]);
+        }
+
 
         session()->flash('success', 'Stock added successfully!');
         return redirect()->route('stock');

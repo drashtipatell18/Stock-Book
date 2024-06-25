@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SalesOrder;
 use App\Models\Book;
 use App\Models\Stall;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 class SalesOrderController extends Controller
 {
@@ -30,6 +31,23 @@ class SalesOrderController extends Controller
         //     'total_price ' => 'required',
         // ]);
 
+        $stock = Stock::where('book_id', $request->input('book_id'))->first();
+        if(!$stock)
+        {
+            $customError = "*Stock not available";
+            $stalls = Stall::pluck('name', 'id');
+            $books = Book::pluck('name', 'id');
+            return view('salesorder.create_salesorder', compact('customError', 'stalls', 'books'));
+        }
+
+        if($stock->quantity < $request->input('quantity'))
+        {
+            $customError = "*Stock not available";
+            $stalls = Stall::pluck('name', 'id');
+            $books = Book::pluck('name', 'id');
+            return view('salesorder.create_salesorder', compact('customError', 'stalls', 'books'));
+        }
+
         $salesorders = SalesOrder::create([
             'stall_id'         => $request->input('stall_id'),
             'location'         => $request->input('location'),
@@ -37,6 +55,10 @@ class SalesOrderController extends Controller
             'sales_price'      => $request->input('sales_price'),
             'quantity'         => $request->input('quantity'),
             'total_price'      => $request->input('total_price'),
+        ]);
+
+        $stock->update([
+            'quantity' => $stock->quantity - $request->input('quantity')
         ]);
 
         session()->flash('success', 'SaleOrder added successfully!');

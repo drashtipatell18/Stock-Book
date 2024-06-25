@@ -39,10 +39,29 @@
                 <form action="{{ isset($stocks) ? '/stock/update/' . $stocks->id : '/stock/store' }}" method="POST">
                     @csrf
 
-                    <div class="form-group mt-5">
+                    {{-- <div class="form-group mt-5">
                         <label for="name" class="control-label mb-1">Name</label>
                         <input id="name" name="name" type="text" value="{{ old('name', $stocks->name ?? '') }}"
                             class="form-control @error('name') is-invalid @enderror">
+                        @error('name')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div> --}}
+
+                    <input type="hidden" name="book_name" id="book_name">
+
+                    <div class="form-group mt-5">
+                        <label for="name" class="control-label mb-1">Name</label>
+                        {{-- <input id="name" name="name" type="text" value="{{ old('name', $stocks->name ?? '') }}"
+                            class="form-control @error('name') is-invalid @enderror"> --}}
+                            <select id="name" name="name" class="form-control @error('name') is-invalid @enderror">
+                                <option value="">-Select Book-</option>
+                                @foreach ($books as $book)
+                                    <option value="{{ $book->id }}">{{ $book->name }}</option>
+                                @endforeach
+                            </select>
                         @error('name')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
@@ -87,3 +106,13 @@
         </div>
     </div>
 @endsection
+<script>
+    window.addEventListener('DOMContentLoaded',function (){
+        $("#name").change(function(){
+            if($(this).val())
+            {
+                $("#book_name").val($("#name :selected").text())   
+            }
+        })
+    })
+</script>
