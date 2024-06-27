@@ -86,7 +86,7 @@
                                                 <i class="bi bi-bookmark"></i>
                                             </div>
                                             <div class="text">
-                                                <span>Total Stall</span>
+                                                <span>Total Store</span>
                                                 <h2>{{ $stall }}</h2>
                                             </div>
                                         </div>
@@ -171,7 +171,7 @@
                                                 <div class="chart-note-wrap">
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--blue" style="background: linear-gradient(135deg, #ffd3a5, #fd6585);"></span>
-                                                        <span>Stall</span>
+                                                        <span>Store</span>
                                                     </div>
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--red" style="background: linear-gradient(135deg, #a2c0cc, #fceea7);"></span>
@@ -317,7 +317,7 @@
                             ]
                         }],
                         labels: [
-                            'Stall',
+                            'Store',
                             'Stock'
                         ]
                     },
