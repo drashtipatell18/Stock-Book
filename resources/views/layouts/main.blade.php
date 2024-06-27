@@ -43,7 +43,6 @@
     .liststyle {
         list-style: none;
     }
-
 </style>
 
 <body class="animsition">
@@ -108,38 +107,35 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo " style="text-align: center">
                 <a href="#">
-<<<<<<< HEAD
                     <img src="{{ asset('images/icon/book1.png') }}" alt="CoolAdmin" style="width: 40%; height: auto;">
-=======
-                    <img src="{{ asset('images/icon/logo.png') }}" alt="CoolAdmin" />
->>>>>>> 91b013b4a649c1b4d018f1750a9583f37c4fc262
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
-                    @php
-                        $roleId = Auth::user()->role_id;
-                        $sideBarMenus = DB::table('side_bar_menus')
-                            ->leftJoin(
-                                'role_sider_bar_joins',
-                                'role_sider_bar_joins.siderbar_id',
-                                '=',
-                                'side_bar_menus.id'
-                            )
-                            ->whereNull('role_sider_bar_joins.deleted_at')
-                            ->where('role_sider_bar_joins.role_id', $roleId)
-                            ->where('role_sider_bar_joins.permission', 1)
-                            ->select('side_bar_menus.*')
-                            ->get();
-                    @endphp
                     <ul class="list-unstyled navbar__list">
-                        @foreach ($sideBarMenus as $menu)
-                            <li class="liststyle{{ request()->routeIs($menu->route) ? ' active' : '' }}">
-                                <a href="{{ route($menu->route) }}">
-                                    <i class="{{ $menu->name }}"></i>{{ $menu->display_name }}
-                                </a>
-                            </li>
-                        @endforeach
+                        @php
+                            $roleId = Auth::user()->role_id;
+                            $sideBarMenus = DB::table('side_bar_menus')
+                                ->leftJoin(
+                                    'role_sider_bar_joins',
+                                    'role_sider_bar_joins.siderbar_id',
+                                    '=',
+                                    'side_bar_menus.id',
+                                )
+                                ->whereNull('role_sider_bar_joins.deleted_at')
+                                ->where('role_sider_bar_joins.role_id', $roleId)
+                                ->where('role_sider_bar_joins.permission', 1)
+                                ->select('side_bar_menus.*')
+                                ->get();
+                        @endphp
+                        <ul>
+                            @foreach ($sideBarMenus as $menu)
+                                <li class="liststyle">
+                                    <a href="{{ route($menu->route) }}">
+                                        <i class="{{ $menu->name }}"></i>{{ $menu->display_name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </ul>
                 </nav>
             </div>
