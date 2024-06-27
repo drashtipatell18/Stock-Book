@@ -29,18 +29,22 @@ class PaymentController extends Controller
             // 'bankname' => 'required',
             // 'ifsccode' => 'required',
             'payment_date' => 'required',
+            'advance_payment' => 'required',
+            'advance_payment_date' => 'required',
             'salary_type' => 'required',
         ]);
 
         $payment = Payment::create([
-            'employee_id'      => $request->input('employee_id'),
-            'accountno'        => $request->input('accountno'),
-            'bankname'         => $request->input('bankname'),
-            'ifsccode'         => $request->input('ifsccode'),
-            'payment_date'     => $request->input('payment_date'),
-            'total_price'      => $request->input('total_price'),
-            'salary_type'      => $request->input('salary_type'),
-            'status'           => $request->input('status'),
+            'employee_id'           => $request->input('employee_id'),
+            'accountno'             => $request->input('accountno'),
+            'bankname'              => $request->input('bankname'),
+            'ifsccode'              => $request->input('ifsccode'),
+            'payment_date'          => $request->input('payment_date'),
+            'total_price'           => $request->input('total_price'),
+            'salary_type'           => $request->input('salary_type'),
+            'advance_payment'       => $request->input('advance_payment'),
+            'advance_payment_date'  => $request->input('advance_payment_date'),
+            'status'                => $request->input('status'),
 
         ]);
 
@@ -67,6 +71,8 @@ class PaymentController extends Controller
             'payment_date'     => $request->input('payment_date'),
             'total_price'      => $request->input('total_price'),
             'salary_type'      => $request->input('salary_type'),
+            'advance_payment'       => $request->input('advance_payment'),
+            'advance_payment_date'  => $request->input('advance_payment_date'),
             'status'           => $request->input('status'),
         ]);
 
