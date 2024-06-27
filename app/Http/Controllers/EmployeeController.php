@@ -36,10 +36,10 @@ class EmployeeController extends Controller
             'lastname' => 'required',
             'user_id' => 'required',
             'dob' => 'required|date',
+            'gender' => 'required',
             'email' => 'required|email',
             'address' => 'required',
             'phoneno' => 'required|numeric',
-            'gender' => 'required',
             'salary' => 'required|numeric',
             'joiningdate' => 'required|date',
         ]);

@@ -96,6 +96,23 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="gender" class="control-label mb-1">Gender</label>
+                        <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror">
+                            <option value="">Select</option>
+                            <option value="male"
+                                {{ old('gender', $employees->gender ?? '') == 'male' ? 'selected' : '' }}>Male
+                            </option>
+                            <option value="female"
+                                {{ old('gender', $employees->gender ?? '') == 'female' ? 'selected' : '' }}>Female</option>
+                        </select>
+                        @error('gender')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label for="email" class="control-label mb-1">Email</label>
                         <input readonly id="email" name="email" type="email"
                             value="{{ old('email', $employees->email ?? '') }}"
@@ -121,23 +138,6 @@
                             value="{{ old('phoneno', $employees->phoneno ?? '') }}"
                             class="form-control @error('phoneno') is-invalid @enderror">
                         @error('phoneno')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="gender" class="control-label mb-1">Gender</label>
-                        <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror">
-                            <option value="">Select</option>
-                            <option value="male"
-                                {{ old('gender', $employees->gender ?? '') == 'male' ? 'selected' : '' }}>Male
-                            </option>
-                            <option value="female"
-                                {{ old('gender', $employees->gender ?? '') == 'female' ? 'selected' : '' }}>Female</option>
-                        </select>
-                        @error('gender')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>
