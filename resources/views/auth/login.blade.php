@@ -17,7 +17,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="images/icon/logo.png" alt="CoolAdmin">
+                                <img src="images/icon/logo.png"  class="image"alt="CoolAdmin">
                             </a>
                         </div>
                         <h3 class="text-center">Login</h3>
