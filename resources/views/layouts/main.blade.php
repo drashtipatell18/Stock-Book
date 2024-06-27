@@ -52,8 +52,8 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
-                            <img src="{{ asset('images/icon/logo.png') }}" alt="CoolAdmin" />
+                        <a class="logo">
+                            <img src="{{ asset('images/icon/book1.png') }}" alt="CoolAdmin" style="width: 30%; height: auto;">
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -105,9 +105,10 @@
 
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
+            <div class="logo " style="text-align: center">
                 <a href="#">
-                    <img src="{{ asset('images/icon/logo.png') }}" alt="CoolAdmin" /> </a>
+                    <img src="{{ asset('images/icon/book1.png') }}" alt="CoolAdmin" style="width: 40%; height: auto;">
+                </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
