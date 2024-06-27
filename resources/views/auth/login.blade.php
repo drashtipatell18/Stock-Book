@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .login-content {
-            margin-top: 30%;
+            margin-top: 10%;
         }
 
         body {
@@ -43,7 +43,7 @@
                                     </label>
                                 </div>
                                 <div class="mt-4">
-                                    <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Login
+                                    <button class="au-btn au-btn--block au-btn btn-info m-b-20" type="submit">Login
                                         Now</button>
                                 </div>
 
