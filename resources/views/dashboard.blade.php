@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="text">
                                             <h2>{{ $stall }}</h2>
-                                            <span>Total Stall</span>
+                                            <span>Total Store</span>
                                         </div>
                                     </div>
                                     <div class="overview-chart">
@@ -136,7 +136,7 @@
                                             <div class="chart-note-wrap">
                                                 <div class="chart-note mr-0 d-block">
                                                     <span class="dot dot--blue"></span>
-                                                    <span>Stall</span>
+                                                    <span>Store</span>
                                                 </div>
                                                 <div class="chart-note mr-0 d-block">
                                                     <span class="dot dot--red"></span>
@@ -305,7 +305,7 @@
                 }
             ],
             labels: [
-                'Stall',
+                'Store',
                 'Stock'
             ]
             },
