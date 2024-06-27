@@ -16,6 +16,14 @@
     .oldimage {
         display: none;
     }
+    .miplus {
+        position: absolute;
+        width: 60px;
+    }
+
+    .miplusinput {
+        padding-left: 70px;
+    }
 </style>
 @section('content')
     <div class="col-md-6 col-sm-6 formdata">
@@ -72,14 +80,23 @@
 
                     <div class="form-group has-success">
                         <label for="sales_price" class="control-label mb-1">Sales Price</label>
-                        <input id="sales_price" name="sales_price" type="number"
-                            value="{{ old('sales_price', $salesorders->sales_price ?? '') }}"
-                            class="form-control @error('sales_price') is-invalid @enderror" oninput="calculateTotalPrice()">
-                        @error('sales_price')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
+                        <div class="form-group has-success">
+                            <span class="miplus">
+                                <select class="form-control @error('sales_price') is-invalid @enderror" name="symbol"
+                                    autocomplete="off">
+                                    <option value="$">$</option>
+                                    <option value="₹">₹</option>
+                                </select>
                             </span>
-                        @enderror
+                            <input id="sales_price" name="sales_price" placeholder="" type="text"
+                                class="form-control miplusinput @error('sales_price') is-invalid @enderror"
+                                value="<?php echo isset($stocks->sales_price) ? $payments->sales_price : ''; ?>"  oninput="calculateTotalPrice()">
+                            @error('sales_price')
+                                <span class="invalid-feedback" style="color: red">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-group has-success">
@@ -96,14 +113,23 @@
 
                     <div class="form-group has-success">
                         <label for="total_price" class="control-label mb-1">Total Price</label>
-                        <input id="total_price" name="total_price" type="number"
-                            value="{{ old('total_price', $salesorders->total_price ?? '') }}"
-                            class="form-control @error('total_price') is-invalid @enderror" oninput="calculateTotalPrice()">
-                        @error('total_price')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
+                        <div class="form-group has-success">
+                            <span class="miplus">
+                                <select class="form-control @error('total_price') is-invalid @enderror" name="symbol"
+                                    autocomplete="off">
+                                    <option value="$">$</option>
+                                    <option value="₹">₹</option>
+                                </select>
                             </span>
-                        @enderror
+                            <input id="total_price" name="total_price" placeholder="" type="text"
+                                class="form-control miplusinput @error('total_price') is-invalid @enderror"
+                                value="<?php echo isset($stocks->total_price) ? $payments->total_price : ''; ?>"  oninput="calculateTotalPrice()">
+                            @error('total_price')
+                                <span class="invalid-feedback" style="color: red">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
 
                     @if (isset($customError))

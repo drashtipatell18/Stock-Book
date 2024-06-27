@@ -12,6 +12,14 @@
     .formdata {
         margin-left: 23% !important;
     }
+    .miplus {
+        position: absolute;
+        width: 60px;
+    }
+
+    .miplusinput {
+        padding-left: 70px;
+    }
 </style>
 @section('content')
     <div class="col-md-6 col-sm-6 formdata">
@@ -85,13 +93,23 @@
 
                     <div class="form-group has-success">
                         <label for="price" class="control-label mb-1">Price</label>
-                        <input id="price" name="price" type="number"
-                            value="{{ old('price', $scraps->price ?? '') }}" class="form-control ">
-                        @error('price')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
+                        <div class="form-group has-success">
+                            <span class="miplus">
+                                <select class="form-control @error('price') is-invalid @enderror" name="symbol"
+                                    autocomplete="off">
+                                    <option value="$">$</option>
+                                    <option value="₹">₹</option>
+                                </select>
                             </span>
-                        @enderror
+                            <input id="price" name="price" placeholder="" type="text"
+                                class="form-control miplusinput @error('price') is-invalid @enderror"
+                                value="<?php echo isset($stocks->price) ? $payments->price : ''; ?>"  oninput="calculateTotalPrice()">
+                            @error('price')
+                                <span class="invalid-feedback" style="color: red">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-group">

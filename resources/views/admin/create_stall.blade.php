@@ -22,7 +22,7 @@
             <div class="card-header"></div>
             <div class="card-body">
                 <div class="card-title">
-                    <h3 class="text-center title-2">{{ isset($stalls) ? 'Edit Stall' : 'Add Stall' }}</h3>
+                    <h3 class="text-center title-2">{{ isset($stalls) ? 'Edit Store' : 'Add Store' }}</h3>
                 </div>
                 <hr>
                 <form action="{{ isset($stalls) ? '/stall/update/' . $stalls->id : '/stall/store' }}" method="POST">

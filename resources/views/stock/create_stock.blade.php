@@ -26,6 +26,15 @@
     #imageLabel {
         display: none;
     }
+
+    .miplus {
+        position: absolute;
+        width: 60px;
+    }
+
+    .miplusinput {
+        padding-left: 70px;
+    }
 </style>
 @section('content')
     <div class="col-md-6 col-sm-6 formdata">
@@ -81,17 +90,26 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
-                        <label for="name" class="control-label mb-1">Price per Book</label>
-                        <input id="price" name="price" type="number" value="{{ old('price', $stocks->price ?? '') }}"
-                            class="form-control @error('price') is-invalid @enderror">
-                        @error('price')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
+                    <div class="form-group has-success">
+                        <label for="price" class="control-label mb-1">Price per Book</label>
+                        <div class="form-group has-success">
+                            <span class="miplus">
+                                <select class="form-control @error('price') is-invalid @enderror" name="symbol"
+                                    autocomplete="off">
+                                    <option value="$">$</option>
+                                    <option value="₹">₹</option>
+                                </select>
                             </span>
-                        @enderror
+                            <input id="price" name="price" placeholder="" type="text"
+                                class="form-control miplusinput @error('price') is-invalid @enderror"
+                                value="<?php echo isset($stocks->price) ? $payments->price : ''; ?>">
+                            @error('price')
+                                <span class="invalid-feedback" style="color: red">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
-                    
                     <div class="item form-group">
                         <button type="submit" class="btn btn-lg btn-info btn-block">
                             @if (isset($stocks))

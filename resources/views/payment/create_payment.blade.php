@@ -12,6 +12,15 @@
     .formdata {
         margin-left: 23% !important;
     }
+
+    .miplus {
+        position: absolute;
+        width: 60px;
+    }
+
+    .miplusinput {
+        padding-left: 70px;
+    }
 </style>
 @section('content')
     <div class="col-md-6 col-sm-6 formdata">
@@ -22,13 +31,12 @@
                     <h3 class="text-center title-2">{{ isset($payments) ? 'Edit Payment' : 'Add Payment' }}</h3>
                 </div>
                 <hr>
-                <form action="{{ isset($payments) ? '/payment/update/' . $payments->id : '/payment/insert' }}"
-                    method="POST" enctype="multipart/form-data">
+                <form action="{{ isset($payments) ? '/payment/update/' . $payments->id : '/payment/insert' }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="employee_id" class="control-label mb-1">Employee:</label>
-                        <select id="employee_id" name="employee_id"
-                            class="form-control">
+                        <select id="employee_id" name="employee_id" class="form-control">
                             <option value="">Select Employee</option>
                             @foreach ($employees as $id => $name)
                                 <option value="{{ $id }}"
@@ -47,8 +55,7 @@
                     <div class="form-group">
                         <label for="accountno" class="control-label mb-1">Bank Account Number</label>
                         <input id="accountno" name="accountno" type="number"
-                            value="{{ old('accountno', $payments->accountno ?? '') }}"
-                            class="form-control">
+                            value="{{ old('accountno', $payments->accountno ?? '') }}" class="form-control">
                         {{-- @error('accountno')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
@@ -58,9 +65,8 @@
 
                     <div class="form-group has-success">
                         <label for="bankname" class="control-label mb-1">Bank Name</label>
-                        <input id="bankname" name="bankname"
-                            type="text" value="{{ old('bankname', $payments->bankname ?? '') }}"
-                            class="form-control ">
+                        <input id="bankname" name="bankname" type="text"
+                            value="{{ old('bankname', $payments->bankname ?? '') }}" class="form-control ">
                         {{-- @error('bankname')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
@@ -71,8 +77,7 @@
                     <div class="form-group has-success">
                         <label for="ifsccode" class="control-label mb-1">IFSC Code</label>
                         <input id="ifsccode" name="ifsccode"
-                            type="text"value="{{ old('ifsccode', $payments->ifsccode ?? '') }}"
-                            class="form-control">
+                            type="text"value="{{ old('ifsccode', $payments->ifsccode ?? '') }}" class="form-control">
                         {{-- @error('ifsccode')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
@@ -83,24 +88,35 @@
                         <label for="type" class="control-label mb-1">Salary Type</label>
                         <select id="salary_type" name="salary_type" class="form-control">
                             <option value="">Select</option>
-                            <option value="cash" {{ old('salary_type', $payments->salary_type ?? '') == 'cash' ? 'selected' : '' }}>
+                            <option value="cash"
+                                {{ old('salary_type', $payments->salary_type ?? '') == 'cash' ? 'selected' : '' }}>
                                 Cash
                             </option>
-                            <option value="online" {{ old('salary_type', $payments->salary_type ?? '') == 'online' ? 'selected' : '' }}>
+                            <option value="online"
+                                {{ old('salary_type', $payments->salary_type ?? '') == 'online' ? 'selected' : '' }}>
                                 Online</option>
                         </select>
                     </div>
 
                     <div class="form-group has-success">
                         <label for="total_price" class="control-label mb-1">Total Salary</label>
-                        <input id="total_price" name="total_price"
-                            type="number" value="{{ old('total_price', $payments->total_price ?? '') }}"
-                            class="form-control @error('total_price') is-invalid @enderror">
-                        @error('total_price')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
+                        <div class="form-group has-success">
+                            <span class="miplus">
+                                <select class="form-control @error('total_price') is-invalid @enderror" name="symbol"
+                                    autocomplete="off">
+                                    <option value="$">$</option>
+                                    <option value="₹">₹</option>
+                                </select>
                             </span>
-                        @enderror
+                            <input id="total_price" name="total_price" placeholder="" type="text"
+                                class="form-control miplusinput @error('total_price') is-invalid @enderror"
+                                value="<?php echo isset($payments->total_price) ? $payments->total_price : ''; ?>">
+                            @error('total_price')
+                                <span class="invalid-feedback" style="color: red">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -117,8 +133,8 @@
 
                     <div class="form-group has-success">
                         <label for="advance_payment" class="control-label mb-1">Advance Payment</label>
-                        <input id="advance_payment" name="advance_payment"
-                            type="number" value="{{ old('advance_payment', $payments->advance_payment ?? '') }}"
+                        <input id="advance_payment" name="advance_payment" type="number"
+                            value="{{ old('advance_payment', $payments->advance_payment ?? '') }}"
                             class="form-control @error('advance_payment') is-invalid @enderror">
                         @error('advance_payment')
                             <span class="invalid-feedback" style="color: red">
@@ -162,7 +178,7 @@
                             </span>
                         @enderror
                     </div>
-                   
+
                     <div class="item form-group">
                         <button type="submit" class="btn btn-lg btn-info btn-block">
                             @if (isset($payments))
