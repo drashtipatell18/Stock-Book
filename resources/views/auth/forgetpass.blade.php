@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .login-content {
-            margin-top: 43%;
+            margin-top: 30%;
         }
     </style>
     <div class="page-wrapper">
@@ -36,7 +36,7 @@
                                         placeholder="Email">
                                 </div>
                                 <div class="mt-4">
-                                    <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">submit</button>
+                                    <button class="au-btn au-btn--block au- btn btn-info m-b-20" type="submit">submit</button>
                                 </div>
                             </form>
                         </div>

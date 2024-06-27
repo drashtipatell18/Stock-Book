@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .login-content {
-            margin-top: 25%;
+            margin-top: 5%;
         }
 
         body {
@@ -58,7 +58,7 @@
                                     @enderror
                                 </div>
                                 <div class="mt-5">
-                                    <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Change Password</button>
+                                    <button class="au-btn au-btn--block au- btn btn-info m-b-20" type="submit">Change Password</button>
                                 </div>
                             </form>    
                         </div>
