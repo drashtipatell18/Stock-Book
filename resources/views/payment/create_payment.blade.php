@@ -115,6 +115,30 @@
                         @enderror
                     </div>
 
+                    <div class="form-group has-success">
+                        <label for="advance_payment" class="control-label mb-1">Advance Payment</label>
+                        <input id="advance_payment" name="advance_payment"
+                            type="number" value="{{ old('advance_payment', $payments->advance_payment ?? '') }}"
+                            class="form-control @error('advance_payment') is-invalid @enderror">
+                        @error('advance_payment')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="advance_payment_date" class="control-label mb-1">Advance Payment Date</label>
+                        <input id="advance_payment_date" name="advance_payment_date" type="date"
+                            value="{{ old('advance_payment_date', $payments->advance_payment_date ?? '') }}"
+                            class="form-control @error('advance_payment_date') is-invalid @enderror">
+                        @error('advance_payment_date')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
                     <div class="form-group">
                         <label for="position" class="control-label mb-1">Status:</label>
                         <label

@@ -96,6 +96,23 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="gender" class="control-label mb-1">Gender</label>
+                        <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror">
+                            <option value="">Select</option>
+                            <option value="male"
+                                {{ old('gender', $employees->gender ?? '') == 'male' ? 'selected' : '' }}>Male
+                            </option>
+                            <option value="female"
+                                {{ old('gender', $employees->gender ?? '') == 'female' ? 'selected' : '' }}>Female</option>
+                        </select>
+                        @error('gender')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label for="email" class="control-label mb-1">Email</label>
                         <input readonly id="email" name="email" type="email"
                             value="{{ old('email', $employees->email ?? '') }}"
@@ -128,23 +145,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="gender" class="control-label mb-1">Gender</label>
-                        <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror">
-                            <option value="">Select</option>
-                            <option value="male"
-                                {{ old('gender', $employees->gender ?? '') == 'male' ? 'selected' : '' }}>Male
-                            </option>
-                            <option value="female"
-                                {{ old('gender', $employees->gender ?? '') == 'female' ? 'selected' : '' }}>Female</option>
-                        </select>
-                        @error('gender')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label for="joiningdate" class="control-label mb-1">Joining Date</label>
                         <input id="joiningdate" name="joiningdate" type="date"
                             value="{{ old('joiningdate', $employees->joiningdate ?? '') }}"
@@ -167,16 +167,35 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        @if (isset($employees) && $employees->profilepic)
+                        {{-- @if (isset($employees) && $employees->profilepic)
                             <img id="oldImage" src="{{ asset('images/' . $employees->profilepic) }}"
                                 alt="Uploaded Document" width="100">
                             <input type="hidden" class="form-control" name="oldprofilepic"
                                 value="{{ $employees->profilepic }}">
+                        @endif --}}
+                        @if (isset($employees) && $employees->profilepic)
+                            @php
+                                // Decode the JSON string into an array
+                                try {
+                                    $subImages = json_decode($employees->profilepic, true);
+                                    if (!is_array($subImages)) {
+                                        throw new Exception('Invalid JSON data');
+                                    }
+                                } catch (Exception $e) {
+                                    // Handle JSON decode failure or non-array data
+                                    $subImages = [];
+                                }
+                            @endphp
+
+                            @foreach ($subImages as $image)
+                                <img id="oldImage" src="{{ asset('images/' . $image) }}" alt="Uploaded Document" width="100%" >
+                                <input type="hidden" class="form-control" name="oldprofilepic[]" value="{{ $image }}">
+                            @endforeach
                         @endif
                     </div>
                     <div class="form-group">
                         <label for="image" class="control-label mb-1">Image</label>
-                        <input type="file" id="profilepicInput" class="form-control" name="profilepic">
+                        <input type="file" id="profilepicInput" class="form-control" name="profilepic[]" multiple>
                         @error('profilepic')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>

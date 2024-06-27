@@ -69,14 +69,14 @@ Route::post('/category/update/{id}', [CategoryController::class, 'categoryUpdate
 Route::get('/category/destroy/{id}',[CategoryController::class,'categoryDestroy'])->name('destroy.category');
 
 
-// Stall
+// Store
 
-Route::get('/stall', [StallController::class, 'stall'])->name('stall');
-Route::get('/stall/create', [StallController::class, 'createStall'])->name('stall.create');
-Route::post('/stall/store', [StallController::class, 'storeStall'])->name('stall.store');
-Route::get('/stall/edit/{id}', [StallController::class, 'StallEdit'])->name('edit.stall');
-Route::post('/stall/update/{id}', [StallController::class, 'StallUpdate'])->name('update.stall');
-Route::get('/stall/destroy/{id}',[StallController::class,'StallDestroy'])->name('destroy.stall');
+Route::get('/store', [StallController::class, 'stall'])->name('store');
+Route::get('/store/create', [StallController::class, 'createStall'])->name('stall.create');
+Route::post('/store/store', [StallController::class, 'storeStall'])->name('stall.store');
+Route::get('/store/edit/{id}', [StallController::class, 'StallEdit'])->name('edit.stall');
+Route::post('/store/update/{id}', [StallController::class, 'StallUpdate'])->name('update.stall');
+Route::get('/store/destroy/{id}',[StallController::class,'StallDestroy'])->name('destroy.stall');
 
 // User 
 
@@ -173,7 +173,6 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
   Route::get('/scrap/edit/{id}', [ScrapController::class, 'scrapEdit'])->name('edit.scrap');
   Route::post('/scrap/update/{id}', [ScrapController::class, 'scrapUpdate'])->name('update.scrap');
   Route::get('/scrap/destroy/{id}',[ScrapController::class,'scrapDestroy'])->name('destroy.scrap');
-
   
   // Sidebar
 

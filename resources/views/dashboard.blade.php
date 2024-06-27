@@ -59,6 +59,7 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="row m-t-25">
                             <div class="col-sm-6 col-lg-3">
                                 <div class="overview-item overview-item--c1">
@@ -70,6 +71,77 @@
                                             <div class="text">
                                                 <span>Total Category</span>
                                                 <h2>{{ $category }}</h2>
+=======
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c2">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="bi bi-bookmark"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $stall }}</h2>
+                                            <span>Total Store</span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart">
+                                        <canvas id="widgetChart2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c3">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="bi bi-bookmark"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2> {{ $stock }}</h2>
+                                            <span>Total Stock</span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart">
+                                        <canvas id="widgetChart3"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="overview-item overview-item--c4">
+                                <div class="overview__inner">
+                                    <div class="overview-box clearfix">
+                                        <div class="icon">
+                                            <i class="bi bi-book-half"></i>
+                                        </div>
+                                        <div class="text">
+                                            <h2>{{ $book }}</h2>
+                                            <span>Total Book</span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart">
+                                        <canvas id="widgetChart4"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="au-card recent-report">
+                                <div class="au-card-inner">
+                                    <h3 class="title-2">recent reports</h3>
+                                    <div class="chart-info">
+                                        <div class="chart-info__left">
+                                            {{-- <div class="chart-note">
+                                                <span class="dot dot--blue"></span>
+                                                <span>products</span>
+                                            </div> --}}
+                                            <div class="chart-note mr-0">
+                                                <span class="dot dot--green"></span>
+                                                <span>services</span>
+>>>>>>> 91b013b4a649c1b4d018f1750a9583f37c4fc262
                                             </div>
                                         </div>
                                         <div class="overview-chart">
@@ -133,6 +205,7 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
 
                         <div class="row">
                             <div class="col-lg-6">
@@ -144,6 +217,18 @@
                                                 <div class="chart-note mr-0">
                                                     <span class="dot dot--green"></span>
                                                     <span>Services</span>
+=======
+                        <div class="col-lg-6">
+                            <div class="au-card chart-percent-card">
+                                <div class="au-card-inner">
+                                    <h3 class="title-2 tm-b-5">char by %</h3>
+                                    <div class="row no-gutters">
+                                        <div class="col-xl-6">
+                                            <div class="chart-note-wrap">
+                                                <div class="chart-note mr-0 d-block">
+                                                    <span class="dot dot--blue"></span>
+                                                    <span>Store</span>
+>>>>>>> 91b013b4a649c1b4d018f1750a9583f37c4fc262
                                                 </div>
                                             </div>
                                             <div class="chart-info__right">
@@ -229,6 +314,7 @@
                 }
             });
 
+<<<<<<< HEAD
             var ctx = document.getElementById("recent-rep-chart1");
             if (ctx) {
                 ctx.height = 250;
@@ -289,6 +375,58 @@
                         }
                     }
                 });
+=======
+        // Percent Chart
+    var ctx = document.getElementById("percent-chart1");
+    if (ctx) {
+        ctx.height = 280;
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+            datasets: [
+                {
+                label: "My First dataset",
+                data: ["{{ $stall }}", "{{ $stock }}"],
+                backgroundColor: [
+                    '#00b5e9',
+                    '#fa4251'
+                ],
+                hoverBackgroundColor: [
+                    '#00b5e9',
+                    '#fa4251'
+                ],
+                borderWidth: [
+                    0, 0
+                ],
+                hoverBorderColor: [
+                    'transparent',
+                    'transparent'
+                ]
+                }
+            ],
+            labels: [
+                'Store',
+                'Stock'
+            ]
+            },
+            options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            cutoutPercentage: 55,
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                titleFontFamily: "Poppins",
+                xPadding: 15,
+                yPadding: 10,
+                caretPadding: 0,
+                bodyFontSize: 16
+>>>>>>> 91b013b4a649c1b4d018f1750a9583f37c4fc262
             }
 
             var ctx = document.getElementById("percent-chart1");

@@ -12,7 +12,7 @@ class Payment extends Model
     use HasFactory,SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table = 'payments';
-    protected $fillable = ['employee_id','total_price','accountno','bankname','ifsccode','payment_date','status','salary_type'];
+    protected $fillable = ['employee_id','total_price','accountno','bankname','ifsccode','payment_date','status','salary_type','advance_payment','advance_payment_date'];
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employee_id');

@@ -56,8 +56,8 @@ class SideBarMenuSeeder extends Seeder
         ]);
         SideBarMenu::create([
             'name' => 'bi bi-bookmark',
-            'route' => 'stall',
-            'display_name' => 'Stall'
+            'route' => 'store',
+            'display_name' => 'Store'
         ]);
         SideBarMenu::create([
             'name' => 'bi bi-bookmark',
