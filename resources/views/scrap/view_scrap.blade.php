@@ -26,6 +26,7 @@
                         <thead>
                             <tr class="">
                                 <th>No</th>
+                                <th class="">Customer Name</th>
                                 <th class="">Scrap Name</th>
                                 <th class="">By Date</th>
                                 <th class="">Price</th>
@@ -37,6 +38,7 @@
                             @foreach ($scraps as $index => $scrap)
                                 <tr class="">
                                     <td>{{ $index + 1 }}</td>
+                                    <td>{{ $scrap->customer_name }}</td>
                                     <td>{{ $scrap->name }}</td>
                                     <td>{{ date('d-m-Y', strtotime($scrap->by_date)) }}</td>
                                     <td>{{ $scrap->price }}</td>

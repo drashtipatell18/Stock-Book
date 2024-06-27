@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ScrapController extends Controller
-{
+{  
     public function scrap()
     {
         $scraps = Scrap::all();
@@ -17,11 +17,13 @@ class ScrapController extends Controller
     }
     public function scrapCreate()
     {
-        return view('scrap.create_scrap');
+        $customerNames = Scrap::pluck('customer_name')->unique()->toArray();
+        return view('scrap.create_scrap', compact('customerNames'));
     }
     public function scrapInsert(Request $request)
     {
         $request->validate([
+            'customer_name' => 'required',
             'name' => 'required',
             'scrap_weight' => 'required',
             'by_date' => 'required|date',
@@ -29,6 +31,7 @@ class ScrapController extends Controller
         ]);
 
         $scraps = Scrap::create([
+            'customer_name'    => $request->input('customer_name'),
             'name'             => $request->input('name'),
             'scrap_weight'     => $request->input('scrap_weight'),
             'by_date'          => $request->input('by_date'),
@@ -43,12 +46,14 @@ class ScrapController extends Controller
     public function scrapEdit($id){
 
         $scraps = Scrap::find($id);
-        return view('scrap.create_scrap',compact('scraps'));
+        $customerNames = Scrap::pluck('customer_name')->unique()->toArray();
+        return view('scrap.create_scrap',compact('scraps','customerNames'));
     }
 
     public function scrapUpdate(Request $request, $id)
     {
         $request->validate([
+            'customer_name' => 'required',
             'name' => 'required',
             'scrap_weight' => 'required',
             'by_date' => 'required|date',
@@ -58,6 +63,7 @@ class ScrapController extends Controller
         $scraps = Scrap::find($id);
 
         $scraps->update([
+            'customer_name'    => $request->input('customer_name'),
             'name'             => $request->input('name'),
             'scrap_weight'     => $request->input('scrap_weight'),
             'by_date'          => $request->input('by_date'),

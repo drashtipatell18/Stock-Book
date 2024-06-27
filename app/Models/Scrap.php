@@ -11,5 +11,5 @@ class Scrap extends Model
     use HasFactory,SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table = 'scraps';
-    protected $fillable = ['name','scrap_weight','by_date','price','to_date'];
+    protected $fillable = ['customer_name','name','scrap_weight','by_date','price','to_date'];
 }
