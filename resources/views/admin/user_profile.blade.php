@@ -134,7 +134,7 @@
     @endphp
     @if (auth()->check())
         @php
-            $userRole = strtolower(auth()->user()->role);
+            $userRole = strtolower(auth()->user()->role->role_name);
         @endphp
     @endif
     <div class="container custom-profile">
@@ -196,7 +196,7 @@
                                         <p>{{ $users->email }}</p>
                                     </div>
                                 </div>
-                                @if ($userRole == 'SuperAdmin')
+                                @if ($userRole == 'superadmin')
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Role</label>
@@ -256,7 +256,7 @@
                                     <input type="text" class="form-control" id="email" name="email"
                                         value="{{ $users->email }}">
                                 </div>
-                                @if ($userRole == 'Employee')
+                                @if ($userRole != 'employee')
                                     <div class="form-group">
                                         <label for="role_id" class="control-label mb-1">Role</label>
                                         <select id="role_id" name="role_id"

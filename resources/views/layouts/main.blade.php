@@ -70,7 +70,8 @@
                     @endphp
                     @if (auth()->check())
                         @php
-                            $userRole = strtolower(auth()->user()->role);
+                            $userRole = strtolower(auth()->user()->role->role_name);
+                            // dd($userRole);
                         @endphp
                     @endif
                     <ul class="navbar-mobile__list list-unstyled">
@@ -183,7 +184,7 @@
                                                 </div>
                                                 {{-- @endif --}}
                                                 {{-- @endif --}}
-                                                @if ($userRole == 'SuperAdmin')
+                                                @if ($userRole == 'superadmin')
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('changepass') }}">
                                                         <i class="zmdi zmdi-settings"></i>Change Password</a>

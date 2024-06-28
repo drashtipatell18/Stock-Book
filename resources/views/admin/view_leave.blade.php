@@ -91,7 +91,7 @@
                                             <a class="btn btn-danger btn-sm"><span class="statusbtn">Rejected</span></a>
                                         @endif
                                     </td> --}}
-                                    @if ($userRole != 'Employee')
+                                    @if ($userRole != 'employee')
                                         <td>
                                             <a href="{{ route('edit.leave', $leave->id) }}"
                                                 class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
