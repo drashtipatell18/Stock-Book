@@ -28,7 +28,7 @@
 
                     <div class="button-container text-right mb-2">
                         <a href="{{ route('create.leave') }}">
-                            <button type="button" class="btn btn-primary btn-sm mt-1">Add Leave</button>
+                            <button type="button" class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add Leave</button>
                         </a>
                     </div>
                     {{-- <h3 class="text-right mt-4"></h3> --}}

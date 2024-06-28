@@ -16,7 +16,7 @@
                         </div>
                     @endif
                     <div class="button-container text-right mb-2">
-                        <a href="{{ route('create.salesorder') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                        <a href="{{ route('create.salesorder') }}"><button type="button" class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
                             SalesOrder</button></a>
                     </div>
                 </div>

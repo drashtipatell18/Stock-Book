@@ -6,12 +6,12 @@
             <div class="card-header">Sidebar Menus</div>
             <div class="card-body">
                 <div class="card-title">
-                    <div class="button-container text-right mb-2">
+                    {{-- <div class="button-container text-right mb-2">
                         <a href="{{ route('sidebar.create') }}">
                             <button type="button" class="btn btn-primary btn-sm mt-1" id="addCategoryBtn"><i
                                     class="bi bi-plus-lg"></i> Add New Menu</button>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="table-responsive mt-3">
                     <table class="table table-striped jambo_table bulk_action" id="table">

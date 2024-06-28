@@ -16,7 +16,7 @@
                         </div>
                     @endif
                     <div class="button-container text-right mb-2">
-                        <a href="{{ route('create.payment') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                        <a href="{{ route('create.payment') }}"><button type="button" class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
                                 Payment</button></a>
                     </div>
                 </div>

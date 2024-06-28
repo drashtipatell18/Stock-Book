@@ -16,7 +16,7 @@
                         </div>
                     @endif
                     <div class="button-container text-right mb-2">
-                        <a href="{{ route('create.employee') }}"><button type="button" class="btn btn-primary btn-sm mt-1">Add
+                        <a href="{{ route('create.employee') }}"><button type="button" class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
                                 Employee</button></a>
                     </div>
                     {{-- <h3 class="text-right mt-4"></h3> --}}
@@ -42,10 +42,10 @@
                                     <td>{{ date('d/m/Y', strtotime($employee->joiningdate)) }}
                                     <td>
                                         <a href="{{ route('edit.employee', $employee->id) }}"
-                                            class="btn btn-info btn-sm">Edit</a>
+                                            class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
 
                                         <a href="{{ route('destroy.employee', $employee->id) }}"
-                                            class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');">Delete</a>
+                                            class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
