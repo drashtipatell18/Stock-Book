@@ -183,12 +183,12 @@
                                                 </div>
                                                 {{-- @endif --}}
                                                 {{-- @endif --}}
-                                                {{-- @if ($userRole == 'admin') --}}
+                                                @if ($userRole == 'SuperAdmin')
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('changepass') }}">
                                                         <i class="zmdi zmdi-settings"></i>Change Password</a>
                                                 </div>
-                                                {{-- @endif --}}
+                                                @endif
                                                 <div class="account-dropdown__item">
                                                     <a href="{{ route('logout') }}">
                                                         <i class="zmdi zmdi-power"></i>Logout</a>

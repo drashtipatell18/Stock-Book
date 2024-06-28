@@ -196,14 +196,16 @@
                                         <p>{{ $users->email }}</p>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Role</label>
+                                @if ($userRole == 'SuperAdmin')
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Role</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{ $users->role->role_name }}</p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <p>{{ $users->role->role_name }}</p>
-                                    </div>
-                                </div>
+                                @endif
                             </div>
                         @else
                             <h4 class="text-center">users Not Found</h4>
@@ -227,9 +229,10 @@
                         <!-- Your form for editing the profile goes here -->
                         <!-- For example: -->
                         @if (isset($users))
-                            <form enctype="multipart/form-data" action="{{ route('update-profile', $users->id) }}" id="frmUpdate" method="POST">
+                            <form enctype="multipart/form-data" action="{{ route('update-profile', $users->id) }}"
+                                id="frmUpdate" method="POST">
                                 @csrf
-                                
+
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input type="text" class="form-control" id="name" name="name"
@@ -253,19 +256,21 @@
                                     <input type="text" class="form-control" id="email" name="email"
                                         value="{{ $users->email }}">
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="role_id" class="control-label mb-1">Role</label>
-                                    <select id="role_id" name="role_id" class="form-control @error('role_id') is-invalid @enderror">
-                                        <option value="">Select</option>
-                                        @foreach ($roles as $id => $name)
-                                            <option value="{{ $id }}" @if (old('role_id', isset($users->role_id) ? $users->role_id : '') == $id) selected @endif>
-                                                {{ $name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
+                                @if ($userRole == 'Employee')
+                                    <div class="form-group">
+                                        <label for="role_id" class="control-label mb-1">Role</label>
+                                        <select id="role_id" name="role_id"
+                                            class="form-control @error('role_id') is-invalid @enderror">
+                                            <option value="">Select</option>
+                                            @foreach ($roles as $id => $name)
+                                                <option value="{{ $id }}"
+                                                    @if (old('role_id', isset($users->role_id) ? $users->role_id : '') == $id) selected @endif>
+                                                    {{ $name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
                                 <div class="form-group text-center">
                                     <button type="submit" class="btn btn-primary">Update Changes</button>
                                 </div>
@@ -290,7 +295,7 @@
             }, 1000);
         });
 
-        $("#frmUpdate").submit(function(e){
+        $("#frmUpdate").submit(function(e) {
             // e.preventDefault();
             // let fData = new FormData($("#frmUpdate")[0])
             // console.log(...fData);

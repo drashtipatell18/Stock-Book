@@ -301,13 +301,13 @@
                             label: "My First dataset",
                             data: ["{{ $stall }}", "{{ $stock }}"],
                             backgroundColor: [
-                                '#ff6384',
-                                '#36a2eb'
+                                '#CCDD3C',
+                                '#A3E7E8'
                             ],
-                            hoverBackgroundColor: [
-                                '#ff6384',
-                                '#36a2eb'
-                            ],
+                            // hoverBackgroundColor: [
+                            //     '#ff6384',
+                            //     '#36a2eb'
+                            // ],
                             borderWidth: [
                                 0, 0
                             ],
