@@ -304,6 +304,10 @@
                                 '#CCDD3C',
                                 '#A3E7E8'
                             ],
+                            hoverBackgroundColor: [
+                                '#F0E8AC',
+                                '#95ADD1'
+                            ],
                             // hoverBackgroundColor: [
                             //     '#ff6384',
                             //     '#36a2eb'
