@@ -43,22 +43,7 @@ class EmployeeController extends Controller
             'salary' => 'required|numeric',
             'joiningdate' => 'required|date',
         ]);
-
     
-        if ($request->hasFile('profilepic')) {
-            $subimages = [];
-
-            foreach ($request->file('profilepic') as $file) {
-                $subImageName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-
-                $file->move('images', $subImageName);
-
-                // Add the filename to the array
-                $subimages[] = $subImageName;
-            }
-            $employeeimg = json_encode($subimages);
-        }
-
         $employee = Employee::create([
             'user_id'       => $request->input('user_id'),
             'firstname'      => $request->input('firstname'),
@@ -70,7 +55,6 @@ class EmployeeController extends Controller
             'gender'         => $request->input('gender'),
             'salary'         => $request->input('salary'),
             'joiningdate'    => $request->input('joiningdate'),
-            'profilepic'     => $employeeimg,
         ]);
 
         session()->flash('success', 'Employee added successfully!');
@@ -98,31 +82,7 @@ class EmployeeController extends Controller
         ]);
 
         $employees = Employee::find($id);
-
-        // if ($request->hasFile('profilepic')) {
-        //     $image = $request->file('profilepic');
-        //     $employeeimg = time() . '.' . $image->getClientOriginalExtension();
-        //     $image->move(public_path('images'), $employeeimg);
-            
-        //     // Optionally delete the old image
-        //     if ($employees->profilepic) {
-        //         $oldImagePath = public_path('images') . '/' . $employees->profilepic;
-        //         if (file_exists($oldImagePath)) {
-        //             @unlink($oldImagePath);
-        //         }
-        //     }
-        //     $employees->profilepic = $employeeimg;
-        // }
-
-        if ($request->hasFile('profilepic')) {
-            $subimages = [];
-            foreach ($request->file('profilepic') as $file) {
-                $subImageName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->move('images', $subImageName);
-                $subimages[] = $subImageName;
-            }
-            $employees->profilepic = json_encode($subimages);
-        }
+    
 
         $employees->update([
             'user_id'       => $request->input('user_id'),

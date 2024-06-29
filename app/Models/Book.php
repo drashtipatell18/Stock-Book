@@ -11,7 +11,12 @@ class Book extends Model
 {
     use HasFactory,SoftDeletes;
     protected $table = 'books';
-    protected $fillable = ['name','category_name','price','image'];
+    protected $fillable = ['name','category_id','price','image'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
     public function salesOrders()
     {

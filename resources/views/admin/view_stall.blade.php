@@ -8,7 +8,7 @@
 </style>
     <div class="col-md-12 col-sm-12 ">
         <div class="card">
-            <div class="card-header">Stall List</div>
+            <div class="card-header">Store List</div>
             <div class="card-body">
                 <div class="card-title">
                     @if (session('success'))
@@ -23,7 +23,7 @@
                 @endif
                     <div class="button-container text-right mb-2"> 
                         <a href="{{ route('stall.create') }}"><button type="button" class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
-                                Stall</button></a>
+                            Store</button></a>
                     </div>
                     {{-- <h3 class="text-right mt-4"></h3> --}}
                 </div>

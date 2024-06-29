@@ -67,7 +67,8 @@ Route::post('/category/store', [CategoryController::class, 'storeCategory'])->na
 Route::get('/category/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('edit.category');
 Route::post('/category/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('update.category');
 Route::get('/category/destroy/{id}',[CategoryController::class,'categoryDestroy'])->name('destroy.category');
-
+Route::get('/category/confirm-books-deletion', [CategoryController::class, 'confirmBooksDeletion'])->name('category.confirm-books-deletion');
+Route::post('/category/delete-books/{categoryId}', [CategoryController::class, 'deleteBooks'])->name('category.delete-books');
 
 // Store
 

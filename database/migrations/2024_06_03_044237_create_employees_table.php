@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('phoneno')->nullable();
             $table->string('gender')->nullable();
             $table->integer('salary')->nullable();
-            $table->string('profilepic')->nullable();
             $table->date('joiningdate')->nullable();
             $table->integer('total_leave')->default(22);
             $table->timestamps();

@@ -1,6 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
+<style>
+    .modal-backdrop {
+        position: relative !important;
+    }
+</style>
     <div class="col-md-12 col-sm-12 ">
         <div class="card">
             <div class="card-header">Category List</div>
@@ -55,6 +60,34 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div id="bookDeleteConfirmation" class="modal fade" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete Associated Books</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you also want to delete the books associated with "{{ $category->name }}" category?</p>
+                                <ul>
+                                    @foreach ($books as $book)
+                                        <li>{{ $book }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <form method="post" action="{{ route('category.delete-books', $category->id) }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">Yes, Delete Books</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -71,6 +104,7 @@
             setTimeout(function() {
                 $(".alert-danger").fadeOut(1000);
             }, 1000);
+            $('#bookDeleteConfirmation').modal('show');
         });
     </script>
 @endpush
