@@ -25,10 +25,22 @@
                     <h3 class="text-center title-2">{{ isset($stalls) ? 'Edit Store' : 'Add Store' }}</h3>
                 </div>
                 <hr>
-                <form action="{{ isset($stalls) ? '/stall/update/' . $stalls->id : '/stall/store' }}" method="POST">
+                <form action="{{ isset($stalls) ? '/store/update/' . $stalls->id : '/store/store' }}" method="POST">
                     @csrf
+
                     <div class="form-group">
-                        <label for="name" class="control-label mb-1">Name*</label>
+                        <label for="owner_name" class="control-label mb-1">Owner Name</label>
+                        <input id="owner_name" name="owner_name" type="text" value="{{ old('owner_name', $stalls->owner_name ?? '') }}"
+                            class="form-control @error('owner_name') is-invalid @enderror">
+                        @error('owner_name')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name" class="control-label mb-1">Store Name*</label>
                         <input id="name" name="name" type="text" value="{{ old('name', $stalls->name ?? '') }}"
                             class="form-control @error('name') is-invalid @enderror">
                         @error('name')
@@ -42,16 +54,6 @@
                         <input id="location" name="location" type="text" value="{{ old('location', $stalls->location ?? '') }}"
                             class="form-control @error('location') is-invalid @enderror">
                         @error('location')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="owner_name" class="control-label mb-1">Owner Name</label>
-                        <input id="owner_name" name="owner_name" type="text" value="{{ old('owner_name', $stalls->owner_name ?? '') }}"
-                            class="form-control @error('owner_name') is-invalid @enderror">
-                        @error('owner_name')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>

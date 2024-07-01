@@ -39,20 +39,23 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="category_name" class="control-label mb-1">Category Name</label>
-                        <select id="category_name" name="category_name" class="form-control @error('category_name') is-invalid @enderror">
+                        <label for="category_id" class="control-label mb-1">Category Name</label>
+                        <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
                             <option value="">Select</option>
-                            @foreach ($categorys as $category)
-                                <option value="{{ $category }}" @if (old('category', isset($books->category_name) ? $books->category_name : '') == $category) selected @endif>
-                                    {{ $category }}</option>
+                            @foreach ($categorys as $id => $name)
+                                <option value="{{ $id }}" 
+                                    @if (old('category_id', isset($books->category_id) ? $books->category_id : '') == $id) selected @endif>
+                                    {{ $name }}
+                                </option>
                             @endforeach
                         </select>
-                        @error('role')
+                        @error('category_id')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+                    
                     <div class="form-group">
                         <label for="price" class="control-label mb-1">Per Book Price</label>
                         <input id="price" name="price" type="number" value="{{ old('price', $books->price ?? '') }}"

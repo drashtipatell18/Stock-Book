@@ -8,24 +8,27 @@ use App\Models\Category;
 
 class BookController extends Controller
 {
-    public function book(){
-        $books = book::all();
-        return view('book.view_book',compact('books'));
+    public function book()
+    {
+        $books = Book::with('category')->get();
+        return view('book.view_book', compact('books'));
     }
-    public function bookCreate(){
+    public function bookCreate()
+    {
         $categorys = Category::pluck('category_name');
-        return view('book.create_book',compact('categorys'));
+        return view('book.create_book', compact('categorys'));
     }
 
-    public function bookInsert(Request $request ){
+    public function bookInsert(Request $request)
+    {
         $request->validate([
             'name' => 'required',
-            'category_name' => 'required',
+            'category_id' => 'required',
             'price' => 'required|numeric',
         ]);
 
         $filename = '';
-        if ($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->move('images', $filename);
@@ -33,8 +36,8 @@ class BookController extends Controller
 
         $book = Book::create([
             'name'           => $request->input('name'),
-            'category_name'  => $request->input('category_name'),
-            'price'          => $request->input('price'),   
+            'category_id'  => $request->input('category_id'),
+            'price'          => $request->input('price'),
             'image'          => $filename,
         ]);
 
@@ -42,16 +45,18 @@ class BookController extends Controller
         return redirect()->route('book');
     }
 
-    public function bookEdit($id){
+    public function bookEdit($id)
+    {
         $books = Book::find($id);
         $categorys = Category::pluck('category_name');
-        return view('book.create_book', compact('books','categorys'));
+        return view('book.create_book', compact('books', 'categorys'));
     }
 
-    public function bookUpdate(Request $request,$id){
+    public function bookUpdate(Request $request, $id)
+    {
         $request->validate([
             'name' => 'required',
-            'category_name' => 'required',
+            'category_id' => 'required',
             'price' => 'required|numeric',
         ]);
 
@@ -66,9 +71,9 @@ class BookController extends Controller
 
         $books->update([
             'name'           => $request->input('name'),
-            'category_name'  => $request->input('category_name'),
+            'category_id'  => $request->input('category_id'),
             'price'          => $request->input('price'),
-         ]);
+        ]);
 
         session()->flash('success', 'Books Update successfully!');
         return redirect()->route('book');

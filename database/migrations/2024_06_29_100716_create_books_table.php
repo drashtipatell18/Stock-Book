@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id')->nullable(); // Use unsignedBigInteger for foreign keys
             $table->string('name');
-            $table->string('category_name')->nullable();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->decimal('price', 8, 2)->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

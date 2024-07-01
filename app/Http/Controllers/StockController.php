@@ -16,7 +16,7 @@ class StockController extends Controller
 
     public function stockCreate()
     {
-        $books = Book::all();
+        $books = Book::pluck('name','id');
         return view('stock.create_stock', compact('books'));
     }
 
@@ -58,7 +58,8 @@ class StockController extends Controller
     public function stockEdit($id)
     {
         $stocks = Stock::find($id);
-        return view('stock.create_stock', compact('stocks'));
+        $books = Book::pluck('name','id');
+        return view('stock.create_stock', compact('stocks','books'));
     }
 
     public function stockUpdate(Request $request,$id)

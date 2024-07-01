@@ -67,8 +67,8 @@
                             class="form-control @error('name') is-invalid @enderror"> --}}
                             <select id="name" name="name" class="form-control @error('name') is-invalid @enderror">
                                 <option value="">-Select Book-</option>
-                                @foreach ($books as $book)
-                                    <option value="{{ $book->id }}">{{ $book->name }}</option>
+                                @foreach ($books as $id => $book)
+                                    <option value="{{ $id }}">{{ $book}}</option>
                                 @endforeach
                             </select>
                         @error('name')
@@ -102,7 +102,7 @@
                             </span>
                             <input id="price" name="price" placeholder="" type="text"
                                 class="form-control miplusinput @error('price') is-invalid @enderror"
-                                value="<?php echo isset($stocks->price) ? $payments->price : ''; ?>">
+                                value="<?php echo isset($stocks->price) ? $stocks->price : ''; ?>">
                             @error('price')
                                 <span class="invalid-feedback" style="color: red">
                                     <strong>{{ $message }}</strong>
