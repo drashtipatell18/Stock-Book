@@ -38,7 +38,7 @@
                     method="POST">
                     @csrf
                     <div class="form-group">
-                        <label for="stall_id">Stall Name</label>
+                        <label for="stall_id">Store Name</label>
                         <select id="stall_id" name="stall_id" class="form-control @error('stall_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach ($stalls as $id => $name)
@@ -88,7 +88,7 @@
                                     <option value="₹">₹</option>
                                 </select>
                             </span>
-                            <input id="sales_price" name="sales_price" placeholder="" type="text"
+                            <input id="sales_price" name="sales_price" placeholder="" type="number"
                                 class="form-control miplusinput @error('sales_price') is-invalid @enderror"
                                 value="<?php echo isset($stocks->sales_price) ? $payments->sales_price : ''; ?>"  oninput="calculateTotalPrice()">
                             @error('sales_price')

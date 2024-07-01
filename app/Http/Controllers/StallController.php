@@ -31,7 +31,7 @@ class StallController extends Controller
         ]);
 
         session()->flash('success', 'Stall added successfully!');
-        return redirect()->route('stall');
+        return redirect()->route('store');
     }
 
     public function StallEdit($id){
@@ -55,14 +55,14 @@ class StallController extends Controller
          ]);
 
         session()->flash('success', 'Stall Update successfully!');
-        return redirect()->route('stall');
+        return redirect()->route('store');
     }
 
-    public function userDestroy($id)
+    public function StallDestroy($id)
     {
-        $stalls = stall::find($id);
+        $stalls = Stall::find($id);
         $stalls->delete();
         session()->flash('danger', 'Stall Delete successfully!');
-        return redirect()->route('stall');
+        return redirect()->route('store');
     }
 }
