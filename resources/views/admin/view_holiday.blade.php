@@ -29,7 +29,7 @@
                     @if ($userRole != 'employee')
                         <div class="button-container text-right mb-2">
                             <a href="{{ route('create.holiday') }}"><button type="button"
-                                    class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i>  Add
+                                    class="btn btn-info btn-sm mt-1"><i class="bi bi-plus-lg"></i>  Add
                                     Holiday</button></a>
                         </div>
                     @endif
@@ -62,7 +62,7 @@
                                     @if ($userRole != 'employee')
                                         <td>
                                             <a href="{{ route('edit.holiday', $holiday->id) }}"
-                                                class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                                class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
 
                                             <a href="{{ route('destroy.holiday', $holiday->id) }}"
                                                 class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>

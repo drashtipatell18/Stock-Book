@@ -30,7 +30,7 @@ class SideBarMenuSeeder extends Seeder
             'display_name' => 'Category'
         ]);
         SideBarMenu::create([
-            'name' => 'fas fa-chart-bar',
+            'name' => 'bi bi-person-bounding-box',
             'route' => 'role',
             'display_name' => 'Role'
         ]);
@@ -45,7 +45,7 @@ class SideBarMenuSeeder extends Seeder
             'display_name' => 'Employee'
         ]);
         SideBarMenu::create([
-            'name' => 'bi bi-people-fill',
+            'name' => 'bi bi-person-fill-exclamation',
             'route' => 'leave',
             'display_name' => 'Leave'
         ]);
@@ -55,17 +55,17 @@ class SideBarMenuSeeder extends Seeder
             'display_name' => 'Book'
         ]);
         SideBarMenu::create([
-            'name' => 'bi bi-bookmark',
+            'name' => 'bi bi-shop',
             'route' => 'store',
             'display_name' => 'Store'
         ]);
         SideBarMenu::create([
-            'name' => 'bi bi-bookmark',
+            'name' => 'bi bi-card-checklist',
             'route' => 'stock',
             'display_name' => 'Stock'
         ]);
         SideBarMenu::create([
-            'name' => 'bi bi-receipt-cutoff',
+            'name' => 'bi bi-bag-check',
             'route' => 'salesorder',
             'display_name' => 'Sales Order'
         ]);
@@ -90,7 +90,7 @@ class SideBarMenuSeeder extends Seeder
             'display_name' => 'Sidebar'
         ]);
         SideBarMenu::create([
-            'name' => 'bi bi-person-bounding-box',
+            'name' => 'bi bi-gear-fill',
             'route' => 'sidebar.role',
             'display_name' => 'Sidebar Role Management'
         ]);

@@ -24,7 +24,7 @@
 
                     <div class="button-container text-right mb-2">
                         <a href="{{ route('stock.create') }}">
-                            <button type="button" class="btn btn-primary btn-sm mt-1" id="addCategoryBtn"><i
+                            <button type="button" class="btn btn-info btn-sm mt-1" id="addCategoryBtn"><i
                                     class="bi bi-plus-lg"></i> Add
                                 Stock</button>
                         </a>
@@ -51,7 +51,7 @@
                                     <td class="text-center">{{ $stock->quantity }}</td>
                                     <td class="text-center">{{ $stock->price }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('stock.edit', $stock->id) }}" class="btn btn-info btn-sm"><i
+                                        <a href="{{ route('stock.edit', $stock->id) }}" class="btn btn-primary btn-sm"><i
                                                 class="bi bi-pencil-square"></i></a>
                                         <a href="{{ route('stock.destroy', $stock->id) }}" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Are you sure you want to delete this ?');"><i

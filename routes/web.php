@@ -89,15 +89,15 @@ Route::get('/user/destroy/{id}',[UserController::class,'userDestroy'])->name('de
 Route::get('/user/my/profile', [UserController::class, 'myProfile'])->name('myprofile');
 Route::get('/edit-profile/{id}', [UserController::class, 'editProfile'])->name('edit-profile');
 Route::post('/update-profile/{id}', [UserController::class, 'Profileupdate'])->name('update-profile');
-// 
 
+// Holiday
 Route::get('/holiday', [HolidayController::class, 'Holiday'])->name('holiday');
 Route::get('/holiday/create',[HolidayController::class,'holidayCreate'])->name('create.holiday');
 Route::post('/holiday/insert',[HolidayController::class,'holidayInsert'])->name('insert.holiday');
 Route::get('/holiday/edit/{id}', [HolidayController::class, 'holidayEdit'])->name('edit.holiday');
 Route::post('/holiday/update/{id}', [HolidayController::class, 'holidayUpdate'])->name('update.holiday');
 Route::get('/holiday/destroy/{id}',[HolidayController::class,'holidayDestroy'])->name('destroy.holiday');
-
+   
 //Role
 Route::get('/role', [RoleController::class, 'role'])->name('role');
 Route::get('/role/create', [RoleController::class, 'roleCreate'])->name('role.create');

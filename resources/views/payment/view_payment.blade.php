@@ -16,7 +16,7 @@
                         </div>
                     @endif
                     <div class="button-container text-right mb-2">
-                        <a href="{{ route('create.payment') }}"><button type="button" class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
+                        <a href="{{ route('create.payment') }}"><button type="button" class="btn btn-info btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
                                 Payment</button></a>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('edit.payment', $payment->id) }}" class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="{{ route('edit.payment', $payment->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
                                         <a href="{{ route('destroy.payment', $payment->id) }}" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Are you sure you want to delete this?');"><i class="bi bi-trash3-fill"></i></a>
                                     </td>

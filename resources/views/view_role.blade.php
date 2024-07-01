@@ -24,7 +24,7 @@
 
                     <div class="button-container text-right mb-2">
                         <a href="{{ route('role.create') }}">
-                            <button type="button" class="btn btn-primary btn-sm mt-1" id="addCategoryBtn"><i
+                            <button type="button" class="btn btn-info btn-sm mt-1" id="addCategoryBtn"><i
                                     class="bi bi-plus-lg"></i> Add
                                 Role</button>
                         </a>
@@ -47,8 +47,8 @@
                                     <td class="text-center">{{ $index + 1 }}</td>
                                     <td class="text-center">{{ $role->role_name }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('role.edit', $role->id) }}" class="btn btn-info btn-sm"><i
-                                                class="bi bi-pencil-square"></i></a>
+                                        {{-- <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary btn-sm"><i
+                                                class="bi bi-pencil-square"></i></a> --}}
                                         <a href="{{ route('role.destroy', $role->id) }}" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Are you sure you want to delete this ?');"><i
                                                 class="bi bi-trash3-fill"></i></a>

@@ -23,7 +23,7 @@ class ScrapController extends Controller
     public function scrapInsert(Request $request)
     {
         $request->validate([
-            'customer_name' => 'required',
+            // 'customer_name' => 'required',
             'name' => 'required',
             'scrap_weight' => 'required',
             'by_date' => 'required|date',

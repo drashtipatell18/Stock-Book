@@ -22,7 +22,7 @@
                     </div>
                 @endif
                     <div class="button-container text-right mb-2"> 
-                        <a href="{{ route('create.user') }}"><button type="button" class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
+                        <a href="{{ route('create.user') }}"><button type="button" class="btn btn-info btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
                                 User</button></a>
                     </div>
                     {{-- <h3 class="text-right mt-4"></h3> --}}
@@ -32,9 +32,9 @@
                         <thead>
                             <tr class="">
                                 <th>No</th>
+                                <th class="">Image</th>
                                 <th class="">Name</th>
                                 <th class="">Email</th>
-                                <th class="">Image</th>
                                 <th class="">Role</th>
                                 <th class=""><span class="nobr">Action</span></th>
                             </tr>
@@ -44,14 +44,15 @@
                             @foreach ($users as $index => $user)
                                 <tr class="">
                                     <td>{{ $index + 1 }}</td>
+                                    <td><img src="{{ asset('images/' .$user->image)}}" class="img-fixed-height" width="100px"></td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td><img src="{{ asset('images/' .$user->image)}}" class="img-fixed-height" width="100px"></td>
+                   
 
                                     <td>{{ $user->role ? $user->role->role_name : 'No role' }}</td>
                                     <td>
                                         <a href="{{ route('edit.user', $user->id) }}"
-                                            class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
 
                                         <a href="{{ route('destroy.user', $user->id) }}"
                                             class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>

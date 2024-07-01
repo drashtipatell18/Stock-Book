@@ -22,7 +22,7 @@
                     </div>
                 @endif
                     <div class="button-container text-right mb-2"> 
-                        <a href="{{ route('stall.create') }}"><button type="button" class="btn btn-primary btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
+                        <a href="{{ route('stall.create') }}"><button type="button" class="btn btn-info btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
                                 Stall</button></a>
                     </div>
                     {{-- <h3 class="text-right mt-4"></h3> --}}
@@ -48,7 +48,7 @@
                                     <td class="text-center">{{ $stall->owner_name }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('edit.stall', $stall->id) }}"
-                                            class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
 
                                         <a href="{{ route('destroy.stall', $stall->id) }}"
                                             class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>

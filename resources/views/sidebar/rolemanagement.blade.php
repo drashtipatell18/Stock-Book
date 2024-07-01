@@ -22,7 +22,7 @@
                     </select>
                     {{-- <div class="col-sm-3"></div> --}}
                     <div class="col-sm-3 text-right">
-                        <button id="saveSettingBtn" class="btn btn-success">Save Settings</button>
+                        <button id="saveSettingBtn" class="btn btn-info">Save Settings</button>
                     </div>
                 </div>
                 <div class="table-responsive mt-3">
