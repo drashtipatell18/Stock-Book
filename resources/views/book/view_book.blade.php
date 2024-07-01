@@ -41,7 +41,7 @@
                                 <th class="text-center">Book Name</th>
                                 <th class="text-center">Category Name</th>
                                 <th class="text-center">Price</th>
-                           
+
                                 <th class="text-center"><span class="nobr">Action</span></th>
                             </tr>
                         </thead>
@@ -51,26 +51,15 @@
                                     <td class="text-center">{{ $index + 1 }}</td>
                                     <td class="text-center"><img src="{{ asset('images/' .$book->image)}}" class="img-fixed-height" width="100px"></td>
                                     <td class="text-center">{{ $book->name }}</td>
-<<<<<<< HEAD
-                                    <td class="text-center">{{ $book->category_name }}</td>
-                                    <td class="text-center">{{ $book->price }}</td>
-                                  
-                                    <td class="text-center">
-                                        <a href="{{ route('edit.book', $book->id) }}" class="btn btn-primary btn-sm"><i
-                                                class="bi bi-pencil-square"></i></a>
-=======
+
                                     <td class="text-center">
                                         {{ $book->category ? $book->category->category_name : 'No Category' }}</td>
                                     <td class="text-center">{{ $book->price }}</td>
+
                                     <td class="text-center">
-                                        <img src="{{ asset('images/' . $book->image) }}" class="img-fixed-height"
-                                            width="100px">
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="{{ route('edit.book', $book->id) }}" class="btn btn-info btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
->>>>>>> 5b9afbf0021baee88ef071b8f697674bf4ae36f6
+                                        <a href="{{ route('edit.book', $book->id) }}" class="btn btn-primary btn-sm"><i
+                                                class="bi bi-pencil-square"></i></a>
+
                                         <a href="{{ route('destroy.book', $book->id) }}" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Are you sure you want to delete this ?');">
                                             <i class="bi bi-trash3-fill"></i>

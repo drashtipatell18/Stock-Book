@@ -47,11 +47,12 @@
                                     <td class="text-center">{{ $index + 1 }}</td>
                                     <td class="text-center">{{ $role->role_name }}</td>
                                     <td class="text-center">
-                                        {{-- <a href="{{ route('role.edit', $role->id) }}" class="btn btn-primary btn-sm"><i
+                                        {{-- <a href="{{ route('role.edit', $role->id) }}" class="btn btn-info btn-sm"><i
                                                 class="bi bi-pencil-square"></i></a> --}}
-                                        <a href="{{ route('role.destroy', $role->id) }}" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Are you sure you want to delete this ?');"><i
-                                                class="bi bi-trash3-fill"></i></a>
+                                                 <a href="#" class="btn btn-danger btn-sm"
+                                                        onclick="return confirmDeleteRole('{{ $role->id }}');">
+                                                        <i class="bi bi-trash3-fill"></i>
+                                                </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -77,4 +78,20 @@
 
         });
     </script>
+   <script>
+    function confirmDeleteRole(roleId) {
+        var hasAssociatedUsers = {{ $role->users()->count() > 0 ? 'true' : 'false' }};
+        if (confirm('Are you sure you want to delete this role?')) {
+            if (hasAssociatedUsers && confirm('Do you also want to delete the associated users?')) {
+                window.location.href = "{{ route('role.destroy', ['id' => $role->id, 'delete_users' => true]) }}";
+            } else {
+                window.location.href = "{{ route('role.destroy', ['id' => $role->id, 'delete_users' => false]) }}";
+            }
+        }
+        return false;
+    }
+</script>
+
+
+
 @endpush

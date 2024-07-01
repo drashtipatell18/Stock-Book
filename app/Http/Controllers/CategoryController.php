@@ -61,18 +61,24 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        if (!$category) {
-            return redirect()->route('category')->with('error', 'Category not found.');
+        $books = Book::where('category_id', $category->id)->delete();
+
+
+        if ($books) {
+            // return redirect()->route('category')->with('error', 'Category not found.');
+            $category->books()->delete();
         }
 
         // Delete associated books first
-        Book::where('category_id', $id)->delete();
+        // Book::where('category_id', $id)->delete();
 
         // Now delete the category
         $category->delete();
 
         return redirect()->route('category')->with('danger', 'Category and associated books deleted successfully.');
     }
+
+
 
     public function confirmBooksDeletion()
     {

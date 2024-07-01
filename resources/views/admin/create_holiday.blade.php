@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <label for="day" class="control-label mb-1">Day*</label>
-                        <input id="day" name="day" type="day" value="{{ old('day', $holidays->day ?? '') }}"
+                        <input readonly id="day" name="day" type="day" value="{{ old('day', $holidays->day ?? '') }}"
                             class="form-control @error('day') is-invalid @enderror">
                         @error('day')
                             <span class="invalid-feedback" style="color: red">
@@ -88,4 +88,28 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var dateInput = document.getElementById('date');
+            var dayInput = document.getElementById('day');
+            var dayFormGroup = document.getElementById('dayFormGroup');
+
+            dateInput.addEventListener('change', function() {
+                if (this.value) {
+                    var selectedDate = new Date(this.value);
+                    var options = { weekday: 'long' };
+                    var dayName = selectedDate.toLocaleDateString('en-US', options);
+
+                    dayInput.value = dayName;
+                    dayFormGroup.style.display = 'block';
+                    dateInput.style.display = 'none';
+                } else {
+                    dayInput.value = '';
+                    dayFormGroup.style.display = 'none';
+                    dateInput.style.display = 'block';
+                }
+            });
+        });
+    </script>
+
 @endpush

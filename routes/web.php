@@ -79,7 +79,7 @@ Route::get('/store/edit/{id}', [StallController::class, 'StallEdit'])->name('edi
 Route::post('/store/update/{id}', [StallController::class, 'StallUpdate'])->name('update.stall');
 Route::get('/store/destroy/{id}',[StallController::class,'StallDestroy'])->name('destroy.stall');
 
-// User 
+// User
 
 Route::get('/user', [UserController::class, 'users'])->name('user');
 Route::get('/user/create',[UserController::class,'userCreate'])->name('create.user');
@@ -91,6 +91,7 @@ Route::get('/user/my/profile', [UserController::class, 'myProfile'])->name('mypr
 Route::get('/edit-profile/{id}', [UserController::class, 'editProfile'])->name('edit-profile');
 Route::post('/update-profile/{id}', [UserController::class, 'Profileupdate'])->name('update-profile');
 
+
 // Holiday
 Route::get('/holiday', [HolidayController::class, 'Holiday'])->name('holiday');
 Route::get('/holiday/create',[HolidayController::class,'holidayCreate'])->name('create.holiday');
@@ -98,7 +99,7 @@ Route::post('/holiday/insert',[HolidayController::class,'holidayInsert'])->name(
 Route::get('/holiday/edit/{id}', [HolidayController::class, 'holidayEdit'])->name('edit.holiday');
 Route::post('/holiday/update/{id}', [HolidayController::class, 'holidayUpdate'])->name('update.holiday');
 Route::get('/holiday/destroy/{id}',[HolidayController::class,'holidayDestroy'])->name('destroy.holiday');
-   
+
 //Role
 Route::get('/role', [RoleController::class, 'role'])->name('role');
 Route::get('/role/create', [RoleController::class, 'roleCreate'])->name('role.create');
@@ -106,6 +107,8 @@ Route::post('/role/store', [RoleController::class, 'roleStore'])->name('role.sto
 Route::get('/role/edit/{id}', [RoleController::class, 'roleEdit'])->name('role.edit');
 Route::post('/role/update/{id}', [RoleController::class, 'roleUpdate'])->name('role.update');
 Route::get('/role/delete/{id}', [RoleController::class, 'roleDestroy'])->name('role.destroy');
+
+
 
 //Stock
 Route::get('/stock', [StockController::class, 'stock'])->name('stock');
@@ -174,7 +177,7 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
   Route::get('/scrap/edit/{id}', [ScrapController::class, 'scrapEdit'])->name('edit.scrap');
   Route::post('/scrap/update/{id}', [ScrapController::class, 'scrapUpdate'])->name('update.scrap');
   Route::get('/scrap/destroy/{id}',[ScrapController::class,'scrapDestroy'])->name('destroy.scrap');
-  
+
   // Sidebar
 
   Route::get('/sidebar', [SidebarController::class, 'index'])->name('sidebar');

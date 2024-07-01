@@ -15,7 +15,7 @@ class BookController extends Controller
     }
     public function bookCreate()
     {
-        $categorys = Category::pluck('category_name');
+        $categorys = Category::pluck('category_name','id');
         return view('book.create_book', compact('categorys'));
     }
 
@@ -48,7 +48,7 @@ class BookController extends Controller
     public function bookEdit($id)
     {
         $books = Book::find($id);
-        $categorys = Category::pluck('category_name');
+        $categorys = Category::pluck('category_name','id');
         return view('book.create_book', compact('books', 'categorys'));
     }
 

@@ -21,7 +21,7 @@ class HolidayController extends Controller
         $request->validate([
             'name' => 'required',
             'date' => 'required|date',
-            'day' => 'required',
+            // 'day' => 'required',
         ]);
 
         $holiday = Holiday::create([
