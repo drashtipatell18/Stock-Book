@@ -65,4 +65,10 @@ class StallController extends Controller
         session()->flash('danger', 'Stall Delete successfully!');
         return redirect()->route('store');
     }
+
+    public function getLocation($id)
+    {
+        $stall = Stall::find($id);
+        return response()->json($stall);
+    }
 }

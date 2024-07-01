@@ -42,7 +42,7 @@
                         <select id="stall_id" name="stall_id" class="form-control @error('stall_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach ($stalls as $id => $name)
-                                <option value="{{ $id }}" @if (old('stall_id') == $id) selected @endif>{{ $name }}</option>
+                                <option value="{{ $id }}" @if (isset($salesorders->stall_id) && $salesorders->stall_id == $id) selected @endif>{{ $name }}</option>
                             @endforeach
                         </select>
                         @error('stall_id')
@@ -54,7 +54,7 @@
                 
                     <div class="form-group">
                         <label for="location" class="control-label mb-1">Location</label>
-                        <input id="location" name="location" type="text"
+                        <input readonly id="location" name="location" type="text"
                             value="{{ old('location', $salesorders->location ?? '') }}"
                             class="form-control @error('location') is-invalid @enderror">
                         @error('location')
@@ -68,7 +68,7 @@
                         <select id="book_id" name="book_id" class="form-control @error('book_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach ($books as $id => $name)
-                                <option value="{{ $id }}" @if (old('book_id') == $id) selected @endif>{{ $name }}</option>
+                                <option value="{{ $id }}" @if (isset($salesorders->book_id) && $salesorders->book_id == $id) selected @endif>{{ $name }}</option>
                             @endforeach
                         </select>
                         @error('book_id')
@@ -78,14 +78,36 @@
                         @enderror
                     </div>
 
-                    <div class="form-group has-success">
+                    <label for="sales_price" class="form-label mb-1">Sales Price</label>
+                    <div class="input-group mb-3">
+                        {{-- <label for="sales_price" class="control-label mb-1">Sales Price</label> --}}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <select class="form-control @error('sales_price') is-invalid @enderror" name="symbol"
+                                    autocomplete="off">
+                                    <option value="₹">₹</option>
+                                    <option value="$">$</option>
+                                </select>
+                            </span>
+                        </div>
+                        <input id="sales_price" name="sales_price" placeholder="" type="number"
+                            class="form-control miplusinput @error('sales_price') is-invalid @enderror"
+                            value="<?php echo isset($salesorders->sales_price) ? $salesorders->sales_price : ''; ?>"  oninput="calculateTotalPrice()">
+                        @error('sales_price')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    {{-- <div class="form-group has-success">
                         <label for="sales_price" class="control-label mb-1">Sales Price</label>
                         <div class="form-group has-success">
                             <span class="miplus">
                                 <select class="form-control @error('sales_price') is-invalid @enderror" name="symbol"
                                     autocomplete="off">
-                                    <option value="$">$</option>
                                     <option value="₹">₹</option>
+                                    <option value="$">$</option>
                                 </select>
                             </span>
                             <input id="sales_price" name="sales_price" placeholder="" type="number"
@@ -97,10 +119,10 @@
                                 </span>
                             @enderror
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group has-success">
-                        <label for="quantity" class="control-label mb-1">Quantity</label>
+                        <label for="quantity" class="control-label mb-1">Quantity <span id="avlQty" style="font-size: small" class="text-danger"></span> </label>
                         <input id="quantity" name="quantity" type="number"
                             value="{{ old('quantity', $salesorders->quantity ?? '') }}"
                             class="form-control @error('quantity') is-invalid @enderror" oninput="calculateTotalPrice()">
@@ -111,7 +133,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group has-success">
+                    {{-- <div class="form-group has-success">
                         <label for="total_price" class="control-label mb-1">Total Price</label>
                         <div class="form-group has-success">
                             <span class="miplus">
@@ -130,6 +152,26 @@
                                 </span>
                             @enderror
                         </div>
+                    </div> --}}
+                    <div class="input-group mb-3">
+                        {{-- <label for="sales_price" class="control-label mb-1">Sales Price</label> --}}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <select class="form-control @error('total_price') is-invalid @enderror" name="symbol"
+                                    autocomplete="off">
+                                    <option value="₹">₹</option>
+                                    <option value="$">$</option>
+                                </select>
+                            </span>
+                        </div>
+                        <input id="total_price" name="total_price" placeholder="" type="number"
+                            class="form-control miplusinput @error('total_price') is-invalid @enderror"
+                            value="<?php echo isset($salesorders->total_price) ? $salesorders->total_price : ''; ?>"  oninput="calculateTotalPrice()">
+                        @error('total_price')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     @if (isset($customError))
@@ -159,5 +201,52 @@
             const totalPrice = salesPrice * quantity;
             document.getElementById('total_price').value = totalPrice;
         }
+
+        window.addEventListener('DOMContentLoaded',function () {
+            $("#stall_id").change(function(){
+                if($(this).val())
+                {
+                    $.ajax({
+                        type: "GET",
+                        method: "GET",
+                        url: `/store/${$(this).val()}/location`,
+                        dataType: "JSON",
+                        success: function(response){
+                            $("#location").val(response.location)
+                        }
+                    })
+                }
+                else
+                {
+                    $("#location").val("")
+                }
+            })
+            $("#book_id").change(function(){
+                if($(this).val())
+                {
+                    $.ajax({
+                        type: "GET",
+                        method: "GET",
+                        url: `/book/${$(this).val()}/detail`,
+                        dataType: "JSON",
+                        success: function(response){
+                            $("#sales_price").val(response.price)
+                            if(response.quantity != null)
+                            {
+                                $("#avlQty").text(`${response.quantity} is available`);
+                            }
+                            else
+                            {
+                                $("#avlQty").text(`0 is available`);
+                            }
+                        }
+                    })
+                }
+                else
+                {
+                    $("#location").val("")
+                }
+            })
+        });
     </script>
 @endpush

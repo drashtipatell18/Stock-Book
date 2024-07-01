@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use App\Models\Stock;
 
 class BookController extends Controller
 {
@@ -85,5 +86,11 @@ class BookController extends Controller
         $books->delete();
         session()->flash('danger', 'Book Delete successfully!');
         return redirect()->route('book');
+    }
+
+    public function getDetail($id)
+    {
+        $stock = Stock::where('book_id', $id)->first();
+        return response()->json($stock);
     }
 }

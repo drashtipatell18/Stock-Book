@@ -22,14 +22,16 @@ class SalesOrderController extends Controller
     }
     public function salesorderInsert(Request $request)
     {
-        // $request->validate([
-        //     'stall_name'   => 'required',
-        //     'location'     => 'required',
-        //     'book_name'    => 'required',
-        //     'sales_price'  => 'required',
-        //     'quantity'     => 'required',
-        //     'total_price ' => 'required',
-        // ]);
+        $request->validate([
+            'stall_name'   => 'required',
+            'location'     => 'required',
+            'book_name'    => 'required',
+            'sales_price'  => 'required',
+            'quantity'     => 'required',
+            'total_price ' => 'required',
+            'book_id' => 'required',
+            'stall_id' => 'required'
+        ]);
 
         $stock = Stock::where('book_id', $request->input('book_id'))->first();
         if(!$stock)
@@ -68,8 +70,8 @@ class SalesOrderController extends Controller
     public function salesorderEdit($id){
 
         $salesorders = SalesOrder::find($id);
-        $stalls    = Stall::pluck('name');
-        $books    = Book::pluck('name');
+        $stalls = Stall::pluck('name', 'id');
+        $books = Book::pluck('name', 'id');
         return view('salesorder.create_salesorder',compact('stalls','salesorders','books'));
     }
 
@@ -87,7 +89,7 @@ class SalesOrderController extends Controller
         $salesorders = SalesOrder::find($id);
 
         $salesorders->update([
-            // 'book_id'          => $request->input('book_id'),
+            'book_id'          => $request->input('book_id'),
             'stall_id'         => $request->input('stall_id'),
             'location'         => $request->input('location'),
             'book_id'          => $request->input('book_id'),

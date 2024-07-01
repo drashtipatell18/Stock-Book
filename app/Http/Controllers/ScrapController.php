@@ -29,9 +29,18 @@ class ScrapController extends Controller
             'by_date' => 'required|date',
             'price' => 'required',
         ]);
+        $name = $request->input('customer_name');
+        if(!empty($request->input('customer_name_text')))
+        {
+            $name = $request->input('customer_name_text');
+        }
+        else if(!empty($request->input('customer_name_select')))
+        {
+            $name = $request->input('customer_name_select');
+        }
 
         $scraps = Scrap::create([
-            'customer_name'    => $request->input('customer_name'),
+            'customer_name'    => $name,
             'name'             => $request->input('name'),
             'scrap_weight'     => $request->input('scrap_weight'),
             'by_date'          => $request->input('by_date'),
@@ -53,17 +62,27 @@ class ScrapController extends Controller
     public function scrapUpdate(Request $request, $id)
     {
         $request->validate([
-            'customer_name' => 'required',
-            'name' => 'required',
+            // 'customer_name' => 'required',
+            // 'name' => 'required',
             'scrap_weight' => 'required',
             'by_date' => 'required|date',
             'price' => 'required',
         ]);
 
+        $name = $request->input('customer_name');
+        if(!empty($request->input('customer_name_text')))
+        {
+            $name = $request->input('customer_name_text');
+        }
+        else if(!empty($request->input('customer_name_select')))
+        {
+            $name = $request->input('customer_name_select');
+        }
+
         $scraps = Scrap::find($id);
 
         $scraps->update([
-            'customer_name'    => $request->input('customer_name'),
+            'customer_name'    => $name,
             'name'             => $request->input('name'),
             'scrap_weight'     => $request->input('scrap_weight'),
             'by_date'          => $request->input('by_date'),

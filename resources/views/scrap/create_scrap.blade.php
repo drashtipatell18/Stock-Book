@@ -37,13 +37,13 @@
                         <label for="customer_name" class="control-label mb-1">Customer Name</label>
                         <div id="customer_name_wrapper">
                             @if(isset($scraps) && !empty($scraps->customer_name))
-                                <input id="customer_name_text" type="text" value="{{ $scraps->customer_name }}"
+                                <input name="customer_name" id="customer_name_text" type="text" value="{{ $scraps->customer_name }}"
                                     class="form-control" disabled>
                             @else
-                                <input id="customer_name_text" name="customer_name" type="text" placeholder="Enter customer name"
+                                <input id="customer_name_text" name="customer_name_text" type="text" placeholder="Enter customer name"
                                     class="form-control @error('customer_name') is-invalid @enderror">
                             @endif
-                            <select id="customer_name_select" name="customer_name" class="form-control d-none">
+                            <select id="customer_name_select" name="customer_name_select" class="form-control d-none">
                                 <option value="">-- Select or enter new customer name --</option>
                                 @foreach($customerNames as $customer)
                                     <option value="{{ $customer }}">{{ $customer }}</option>
@@ -91,7 +91,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group has-success">
+                    {{-- <div class="form-group has-success">
                         <label for="price" class="control-label mb-1">Price</label>
                         <div class="form-group has-success">
                             <span class="miplus">
@@ -110,6 +110,26 @@
                                 </span>
                             @enderror
                         </div>
+                    </div> --}}
+                    <div class="input-group mb-3">
+                        {{-- <label for="sales_price" class="control-label mb-1">Sales Price</label> --}}
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <select class="form-control @error('price') is-invalid @enderror" name="symbol"
+                                    autocomplete="off">
+                                    <option value="₹">₹</option>
+                                    <option value="$">$</option>
+                                </select>
+                            </span>
+                        </div>
+                        <input id="price" name="price" placeholder="" type="number"
+                            class="form-control miplusinput @error('price') is-invalid @enderror"
+                            value="<?php echo isset($stocks->price) ? $stocks->price : ''; ?>"  oninput="calculateTotalPrice()">
+                        @error('price')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="form-group">

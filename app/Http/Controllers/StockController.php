@@ -59,7 +59,8 @@ class StockController extends Controller
     {
         $stocks = Stock::find($id);
         $books = Book::pluck('name','id');
-        return view('stock.create_stock', compact('stocks','books'));
+        $selectBook = $stocks->name;
+        return view('stock.create_stock', compact('stocks','books', 'selectBook'));
     }
 
     public function stockUpdate(Request $request,$id)
@@ -74,7 +75,7 @@ class StockController extends Controller
 
 
         $stocks->update([
-            'name'      => $request->input('name'),
+            'name'      => $request->input('book_name'),
             'quantity'     => $request->input('quantity'),
             'price'     => $request->input('price'),
         ]);

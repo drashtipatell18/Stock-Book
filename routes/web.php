@@ -190,6 +190,9 @@ Route::get('/book/destroy/{id}',[BookController::class,'bookDestroy'])->name('de
   Route::get('/sidebar/role/{id}/getPermission', [SidebarController::class, 'getPermission']);
   Route::post('/sidebar/roleUpdate', [SidebarController::class, 'roleUpdate']);
 
+  Route::get('/store/{id}/location', [StallController::class, 'getLocation']);
+  Route::get('/book/{id}/detail', [BookController::class, 'getDetail']);
+
 });
 
 
