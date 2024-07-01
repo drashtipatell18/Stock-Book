@@ -41,7 +41,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">submit</button>
+                                <button class="au-btn au-btn--block au-btn btn-info m-b-20" type="submit">submit</button>
                             </form>
                         </div>
                     </div>
