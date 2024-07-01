@@ -52,8 +52,13 @@
                                     <td class="text-center">{{ $category->category_name }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('edit.category', $category->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="{{ route('destroy.category', $category->id) }}" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>
+                                        {{-- <a href="{{ route('destroy.category', $category->id) }}" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a> --}}
+
+                                            <a href="#" class="btn btn-danger btn-sm"
+                                                        onclick="return confirmDeleteCategory('{{ $category->id }}');">
+                                                        <i class="bi bi-trash3-fill"></i>
+                                            </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -61,7 +66,7 @@
                     </table>
                 </div>
 
-                <div id="bookDeleteConfirmation" class="modal fade" tabindex="-1" role="dialog">
+                {{-- <div id="bookDeleteConfirmation" class="modal fade" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -87,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -106,4 +111,22 @@
             $('#bookDeleteConfirmation').modal('show');
         });
     </script>
+    <script>
+        function confirmDeleteCategory(categoryId) {
+            var hasAssociatedBooks = {{ $category->books()->count() > 0 ? 'true' : 'false' }};
+            if (confirm('Are you sure you want to delete this Category')) {
+                if (hasAssociatedBooks && confirm('Do you also want to delete the associated Books?'))
+                {
+                    window.location.href = "{{ route('destroy.category', ['id' => $category->id, 'delete_books' => true]) }}";
+                }
+                else {
+                    window.location.href = "{{ route('destroy.category', ['id' => $category->id, 'delete_books' => false]) }}";
+                }
+            }
+            return false;
+        }
+    </script>
+
+
+
 @endpush

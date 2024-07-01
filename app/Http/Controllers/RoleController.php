@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class RoleController extends Controller
 {
     public function role()
     {
         $roles = Role::all();
-        return view('view_role', compact('roles'));
+        $user = auth()->user();
+        return view('view_role', compact('roles','user'));
     }
 
     public function roleCreate()
@@ -52,7 +54,12 @@ class RoleController extends Controller
     public function roleDestroy($id)
     {
         $role = Role::find($id);
+        $users = User::where('role_id', $role->id)->delete();
+        if ($users) {
+            $role->users()->delete();
+        }
         $role->delete();
+
         return redirect()->route('role')->with('success', 'Role deleted successfully.');
     }
 }
