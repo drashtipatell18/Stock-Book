@@ -24,46 +24,55 @@ class SideBarMenuSeeder extends Seeder
             'route' => 'calendar',
             'display_name' => 'Calendar'
         ]);
-        SideBarMenu::create([
-            'name' => 'bi bi-tags',
-            'route' => 'category',
-            'display_name' => 'Category'
-        ]);
+
         SideBarMenu::create([
             'name' => 'bi bi-person-bounding-box',
             'route' => 'role',
             'display_name' => 'Role'
         ]);
+
         SideBarMenu::create([
             'name' => 'bi bi-person-circle',
             'route' => 'user',
             'display_name' => 'User'
         ]);
+
         SideBarMenu::create([
             'name' => 'bi bi-people-fill',
             'route' => 'employee',
             'display_name' => 'Employee'
         ]);
+
         SideBarMenu::create([
             'name' => 'bi bi-person-fill-exclamation',
             'route' => 'leave',
             'display_name' => 'Leave'
         ]);
+
+        SideBarMenu::create([
+            'name' => 'bi bi-tags',
+            'route' => 'category',
+            'display_name' => 'Category'
+        ]);
+
         SideBarMenu::create([
             'name' => 'bi bi-book-half',
             'route' => 'book',
             'display_name' => 'Book'
         ]);
-        SideBarMenu::create([
-            'name' => 'bi bi-shop',
-            'route' => 'store',
-            'display_name' => 'Store'
-        ]);
+
         SideBarMenu::create([
             'name' => 'bi bi-card-checklist',
             'route' => 'stock',
             'display_name' => 'Stock'
         ]);
+       
+        SideBarMenu::create([
+            'name' => 'bi bi-shop',
+            'route' => 'store',
+            'display_name' => 'Store'
+        ]);
+        
         SideBarMenu::create([
             'name' => 'bi bi-bag-check',
             'route' => 'salesorder',
@@ -84,11 +93,11 @@ class SideBarMenuSeeder extends Seeder
             'route' => 'holiday',
             'display_name' => 'Holiday'
         ]);
-        SideBarMenu::create([
-            'name' => 'bi bi-layout-sidebar',
-            'route' => 'sidebar',
-            'display_name' => 'Sidebar'
-        ]);
+        // SideBarMenu::create([
+        //     'name' => 'bi bi-layout-sidebar',
+        //     'route' => 'sidebar',
+        //     'display_name' => 'Sidebar'
+        // ]);
         SideBarMenu::create([
             'name' => 'bi bi-gear-fill',
             'route' => 'sidebar.role',
