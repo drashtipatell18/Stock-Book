@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('salary')->nullable();
             $table->date('joiningdate')->nullable();
             $table->integer('total_leave')->default(22);
+            $table->string('aadhar_number')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

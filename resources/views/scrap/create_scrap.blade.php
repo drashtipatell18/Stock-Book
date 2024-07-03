@@ -12,6 +12,7 @@
     .formdata {
         margin-left: 23% !important;
     }
+
     .miplus {
         position: absolute;
         width: 60px;
@@ -36,24 +37,13 @@
                     <div class="form-group">
                         <label for="customer_name" class="control-label mb-1">Customer Name</label>
                         <div id="customer_name_wrapper">
-                            {{-- @if(isset($scraps) && !empty($scraps->customer_name))
-                                <input name="customer_name" id="customer_name_text" type="text" value="{{ $scraps->customer_name }}"
-                                    class="form-control" disabled>
-                            @else
-                                <input id="customer_name_text" name="customer_name_text" type="text" placeholder="Enter customer name"
-                                    class="form-control @error('customer_name') is-invalid @enderror">
-                            @endif
-                            <select id="customer_name_select" name="customer_name_select" class="form-control d-none">
-                                <option value="">-- Select or enter new customer name --</option>
-                                @foreach($customerNames as $customer)
-                                    <option value="{{ $customer }}">{{ $customer }}</option>
-                                @endforeach
-                            </select> --}}
-                            <input list="names" id="customer_name_text" name="customer_name_text" type="text" placeholder="Enter customer name"
-                                    class="form-control @error('customer_name') is-invalid @enderror">
-                            @if(isset($customerNames) && !empty($customerNames))
+                            <input list="names" value="{{ old('name', $scraps->customer_name ?? '') }}"
+                                id="customer_name_text" name="customer_name_text" type="text"
+                                placeholder="Enter customer name"
+                                class="form-control @error('customer_name') is-invalid @enderror">
+                            @if (isset($customerNames) && !empty($customerNames))
                                 <datalist id="names">
-                                    @foreach($customerNames as $name)
+                                    @foreach ($customerNames as $name)
                                         <option value="{{ $name }}">{{ $name }}</option>
                                     @endforeach
                                 </datalist>
@@ -65,7 +55,7 @@
                             </span>
                         @enderror
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="name" class="control-label mb-1">Scrap Name</label>
                         <input id="name" name="name" type="text" value="{{ old('name', $scraps->name ?? '') }}"
@@ -100,7 +90,7 @@
                         @enderror
                     </div>
 
-                
+
                     <label for="sales_price" class="control-label mb-1">Sales Price</label>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -114,7 +104,7 @@
                         </div>
                         <input id="price" name="price" placeholder="" type="number"
                             class="form-control miplusinput @error('price') is-invalid @enderror"
-                            value="<?php echo isset($stocks->price) ? $stocks->price : ''; ?>"  oninput="calculateTotalPrice()">
+                            value="<?php echo isset($scraps->price) ? $scraps->price : ''; ?>" oninput="calculateTotalPrice()">
                         @error('price')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
@@ -152,48 +142,49 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            var customerName = "{{ isset($scraps) && !empty($scraps->customer_name) ? $scraps->customer_name : '' }}";
-        var existingCustomers = {!! json_encode($customerNames) !!};
+            var customerName =
+                "{{ isset($scraps) && !empty($scraps->customer_name) ? $scraps->customer_name : '' }}";
+            var existingCustomers = {!! json_encode($customerNames) !!};
 
-        // Show dropdown when input is focused or has text
-        $('#customer_name_text').on('input', function() {
-            var inputVal = $(this).val().trim();
-            if (inputVal.length > 0) {
-                var matchFound = false;
-                existingCustomers.forEach(function(customer) {
-                    if (customer.toLowerCase() === inputVal.toLowerCase()) {
-                        matchFound = true;
-                        return false; // Exit loop early
+            // Show dropdown when input is focused or has text
+            $('#customer_name_text').on('input', function() {
+                var inputVal = $(this).val().trim();
+                if (inputVal.length > 0) {
+                    var matchFound = false;
+                    existingCustomers.forEach(function(customer) {
+                        if (customer.toLowerCase() === inputVal.toLowerCase()) {
+                            matchFound = true;
+                            return false; // Exit loop early
+                        }
+                    });
+
+                    if (matchFound) {
+                        $('#customer_name_select').removeClass('d-none');
+                        $(this).prop('disabled', true); // Disable text input
+                    } else {
+                        $('#customer_name_select').addClass('d-none');
+                        $(this).prop('disabled', false); // Enable text input
                     }
-                });
-
-                if (matchFound) {
-                    $('#customer_name_select').removeClass('d-none');
-                    $(this).prop('disabled', true); // Disable text input
                 } else {
                     $('#customer_name_select').addClass('d-none');
                     $(this).prop('disabled', false); // Enable text input
                 }
-            } else {
-                $('#customer_name_select').addClass('d-none');
-                $(this).prop('disabled', false); // Enable text input
-            }
-        });
+            });
 
-        // Show text input when dropdown is changed
-        $('#customer_name_select').change(function() {
-            var selectedVal = $(this).val().trim();
-            if (selectedVal.length > 0) {
-                $('#customer_name_text').prop('disabled', false);
-                $('#customer_name_select').addClass('d-none');
-            }
-        });
+            // Show text input when dropdown is changed
+            $('#customer_name_select').change(function() {
+                var selectedVal = $(this).val().trim();
+                if (selectedVal.length > 0) {
+                    $('#customer_name_text').prop('disabled', false);
+                    $('#customer_name_select').addClass('d-none');
+                }
+            });
 
-        // Initialize based on existing customer name
-        if (customerName) {
-            $('#customer_name_select').removeClass('d-none');
-            $('#customer_name_text').prop('disabled', true); // Disable text input
-        }
+            // Initialize based on existing customer name
+            if (customerName) {
+                $('#customer_name_select').removeClass('d-none');
+                $('#customer_name_text').prop('disabled', true); // Disable text input
+            }
         });
     </script>
 @endpush

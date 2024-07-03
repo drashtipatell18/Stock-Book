@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use function Laravel\Prompts\password;
 
 class EmployeeController extends Controller
 {
@@ -22,8 +26,8 @@ class EmployeeController extends Controller
     }
 
     public function employeeCreate(){
-        $users = User::pluck('name', 'id')->unique();
-        return view('employee.create_employee',compact('users'));
+        $roles = Role::pluck('role_name', 'id')->unique();
+        return view('employee.create_employee',compact('roles'));
     }
 
     public function getEmail($id)
@@ -34,7 +38,7 @@ class EmployeeController extends Controller
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'user_id' => 'required',
+            'role_id' => 'required',
             'dob' => 'required|date',
             'gender' => 'required',
             'email' => 'required|email',
@@ -42,10 +46,27 @@ class EmployeeController extends Controller
             'phoneno' => 'required|numeric',
             'salary' => 'required|numeric',
             'joiningdate' => 'required|date',
+            'aadhar_number' => 'required',
+            'password' => 'required'
+        ]);
+
+        $filename = '';
+        if ($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('images', $filename);
+        }
+
+        $user = User::create([
+            'name' => $request->input('firstname'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'role_id' => $request->input('role_id'),
+            'image' => $filename
         ]);
     
         $employee = Employee::create([
-            'user_id'       => $request->input('user_id'),
+            'user_id'       => $user->id,
             'firstname'      => $request->input('firstname'),
             'lastname'       => $request->input('lastname'),
             'dob'            => $request->input('dob'),
@@ -55,6 +76,7 @@ class EmployeeController extends Controller
             'gender'         => $request->input('gender'),
             'salary'         => $request->input('salary'),
             'joiningdate'    => $request->input('joiningdate'),
+            'aadhar_number'  => $request->input('aadhar_number')
         ]);
 
         session()->flash('success', 'Employee added successfully!');
@@ -63,29 +85,37 @@ class EmployeeController extends Controller
 
     public function employeeEdit($id){
         $employees = Employee::find($id);
-        $users = User::pluck('name', 'id')->unique();
-        return view('employee.create_employee', compact('employees','users'));
+        $user = User::find($employees->user_id);
+        $roles = Role::pluck('role_name', 'id')->unique();
+        return view('employee.create_employee', compact('employees','roles', 'user'));
     }
 
     public function employeeUpdate(Request $request,$id){
         $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
-            'user_id' => 'required',
+            'role_id' => 'required',
             'dob' => 'required|date',
+            'gender' => 'required',
             'email' => 'required|email',
             'address' => 'required',
             'phoneno' => 'required|numeric',
-            'gender' => 'required',
             'salary' => 'required|numeric',
             'joiningdate' => 'required|date',
+            'aadhar_number' => 'required',
         ]);
 
         $employees = Employee::find($id);
-    
 
+        if(!empty($request->input('password')))
+        {
+            $user = User::find($employees->user_id);
+            $user->update([
+                'password' => Hash::make($request->input('password'))
+            ]);
+        }
+    
         $employees->update([
-            'user_id'       => $request->input('user_id'),
             'firstname'      => $request->input('firstname'),
             'lastname'       => $request->input('lastname'),
             'dob'            => $request->input('dob'),
@@ -95,6 +125,7 @@ class EmployeeController extends Controller
             'gender'         => $request->input('gender'),
             'salary'         => $request->input('salary'),
             'joiningdate'    => $request->input('joiningdate'),
+            'aadhar_number'  => $request->input('aadhar_number')
          ]);
 
         session()->flash('success', 'Employee Update successfully!');
