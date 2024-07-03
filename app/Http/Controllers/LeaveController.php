@@ -110,7 +110,7 @@ class LeaveController extends Controller
             'time_from' => $request->input('time_from'),
             'time_to' => $request->input('time_to'),
             'totalhours' => $request->input('totalhours'),
-            'status' => $request->input('status'),
+            'status' => 'pending',
             // 'requestto' => $request->input('requestto'),
         ]);
 
@@ -161,6 +161,15 @@ class LeaveController extends Controller
         return view('admin.create_leave', compact('leaves', 'employee_id', 'user_id', 'balanceLeave'));
     }
 
+    public function changeStatus(Request $request,$id)
+    {
+        $leave = Leave::findOrFail($id);
+        $leave->status = $request->input('status');
+        $leave->save();
+
+        // You can return a response if needed
+        return response()->json(['message' => 'Leave status updated successfully']);
+    }
 
     public function leaveUpdate(Request $request, $id)
     {
@@ -218,7 +227,7 @@ class LeaveController extends Controller
             'time_from'  => $request->input('time_from'),
             'time_to'    => $request->input('time_to'),
             'totalhours' => $request->input('totalhours'),
-            'status'     => $request->input('status'),
+            'status'     => 'pending'
             // 'requestto'  => $request->input('requestto'),
         ]);
 
@@ -248,4 +257,6 @@ class LeaveController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Entity not found.']);
     }
+
+
 }

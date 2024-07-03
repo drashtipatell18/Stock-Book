@@ -143,7 +143,7 @@
                                             <div class="chart-info__left">
                                                 <div class="chart-note mr-0">
                                                     <span class="dot dot--green"></span>
-                                                    <span>Services</span>
+                                                    <span>Sales Orders</span>
                                                 </div>
                                             </div>
                                             <div class="chart-info__right">
@@ -152,7 +152,7 @@
                                                         <i id="ratioDiff" class="zmdi"></i>
                                                         <span id="diff"></span>
                                                     </span>
-                                                    <span class="label">Services</span>
+                                                    <span class="label">Sales Orders</span>
                                                 </div>
                                             </div>
                                         </div>
