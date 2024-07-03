@@ -91,28 +91,9 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="form-group has-success">
-                        <label for="price" class="control-label mb-1">Price</label>
-                        <div class="form-group has-success">
-                            <span class="miplus">
-                                <select class="form-control @error('price') is-invalid @enderror" name="symbol"
-                                    autocomplete="off">
-                                    <option value="$">$</option>
-                                    <option value="₹">₹</option>
-                                </select>
-                            </span>
-                            <input id="price" name="price" placeholder="" type="text"
-                                class="form-control miplusinput @error('price') is-invalid @enderror"
-                                value="<?php echo isset($stocks->price) ? $payments->price : ''; ?>"  oninput="calculateTotalPrice()">
-                            @error('price')
-                                <span class="invalid-feedback" style="color: red">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div> --}}
+                
+                    <label for="sales_price" class="control-label mb-1">Sales Price</label>
                     <div class="input-group mb-3">
-                        {{-- <label for="sales_price" class="control-label mb-1">Sales Price</label> --}}
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <select class="form-control @error('price') is-invalid @enderror" name="symbol"
