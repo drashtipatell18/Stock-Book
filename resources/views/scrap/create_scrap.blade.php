@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label for="customer_name" class="control-label mb-1">Customer Name</label>
                         <div id="customer_name_wrapper">
-                            @if(isset($scraps) && !empty($scraps->customer_name))
+                            {{-- @if(isset($scraps) && !empty($scraps->customer_name))
                                 <input name="customer_name" id="customer_name_text" type="text" value="{{ $scraps->customer_name }}"
                                     class="form-control" disabled>
                             @else
@@ -48,7 +48,16 @@
                                 @foreach($customerNames as $customer)
                                     <option value="{{ $customer }}">{{ $customer }}</option>
                                 @endforeach
-                            </select>
+                            </select> --}}
+                            <input list="names" id="customer_name_text" name="customer_name_text" type="text" placeholder="Enter customer name"
+                                    class="form-control @error('customer_name') is-invalid @enderror">
+                            @if(isset($customerNames) && !empty($customerNames))
+                                <datalist id="names">
+                                    @foreach($customerNames as $name)
+                                        <option value="{{ $name }}">{{ $name }}</option>
+                                    @endforeach
+                                </datalist>
+                            @endif
                         </div>
                         @error('customer_name')
                             <span class="invalid-feedback" style="color: red">
