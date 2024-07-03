@@ -50,11 +50,11 @@ class SalesOrderController extends Controller
 
         $salesorders = SalesOrder::create([
             'stall_id'         => $request->input('stall_id'),
-            // 'location'         => $request->input('location'),
+            'location'         => $request->input('location'),
             'book_id'          => $request->input('book_id'),
             'sales_price'      => $request->input('sales_price'),
             'quantity'         => $request->input('quantity'),
-            // 'total_price'      => $request->input('total_price'),
+            'total_price'      => $request->input('total_price'),
         ]);
 
         $stock->update([
