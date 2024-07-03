@@ -42,9 +42,17 @@
                     action="{{ isset($employees) ? '/employee/update/' . $employees->id : '/employee/insert' }}"
                     method="POST" enctype="multipart/form-data">
                     @csrf
-
                     <div class="form-group">
-                        <label for="user_id" class="control-label mb-1">Select Role</label>
+                        <label for="image" class="form-label">Profile Photo</label>
+                        <input type="file" class="form-control" accept="image/*" name="image" id="image">
+                        @error('image')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="role_id" class="control-label mb-1">Select Role</label>
                         {{-- <select id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror">
                             <option value="">Select User</option>
                             @foreach ($users as $userId => $userName)
@@ -61,8 +69,8 @@
                         <select id="role_id" name="role_id" class="form-control @error('role_id') is-invalid @enderror">
                             <option value="">Select Role</option>
                             @foreach ($roles as $roleId => $roleName)
-                            <option value="{{ $roleId }}" {{ isset($employees) && $employees->role_id == $userId ? 'selected' : '' }}>
-                                {{ $userName }}
+                            <option value="{{ $roleId }}" {{ isset($user) && $user->role_id == $roleId ? 'selected' : '' }}>
+                                {{ $roleName }}
                                 </option>
                             @endforeach
                             @error('role_id')
@@ -91,6 +99,16 @@
                             type="text"value="{{ old('lastname', $employees->lastname ?? '') }}"
                             class="form-control @error('lastname') is-invalid @enderror">
                         @error('lastname')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                        @error('password')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -127,7 +145,7 @@
 
                     <div class="form-group">
                         <label for="email" class="control-label mb-1">Email</label>
-                        <input readonly id="email" name="email" type="email"
+                        <input id="email" name="email" type="email"
                             value="{{ old('email', $employees->email ?? '') }}"
                             class="form-control @error('email') is-invalid @enderror">
                         @error('email')
