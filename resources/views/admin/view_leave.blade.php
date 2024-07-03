@@ -1,4 +1,5 @@
 @extends('layouts.main')
+
 @section('content')
     <style>
         .statusbtn {
@@ -26,11 +27,13 @@
                         </div>
                     @endif
 
-                    <div class="button-container text-right mb-2">
-                        <a href="{{ route('create.leave') }}">
-                            <button type="button" class="btn btn-info btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add Leave</button>
-                        </a>
-                    </div>
+                    @if($userRole != 'superadmin')
+                        <div class="button-container text-right mb-2">
+                            <a href="{{ route('create.leave') }}">
+                                <button type="button" class="btn btn-info btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add Leave</button>
+                            </a>
+                        </div>
+                    @endif
                     {{-- <h3 class="text-right mt-4"></h3> --}}
                 </div>
                 <div class="table-responsive mt-2">
@@ -40,13 +43,13 @@
                                 <th>No</th>
                                 <th>Today Date</th>
                                 <th class="">Employee Name</th>
-                                <th class="">Reason</th>
+                                <th class="">Leave Type</th>
                                 <th class="">Leave From</th>
                                 <th class="">Leave To</th>
                                 <th class="">status</th>
-                                @if ($userRole != 'employee')
+                                {{-- @if ($userRole != 'employee') --}}
                                     <th class=""><span class="nobr">Action</span></th>
-                                @endif
+                                {{-- @endif --}}
                             </tr>
                         </thead>
 
@@ -60,18 +63,28 @@
                                             {{ $leave->employee->firstname }} {{ $leave->employee->lastname }}
                                         @endif
                                     </td>
-                                    <td>{{ $leave->reason }}</td>
+                                    <td>{{ $leave->leave_type }}</td>
                                     <td>{{ date('d/m/Y', strtotime($leave->startdate)) }}
                                     <td>{{ date('d/m/Y', strtotime($leave->enddate)) }}
                                     <td>
-                                        @if ($leave->status == '')
-                                            <button type="button" class="btn btn-warning btn-sm">Pending</button>
-                                        @elseif($leave->status == 'approved')
-                                            <button type="button" class="btn btn-success btn-sm">Approved</button>
-                                        @elseif($leave->status == 'disapproved')
-                                            <button type="button" class="btn btn-danger btn-sm">Disapprove</button>
+                                        @if($userRole != 'superadmin')
+
+                                            @if($leave->status == 'approved')
+                                                <button type="button" class="btn btn-success btn-sm approve-btn">Approved</button>
+                                            @elseif($leave->status == 'disapproved')
+                                                <button type="button" class="btn btn-danger btn-sm disapprove-btn">Disapproved</button>
+                                            @else
+                                                <button type="button" class="btn btn-warning btn-sm approve-btn">Pending</button>
+                                            @endif
                                         @endif
+                                        @if($userRole == 'superadmin')
+                                            <button type="button" class="btn btn-success btn-sm approve-btn" data-leave-id="{{ $leave->id }}">Approve</button>
+                                            <button type="button" class="btn btn-danger btn-sm disapprove-btn" data-leave-id="{{ $leave->id }}">Disapprove</button>
+                                        @endif
+
                                     </td>
+
+
                                     {{-- <td>
                                         @if (is_null($leave->status))
                                             @if ($userRole != 'employee')
@@ -91,11 +104,18 @@
                                             <a class="btn btn-danger btn-sm"><span class="statusbtn">Rejected</span></a>
                                         @endif
                                     </td> --}}
-                                    @if ($userRole != 'employee')
+                                    @if ($userRole != 'superadmin' ||  $userRole == 'employee')
                                         <td>
-                                            <a href="{{ route('edit.leave', $leave->id) }}"
+                                            @if ($leave->status == 'pending')
+                                                <a href="{{ route('edit.leave', $leave->id) }}"
                                                 class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
 
+                                                <a href="{{ route('destroy.leave', $leave->id) }}"
+                                                    class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>
+                                            @endif
+                                        </td>
+                                    @else
+                                        <td>
                                             <a href="{{ route('destroy.leave', $leave->id) }}"
                                                 class="btn btn-danger btn-sm"onclick="return confirm('Are you sure you want to delete this ?');"><i class="bi bi-trash3-fill"></i></a>
                                         </td>
@@ -172,4 +192,109 @@
             }, 1000);
         });
     </script>
+
+{{-- Change the leave Status --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Select all approve buttons
+        const approveButtons = document.querySelectorAll('.approve-btn');
+        approveButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const leaveId = this.getAttribute('data-leave-id');
+                updateLeaveStatus(leaveId, 'approved');
+
+                // Update local storage
+                localStorage.setItem(`leaveStatus_${leaveId}`, 'approved');
+
+                this.disabled = true;
+
+                const disapproveButton = document.querySelector(`.disapprove-btn[data-leave-id="${leaveId}"]`);
+                if (disapproveButton) {
+                    disapproveButton.disabled = false;
+                }
+            });
+        });
+
+        // Select all disapprove buttons
+        const disapproveButtons = document.querySelectorAll('.disapprove-btn');
+        disapproveButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const leaveId = this.getAttribute('data-leave-id');
+                updateLeaveStatus(leaveId, 'disapproved');
+
+                // Update local storage
+                localStorage.setItem(`leaveStatus_${leaveId}`, 'disapproved');
+
+                this.disabled = true;
+
+                const approveButton = document.querySelector(`.approve-btn[data-leave-id="${leaveId}"]`);
+                if (approveButton) {
+                    approveButton.disabled = false;
+                }
+            });
+        });
+
+        // Function to initialize button states based on localStorage
+        function initializeButtonStates() {
+            approveButtons.forEach(button => {
+                const leaveId = button.getAttribute('data-leave-id');
+                const status = localStorage.getItem(`leaveStatus_${leaveId}`);
+                if (status === 'approved') {
+                    button.disabled = true;
+                    const disapproveButton = document.querySelector(`.disapprove-btn[data-leave-id="${leaveId}"]`);
+                    if (disapproveButton) {
+                        disapproveButton.disabled = false;
+                    }
+                }
+            });
+
+            disapproveButtons.forEach(button => {
+                const leaveId = button.getAttribute('data-leave-id');
+                const status = localStorage.getItem(`leaveStatus_${leaveId}`);
+                if (status === 'disapproved') {
+                    button.disabled = true;
+                    const approveButton = document.querySelector(`.approve-btn[data-leave-id="${leaveId}"]`);
+                    if (approveButton) {
+                        approveButton.disabled = false;
+                    }
+                }
+            });
+        }
+
+        // Initialize button states on page load
+        initializeButtonStates();
+
+        function updateLeaveStatus(leaveId, status) {
+            fetch(`/leave/update-status/${leaveId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ status: status })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Update UI or notify user
+                    console.log(`Leave ${leaveId} ${status}`);
+                    localStorage.setItem(`leaveStatus_${leaveId}`, status);
+
+                    let message;
+                    if (status === 'approved') {
+                        message = 'Leave request approved successfully';
+                    } else if (status === 'disapproved') {
+                        message = 'Leave request disapproved successfully';
+                    }
+                    alert(message);
+                } else {
+                    // Handle errors
+                    console.error('Failed to update leave status');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+</script>
 @endpush
