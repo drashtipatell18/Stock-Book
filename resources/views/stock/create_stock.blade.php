@@ -59,7 +59,12 @@
                         @enderror
                     </div> --}}
 
-                    <input type="hidden" name="book_name" id="book_name">
+                    <input type="hidden" value="@php
+                        if(isset($selectBook))
+                        {
+                            echo $selectBook;
+                        }
+                    @endphp" name="book_name" id="book_name">
 
                     <div class="form-group mt-5">
                         <label for="name" class="control-label mb-1">Name</label>
@@ -70,7 +75,7 @@
                             @foreach ($books as $id => $book)
                                 <option
                                     @php
-if(isset($selectBook) && $selectBook == $book)
+                                        if(isset($selectBook) && $selectBook == $book)
                                         {
                                             echo "selected";
                                         } @endphp

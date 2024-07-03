@@ -32,9 +32,6 @@ class StockController extends Controller
         $check = Stock::where('book_id', $request->input('name'))->first();
         if($check)
         {
-            $check->quantity = $request->input('quantity');
-            $check->price = $request->input('price');
-
             $check->update([
                 'quantity' => $request->input('quantity') + $check->quantity,
                 'price' => $request->input('price')
@@ -69,6 +66,7 @@ class StockController extends Controller
             'name' => 'required',
             'quantity' => 'required',
             'price' => 'required',
+            'book_name' => 'required'
         ]);
 
         $stocks = Stock::find($id);
@@ -76,8 +74,9 @@ class StockController extends Controller
 
         $stocks->update([
             'name'      => $request->input('book_name'),
-            'quantity'     => $request->input('quantity'),
+            'quantity'  => $request->input('quantity'),
             'price'     => $request->input('price'),
+            'book_id'   => $request->input('name')
         ]);
 
         session()->flash('success', 'Stock added successfully!');

@@ -16,7 +16,7 @@ class BookController extends Controller
     }
     public function bookCreate()
     {
-        $categories = Category::pluck('category_name', 'id')->unique();
+        $categorys = Category::pluck('category_name', 'id')->unique();
         return view('book.create_book', compact('categorys'));
     }
 
@@ -49,7 +49,7 @@ class BookController extends Controller
     public function bookEdit($id)
     {
         $books = Book::find($id);
-        $categories = Category::pluck('category_name', 'id')->unique();
+        $categorys = Category::pluck('category_name', 'id')->unique();
         return view('book.create_book', compact('books', 'categorys'));
     }
 

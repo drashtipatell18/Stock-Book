@@ -30,6 +30,11 @@
         <div class="card">
             <div class="card-header"></div>
             <div class="card-body">
+                @if (session('danger'))
+                    <div class="alert alert-danger">
+                        {{ session('danger') }}
+                    </div>
+                @endif
                 <div class="card-title">
                     <h3 class="text-center title-2">{{ isset($salesorders) ? 'Edit Sales Order' : 'Add Sales Order' }}</h3>
                 </div>
@@ -205,6 +210,13 @@
                     $("#location").val("")
                 }
             })
+
+            setTimeout(() => {
+                $("#book_id").change();
+            }, 500);
+            setTimeout(function() {
+                $(".alert-success").fadeOut(1000);
+            }, 1000);
         });
     </script>
 @endpush
