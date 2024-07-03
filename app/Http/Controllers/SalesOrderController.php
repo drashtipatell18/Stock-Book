@@ -23,12 +23,10 @@ class SalesOrderController extends Controller
     public function salesorderInsert(Request $request)
     {
         $request->validate([
-            'stall_name'   => 'required',
-            'location'     => 'required',
-            'book_name'    => 'required',
+            // 'location'     => 'required',
             'sales_price'  => 'required',
             'quantity'     => 'required',
-            'total_price ' => 'required',
+            // 'total_price ' => 'required',
             'book_id' => 'required',
             'stall_id' => 'required'
         ]);
@@ -52,11 +50,11 @@ class SalesOrderController extends Controller
 
         $salesorders = SalesOrder::create([
             'stall_id'         => $request->input('stall_id'),
-            'location'         => $request->input('location'),
+            // 'location'         => $request->input('location'),
             'book_id'          => $request->input('book_id'),
             'sales_price'      => $request->input('sales_price'),
             'quantity'         => $request->input('quantity'),
-            'total_price'      => $request->input('total_price'),
+            // 'total_price'      => $request->input('total_price'),
         ]);
 
         $stock->update([
@@ -77,14 +75,14 @@ class SalesOrderController extends Controller
 
     public function salesorderUpdate(Request $request, $id)
     {
-        // $request->validate([
-        //     'stall_name'   => 'required',
-        //     'location'     => 'required',
-        //     'book_name'    => 'required',
-        //     'sales_price'  => 'required',
-        //     'quantity'     => 'required',
-        //     'total_price ' => 'required',
-        // ]);
+        $request->validate([
+            'stall_id'   => 'required',
+            // 'location'     => 'required',
+            'book_id'    => 'required',
+            'sales_price'  => 'required',
+            'quantity'     => 'required',
+            'total_price ' => 'required',
+        ]);
 
         $salesorders = SalesOrder::find($id);
 

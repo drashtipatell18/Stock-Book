@@ -9,15 +9,16 @@
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
-                @endif
+                    @endif
                     @if (session('danger'))
                         <div class="alert alert-danger">
                             {{ session('danger') }}
                         </div>
                     @endif
                     <div class="button-container text-right mb-2">
-                        <a href="{{ route('create.salesorder') }}"><button type="button" class="btn btn-info btn-sm mt-1"><i class="bi bi-plus-lg"></i> Add
-                            SalesOrder</button></a>
+                        <a href="{{ route('create.salesorder') }}"><button type="button" class="btn btn-info btn-sm mt-1"><i
+                                    class="bi bi-plus-lg"></i> Add
+                                SalesOrder</button></a>
                     </div>
                 </div>
                 <div class="table-responsive mt-2">
@@ -38,16 +39,19 @@
                             @foreach ($salesorders as $index => $salesorder)
                                 <tr class="">
                                     <td class="text-center">{{ $index + 1 }}</td>
-                                    <td class="text-center">{{ $salesorder->stall->name }}</td>
+                                    <td class="text-center">{{ $salesorder->stall ? $salesorder->stall->name : 'No Stall' }}</td>
                                     <td class="text-center">{{ $salesorder->location }}</td>
-                                    <td class="text-center">{{ $salesorder->book->name }}</td>
+                                    <td class="text-center">{{ $salesorder->book ? $salesorder->book->name : 'No Book' }}</td>
                                     <td class="text-center">{{ $salesorder->sales_price }}</td>
                                     <td class="text-center">{{ $salesorder->quantity }}</td>
                                     <td class="text-center">{{ $salesorder->total_price }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('edit.salesorder', $salesorder->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
-                                        <a href="{{ route('destroy.salesorder', $salesorder->id) }}" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Are you sure you want to delete this?');"><i class="bi bi-trash3-fill"></i></a>
+                                        <a href="{{ route('edit.salesorder', $salesorder->id) }}"
+                                            class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="{{ route('destroy.salesorder', $salesorder->id) }}"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete this?');"><i
+                                                class="bi bi-trash3-fill"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

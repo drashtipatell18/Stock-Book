@@ -80,7 +80,6 @@
 
                     <label for="sales_price" class="form-label mb-1">Sales Price</label>
                     <div class="input-group mb-3">
-                        {{-- <label for="sales_price" class="control-label mb-1">Sales Price</label> --}}
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <select class="form-control @error('sales_price') is-invalid @enderror" name="symbol"
@@ -100,27 +99,6 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="form-group has-success">
-                        <label for="sales_price" class="control-label mb-1">Sales Price</label>
-                        <div class="form-group has-success">
-                            <span class="miplus">
-                                <select class="form-control @error('sales_price') is-invalid @enderror" name="symbol"
-                                    autocomplete="off">
-                                    <option value="₹">₹</option>
-                                    <option value="$">$</option>
-                                </select>
-                            </span>
-                            <input id="sales_price" name="sales_price" placeholder="" type="number"
-                                class="form-control miplusinput @error('sales_price') is-invalid @enderror"
-                                value="<?php echo isset($stocks->sales_price) ? $payments->sales_price : ''; ?>"  oninput="calculateTotalPrice()">
-                            @error('sales_price')
-                                <span class="invalid-feedback" style="color: red">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div> --}}
-
                     <div class="form-group has-success">
                         <label for="quantity" class="control-label mb-1">Quantity <span id="avlQty" style="font-size: small" class="text-danger"></span> </label>
                         <input id="quantity" name="quantity" type="number"
@@ -133,28 +111,8 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="form-group has-success">
-                        <label for="total_price" class="control-label mb-1">Total Price</label>
-                        <div class="form-group has-success">
-                            <span class="miplus">
-                                <select class="form-control @error('total_price') is-invalid @enderror" name="symbol"
-                                    autocomplete="off">
-                                    <option value="$">$</option>
-                                    <option value="₹">₹</option>
-                                </select>
-                            </span>
-                            <input id="total_price" name="total_price" placeholder="" type="text"
-                                class="form-control miplusinput @error('total_price') is-invalid @enderror"
-                                value="<?php echo isset($stocks->total_price) ? $payments->total_price : ''; ?>"  oninput="calculateTotalPrice()">
-                            @error('total_price')
-                                <span class="invalid-feedback" style="color: red">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div> --}}
+                    <label for="total_price" class="control-label mb-1">Total Price</label>
                     <div class="input-group mb-3">
-                        {{-- <label for="sales_price" class="control-label mb-1">Sales Price</label> --}}
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <select class="form-control @error('total_price') is-invalid @enderror" name="symbol"
