@@ -76,6 +76,7 @@ class EmployeeController extends Controller
             'gender'         => $request->input('gender'),
             'salary'         => $request->input('salary'),
             'joiningdate'    => $request->input('joiningdate'),
+            'aadhar_number'  => $request->input('aadhar_number')
         ]);
 
         session()->flash('success', 'Employee added successfully!');
@@ -95,19 +96,26 @@ class EmployeeController extends Controller
             'lastname' => 'required',
             'role_id' => 'required',
             'dob' => 'required|date',
+            'gender' => 'required',
             'email' => 'required|email',
             'address' => 'required',
             'phoneno' => 'required|numeric',
-            'gender' => 'required',
             'salary' => 'required|numeric',
             'joiningdate' => 'required|date',
+            'aadhar_number' => 'required',
         ]);
 
         $employees = Employee::find($id);
-    
 
+        if(!empty($request->input('password')))
+        {
+            $user = User::find($employees->user_id);
+            $user->update([
+                'password' => Hash::make($request->input('password'))
+            ]);
+        }
+    
         $employees->update([
-            'user_id'       => $request->input('user_id'),
             'firstname'      => $request->input('firstname'),
             'lastname'       => $request->input('lastname'),
             'dob'            => $request->input('dob'),
@@ -117,6 +125,7 @@ class EmployeeController extends Controller
             'gender'         => $request->input('gender'),
             'salary'         => $request->input('salary'),
             'joiningdate'    => $request->input('joiningdate'),
+            'aadhar_number'  => $request->input('aadhar_number')
          ]);
 
         session()->flash('success', 'Employee Update successfully!');

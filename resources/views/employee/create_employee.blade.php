@@ -108,7 +108,7 @@
 
                     <div class="form-group">
                         <label for="aadhar_number" class="form-label">Aadhar Number</label>
-                        <input type="number" class="form-control" name="aadhar_number" id="aadhar_number">
+                        <input type="number" value="{{ old('aadhar_number', $employees->aadhar_number ?? '') }}" class="form-control" name="aadhar_number" id="aadhar_number">
                         @error('aadhar_number')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
