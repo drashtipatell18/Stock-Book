@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,8 +23,8 @@ class EmployeeController extends Controller
     }
 
     public function employeeCreate(){
-        $users = User::pluck('name', 'id')->unique();
-        return view('employee.create_employee',compact('users'));
+        $users = Role::pluck('role_name', 'id')->unique();
+        return view('employee.create_employee',compact('roles'));
     }
 
     public function getEmail($id)

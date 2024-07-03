@@ -49,7 +49,7 @@
                                     <option value="{{ $customer }}">{{ $customer }}</option>
                                 @endforeach
                             </select> --}}
-                            <input list="names" id="customer_name_text" name="customer_name_text" type="text" placeholder="Enter customer name"
+                            <input list="names" value="{{ old('name', $scraps->customer_name ?? '') }}" id="customer_name_text" name="customer_name_text" type="text" placeholder="Enter customer name"
                                     class="form-control @error('customer_name') is-invalid @enderror">
                             @if(isset($customerNames) && !empty($customerNames))
                                 <datalist id="names">

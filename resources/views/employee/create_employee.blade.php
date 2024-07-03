@@ -44,8 +44,8 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="user_id" class="control-label mb-1">Select User</label>
-                        <select id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                        <label for="user_id" class="control-label mb-1">Select Role</label>
+                        {{-- <select id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror">
                             <option value="">Select User</option>
                             @foreach ($users as $userId => $userName)
                             <option value="{{ $userId }}" {{ isset($employees) && $employees->user_id == $userId ? 'selected' : '' }}>
@@ -53,6 +53,19 @@
                                 </option>
                             @endforeach
                             @error('user_id')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        </select> --}}
+                        <select id="role_id" name="role_id" class="form-control @error('role_id') is-invalid @enderror">
+                            <option value="">Select Role</option>
+                            @foreach ($roles as $roleId => $roleName)
+                            <option value="{{ $roleId }}" {{ isset($employees) && $employees->role_id == $userId ? 'selected' : '' }}>
+                                {{ $userName }}
+                                </option>
+                            @endforeach
+                            @error('role_id')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>
