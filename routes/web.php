@@ -141,6 +141,13 @@ Route::post('/leave/update/{id}', [LeaveController::class, 'leaveUpdate'])->name
 Route::get('/leave/destroy/{id}',[LeaveController::class,'leaveDestroy'])->name('destroy.leave');
 Route::post('/update-status', [LeaveController::class,'updateStatus'])->name('update-status');
 
+// change the status leave approve , pending ,disapprove
+
+Route::put('/leave/update-status/{id}',[LeaveController::class,'changeStatus'])->name('leave.updateStatus');
+
+
+
+
 // Book
 
 Route::get('/book', [BookController::class, 'book'])->name('book');
