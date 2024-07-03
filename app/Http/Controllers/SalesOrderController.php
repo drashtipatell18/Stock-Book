@@ -16,8 +16,8 @@ class SalesOrderController extends Controller
     }
     public function salesorderCreate()
     {
-        $stalls = Stall::pluck('name', 'id');
-        $books = Book::pluck('name', 'id');
+        $stalls = Stall::pluck('name', 'id')->unique();
+        $books = Book::pluck('name', 'id')->unique();
         return view('salesorder.create_salesorder', compact('stalls', 'books'));
     }
     public function salesorderInsert(Request $request)
@@ -35,16 +35,16 @@ class SalesOrderController extends Controller
         if(!$stock)
         {
             $customError = "*Stock not available";
-            $stalls = Stall::pluck('name', 'id');
-            $books = Book::pluck('name', 'id');
+            $stalls = Stall::pluck('name', 'id')->unique();
+            $books = Book::pluck('name', 'id')->unique();
             return view('salesorder.create_salesorder', compact('customError', 'stalls', 'books'));
         }
 
         if($stock->quantity < $request->input('quantity'))
         {
             $customError = "*Stock not available";
-            $stalls = Stall::pluck('name', 'id');
-            $books = Book::pluck('name', 'id');
+            $stalls = Stall::pluck('name', 'id')->unique();
+            $books = Book::pluck('name', 'id')->unique();
             return view('salesorder.create_salesorder', compact('customError', 'stalls', 'books'));
         }
 
@@ -68,8 +68,8 @@ class SalesOrderController extends Controller
     public function salesorderEdit($id){
 
         $salesorders = SalesOrder::find($id);
-        $stalls = Stall::pluck('name', 'id');
-        $books = Book::pluck('name', 'id');
+        $stalls = Stall::pluck('name', 'id')->unique();
+        $books = Book::pluck('name', 'id')->unique();
         return view('salesorder.create_salesorder',compact('stalls','salesorders','books'));
     }
 

@@ -55,7 +55,7 @@ class PaymentController extends Controller
     public function paymentEdit($id){
 
         $payments = Payment::find($id);
-        $employees = Employee::pluck('firstname','id');
+        $employees = Employee::pluck('firstname','id')->unique();
         return view('payment.create_payment',compact('employees','payments'));
     }
 

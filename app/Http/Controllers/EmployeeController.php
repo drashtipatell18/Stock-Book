@@ -22,7 +22,7 @@ class EmployeeController extends Controller
     }
 
     public function employeeCreate(){
-        $users = User::pluck('name', 'id');
+        $users = User::pluck('name', 'id')->unique();
         return view('employee.create_employee',compact('users'));
     }
 
@@ -63,7 +63,7 @@ class EmployeeController extends Controller
 
     public function employeeEdit($id){
         $employees = Employee::find($id);
-        $users = User::pluck('name', 'id');
+        $users = User::pluck('name', 'id')->unique();
         return view('employee.create_employee', compact('employees','users'));
     }
 

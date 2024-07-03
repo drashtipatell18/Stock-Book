@@ -11,8 +11,7 @@ class CategoryController extends Controller
     public function category()
     {
         $categorys = Category::all();
-        $books = Book::pluck('name');
-
+        $books = Book::pluck('name')->unique();
         return view('category.view_category', compact('categorys', 'books'));
     }
     public function createCategory()

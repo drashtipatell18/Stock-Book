@@ -21,7 +21,7 @@ class UserController extends Controller
         // }
     }
     public function userCreate() {
-        $roles = Role::pluck('role_name', 'id');
+        $roles = Role::pluck('role_name', 'id')->unique();
         return view('admin.create_user', compact('roles'));
     }
     
@@ -54,7 +54,7 @@ class UserController extends Controller
 
     public function userEdit($id){
         $users = User::find($id);
-        $roles = Role::pluck('role_name', 'id');
+        $roles = Role::pluck('role_name', 'id')->unique();
         return view('admin.create_user', compact('users','roles'));
     }
 
@@ -99,7 +99,7 @@ class UserController extends Controller
             $users = User::with('role')->find($userid);
 
         }
-        $roles = Role::pluck('role_name', 'id');
+        $roles = Role::pluck('role_name', 'id')->unique();
         return view('admin.user_profile', compact('users','roles'));
     }
 
