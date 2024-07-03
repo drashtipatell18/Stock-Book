@@ -46,7 +46,7 @@ class EmployeeController extends Controller
             'phoneno' => 'required|numeric',
             'salary' => 'required|numeric',
             'joiningdate' => 'required|date',
-            'image' => 'required',
+            'aadhar_number' => 'required',
             'password' => 'required'
         ]);
 

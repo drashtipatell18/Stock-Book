@@ -43,15 +43,6 @@
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="image" class="form-label">Profile Photo</label>
-                        <input type="file" class="form-control" accept="image/*" name="image" id="image">
-                        @error('image')
-                            <span class="invalid-feedback" style="color: red">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="form-group">
                         <label for="role_id" class="control-label mb-1">Select Role</label>
                         {{-- <select id="user_id" name="user_id" class="form-control @error('user_id') is-invalid @enderror">
                             <option value="">Select User</option>
@@ -109,6 +100,16 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" name="password" id="password">
                         @error('password')
+                            <span class="invalid-feedback" style="color: red">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aadhar_number" class="form-label">Aadhar Number</label>
+                        <input type="number" class="form-control" name="aadhar_number" id="aadhar_number">
+                        @error('aadhar_number')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
                             </span>

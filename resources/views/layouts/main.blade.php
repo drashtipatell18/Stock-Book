@@ -126,6 +126,7 @@
                                 ->whereNull('role_sider_bar_joins.deleted_at')
                                 ->where('role_sider_bar_joins.role_id', $roleId)
                                 ->where('role_sider_bar_joins.permission', 1)
+                                ->whereNot('side_bar_menus.display_name', "User")
                                 ->select('side_bar_menus.*')
                                 ->get();
                         @endphp
