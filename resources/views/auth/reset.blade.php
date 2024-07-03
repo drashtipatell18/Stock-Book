@@ -5,6 +5,9 @@
         .login-content {
             margin-top: 43%;
         }
+        body {
+            overflow: hidden;
+        }
     </style>
     <div class="page-wrapper">
         <div class="page-content--bge5">
