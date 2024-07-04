@@ -23,11 +23,12 @@ class ScrapController extends Controller
     public function scrapInsert(Request $request)
     {
         $request->validate([
-            // 'customer_name' => 'required',
+            'customer_name' => 'required',
             'name' => 'required',
             'scrap_weight' => 'required',
             'by_date' => 'required|date',
             'price' => 'required',
+            'to_date' => 'required|date',
         ]);
         $name = $request->input('customer_name');
         if(!empty($request->input('customer_name_text')))
@@ -63,10 +64,11 @@ class ScrapController extends Controller
     {
         $request->validate([
             // 'customer_name' => 'required',
-            // 'name' => 'required',
+            'name' => 'required',
             'scrap_weight' => 'required',
             'by_date' => 'required|date',
             'price' => 'required',
+            'to_date' => 'required|date',
         ]);
 
         $name = $request->input('customer_name');

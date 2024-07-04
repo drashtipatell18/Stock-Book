@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label for="name" class="control-label mb-1">Scrap Name</label>
                         <input id="name" name="name" type="text" value="{{ old('name', $scraps->name ?? '') }}"
-                            class="form-control">
+                            class="form-control @error('name') is-invalid @enderror">
                         @error('name')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
@@ -70,7 +70,7 @@
                     <div class="form-group has-success">
                         <label for="scrap_weight" class="control-label mb-1">Scrap weight</label>
                         <input id="scrap_weight" name="scrap_weight" type="number"
-                            value="{{ old('scrap_weight', $scraps->scrap_weight ?? '') }}" class="form-control ">
+                            value="{{ old('scrap_weight', $scraps->scrap_weight ?? '') }}" class="form-control @error('scrap_weight') is-invalid @enderror">
                         @error('scrap_weight')
                             <span class="invalid-feedback" style="color: red">
                                 <strong>{{ $message }}</strong>
