@@ -32,9 +32,9 @@
                         <thead>
                             <tr class="">
                                 <th>No</th>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Location</th>
                                 <th class="text-center">Owner Name</th>
+                                <th class="text-center">Store Name</th>
+                                <th class="text-center">Location</th>
                                 <th class="text-center"><span class="nobr">Action</span></th>
                             </tr>
                         </thead>
@@ -43,9 +43,9 @@
                             @foreach ($stalls as $index => $stall)
                                 <tr class="">
                                     <td class="text-center">{{ $index + 1 }}</td>
+                                    <td class="text-center">{{ $stall->owner_name }}</td>
                                     <td class="text-center">{{ $stall->name }}</td>
                                     <td class="text-center">{{ $stall->location }}</td>
-                                    <td class="text-center">{{ $stall->owner_name }}</td>
                                     <td class="text-center">
                                         <a href="{{ route('edit.stall', $stall->id) }}"
                                             class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>

@@ -106,7 +106,7 @@
                                     </td> --}}
                                     @if ($userRole != 'superadmin' ||  $userRole == 'employee')
                                         <td>
-                                            @if ($leave->status == 'pending')
+                                            @if ($leave->status == 'pending' || empty($leave->status))
                                                 <a href="{{ route('edit.leave', $leave->id) }}"
                                                 class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
 
