@@ -100,14 +100,16 @@
 
                     <div class="form-group has-success">
                         <label for="total_price" class="control-label mb-1">Total Salary</label>
-                        <div class="form-group has-success">
-                            <span class="miplus">
-                                <select class="form-control @error('total_price') is-invalid @enderror" name="symbol"
-                                    autocomplete="off">
-                                    <option value="$">$</option>
-                                    <option value="₹">₹</option>
-                                </select>
-                            </span>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <select class="form-control @error('price') is-invalid @enderror" name="symbol"
+                                        autocomplete="off">
+                                        <option value="₹">₹</option>
+                                        <option value="$">$</option>
+                                    </select>
+                                </span>
+                            </div>
                             <input id="total_price" name="total_price" placeholder="" type="text"
                                 class="form-control miplusinput @error('total_price') is-invalid @enderror"
                                 value="<?php echo isset($payments->total_price) ? $payments->total_price : ''; ?>">

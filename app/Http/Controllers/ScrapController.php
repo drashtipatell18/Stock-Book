@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ScrapController extends Controller
-{  
+{
     public function scrap()
     {
         $scraps = Scrap::all();
@@ -80,9 +80,8 @@ class ScrapController extends Controller
         }
 
         $scraps = Scrap::find($id);
-
         $scraps->update([
-            'customer_name'    => $name,
+            // 'customer_name'    => $name,
             'name'             => $request->input('name'),
             'scrap_weight'     => $request->input('scrap_weight'),
             'by_date'          => $request->input('by_date'),

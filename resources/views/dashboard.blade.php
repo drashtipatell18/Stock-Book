@@ -4,25 +4,25 @@
     <style>
         .overview-item--c1 {
             background: linear-gradient(135deg, #c7a9e9, #a1c4fd);
-           
+
             color: white;
         }
 
         .overview-item--c2 {
-            background: linear-gradient(135deg, #a2c0cc, #fceea7); 
+            background: linear-gradient(135deg, #a2c0cc, #fceea7);
 
             color: white;
         }
 
         .overview-item--c3 {
- 
+
             background: linear-gradient(135deg, #9cd8db, #93a5cf);
-       
+
             color: white;
         }
 
         .overview-item--c4 {
-            background: linear-gradient(135deg, #ffd3a5, #fd6585); 
+            background: linear-gradient(135deg, #ffd3a5, #fd6585);
 
             color: white;
         }
@@ -171,11 +171,11 @@
                                                 <div class="chart-note-wrap">
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--blue" style="background: linear-gradient(135deg, #ffd3a5, #fd6585);"></span>
-                                                        <span>Store</span>
+                                                        <span>Scrap</span>
                                                     </div>
                                                     <div class="chart-note mr-0 d-block">
                                                         <span class="dot dot--red" style="background: linear-gradient(135deg, #a2c0cc, #fceea7);"></span>
-                                                        <span>Stock</span>
+                                                        <span>Book</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -299,7 +299,7 @@
                     data: {
                         datasets: [{
                             label: "My First dataset",
-                            data: ["{{ $stall }}", "{{ $stock }}"],
+                            data: ["{{ $scrap }}", "{{ $book }}"],
                             backgroundColor: [
                                 '#F0E8AC',
                                 '#95ADD1'
@@ -317,8 +317,8 @@
                             ]
                         }],
                         labels: [
-                            'Store',
-                            'Stock'
+                            'Scrap',
+                            'Book'
                         ]
                     },
                     options: {
