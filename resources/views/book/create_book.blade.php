@@ -67,8 +67,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="image" id="imageLabel" class="control-label mb-1 oldimage">Old Image</label>
                         @if (isset($books) && $books->image)
+                        <label for="image" id="imageLabel" class="control-label mb-1 oldimage">Old Image</label>
                             <img id="oldImage" src="{{ asset('images/' . $books->image) }}"
                                 alt="Uploaded Document" width="100">
                             <input type="hidden" class="form-control" name="oldimage"

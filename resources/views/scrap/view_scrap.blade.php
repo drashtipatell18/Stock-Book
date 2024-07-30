@@ -28,6 +28,7 @@
                                 <th>No</th>
                                 <th class="">Customer Name</th>
                                 <th class="">Scrap Name</th>
+                                <th class="">Scrap Weight</th>
                                 <th class="">By Date</th>
                                 <th class="">Price</th>
                                 <th class="">To Date</th>
@@ -40,6 +41,7 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $scrap->customer_name }}</td>
                                     <td>{{ $scrap->name }}</td>
+                                    <td>{{ $scrap->scrap_weight }}</td>
                                     <td>{{ date('d-m-Y', strtotime($scrap->by_date)) }}</td>
                                     <td>{{ $scrap->price }}</td>
                                     <td>{{ date('d-m-Y', strtotime($scrap->to_date)) }}</td>

@@ -66,7 +66,6 @@ class StockController extends Controller
             'name' => 'required',
             'quantity' => 'required',
             'price' => 'required',
-            'book_name' => 'required'
         ]);
 
         $stocks = Stock::find($id);
@@ -76,7 +75,7 @@ class StockController extends Controller
             'name'      => $request->input('book_name'),
             'quantity'  => $request->input('quantity'),
             'price'     => $request->input('price'),
-            'book_id'   => $request->input('name')
+            'book_id'   => $request->input('book_id')
         ]);
 
         session()->flash('success', 'Stock added successfully!');

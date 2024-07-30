@@ -37,7 +37,7 @@
                         <thead>
                             <tr class="">
                                 <th class="text-center">No</th>
-                                <th class="text-center">Stock Name</th>
+                                <th class="text-center">Book Name</th>
                                 <th class="text-center">Quantity</th>
                                 <th class="text-center">Per book sales Price</th>
                                 <th class="text-center"><span class="nobr">Action</span></th>
